@@ -1,0 +1,1066 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Upload/Sistema/favicon.png" type="image/png">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/JQueryUI")
+    @Styles.Render("~/Content/Materialize")
+    @Styles.Render("~/Content/Iconos")
+    @Styles.Render("~/Content/Fileinput")
+    @Styles.Render("~/Content/Modal")
+    @Styles.Render("~/Content/nouislider")
+
+</head>
+<body>
+    @if (@ViewBag.HiddenMenu == 1)
+    {
+        <div class="navbar-fixed margin-bottom-15">
+
+            <nav class="white">
+                <div class="nav-wrapper">
+                    @if (Auth.Usuario != null)
+                    {
+                        <a href="#" data-activates="slide-out" id="menu" data-tooltip="Menú">
+                            <img class="img-layout" src="~/Upload/Sistema/SIRE_FINAL.png" style="width:125px;" />
+                        </a>
+                    }
+                </div>
+            </nav>
+        </div>
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <div class="user-view">
+                    @if (Auth.Usuario.foto != null)
+                    {
+                        <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~", "")"></a>
+                        <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
+                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                    }
+                    else
+                    {
+                        <a href="#!user"><img class="circle" style="border:solid" src="~/Upload/Sistema/default.png"></a>
+                        <span class="blue-text name">@*@Auth.Usuario.nombre.ToUpper() @Auth.Usuario.apellido_paterno.ToUpper() @Auth.Usuario.apellido_materno.ToUpper()*@ TEST</span>
+                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                    }
+                </div>
+            </li>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li class="active"><a href="@Url.Action("Index", "PanelView")"><i class=" small mdi mdi-home-outline"></i><span>Inicio</span></a></li>
+
+                    @* PROCEDIMIENTO PARA EMPRESA 1 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
+                    @if (Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
+                    {
+                        if (Auth.Usuario.perfil_ID == 6)
+                        {
+                            <li>
+                                <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 7)
+                        {
+                            <li>
+                                <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 8)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa1" value="1" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa2" value="2" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="text" name="ID_empresa3" value="3" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa4" value="4" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                    }
+
+                    @* PROCEDIMIENTO PARA EMPRESA 2 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
+                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
+                    {
+                        if (Auth.Usuario.perfil_ID == 6)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 7)
+                        {
+                            <li>
+                                <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 8)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa1" value="1" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa2" value="2" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="text" name="ID_empresa3" value="3" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa4" value="4" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                    }
+
+                    @* PROCEDIMIENTO PARA EMPRESA 3 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
+                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
+                    {
+                        if (Auth.Usuario.perfil_ID == 6)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 7)
+                        {
+                            <li>
+                                <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 8)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa1" value="1" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa2" value="2" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="text" name="ID_empresa3" value="3" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa4" value="4" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                    }
+
+                    @* PROCEDIMIENTO PARA EMPRESA 4 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
+                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID == 6)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 7)
+                        {
+                            <li>
+                                <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                                @if (Auth.Usuario.empresa_ID == 1)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 2)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 3)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                        else if (Auth.Usuario.perfil_ID == 8)
+                        {
+                            <li>
+                                <input type="text" name="ID_empresa1" value="1" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa2" value="2" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="text" name="ID_empresa3" value="3" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="text" name="ID_empresa4" value="4" />
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                            @* INICIO DE MENU AUDITORIA INTERNA*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            @* FIN DE MENU AUDITORIA INTERNA*@
+
+                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+
+                            @* INICIO DE MENU DE ACTUALIZACIONES *@
+                            if (Auth.Usuario.perfil_ID != 3)
+                            {
+                                if (Auth.Usuario.perfil_ID != 4)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                    }
+                                }
+                            }
+                            @* FIN DE MENU DE ACTUALIZACIONES *@
+                        }
+                    }
+
+                </ul>
+            </li>
+        </ul>
+    }
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUnobtrusive")
+    @Scripts.Render("~/bundles/nouislider")
+    @Scripts.Render("~/bundles/JQueryUI")
+    @Scripts.Render("~/bundles/Materialize")
+    @Scripts.Render("~/bundles/Fileinput")
+    @Scripts.Render("~/bundles/Modal")
+    @Scripts.Render("~/bundles/Mask")
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        // Initialize collapse button
+        $("#menu").sideNav();
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        $('.collapsible').collapsible();
+        $('#menu').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
+            onOpen: function (el) { /* Do Stuff*/ },  // A function to be called when sideNav is
+            openedonClose: function (el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
+        }
+        );
+    </script>
+</body>
+</html>
