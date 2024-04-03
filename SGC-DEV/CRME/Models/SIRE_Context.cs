@@ -81,8 +81,6 @@ namespace CRME.Models
 
         public virtual DbSet<Procesos> Procesos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
-        public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
-        public virtual DbSet<cat_periodos> cat_periodos { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
