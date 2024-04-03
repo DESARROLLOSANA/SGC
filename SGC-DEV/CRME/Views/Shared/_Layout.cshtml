@@ -25,7 +25,7 @@
                     @if (Auth.Usuario != null)
                     {
                         <a href="#" data-activates="slide-out" id="menu" data-tooltip="Menú">
-                            <img class="img-layout" src="~/Upload/Sistema/SIRE_FINAL.png" style="width:125px;" />
+                            <img class="img-layout" src="~/Upload/Sistema/Logo_CA.png" style="width:125px;" />
                         </a>
                     }
                 </div>
@@ -38,7 +38,8 @@
                     {
                         <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~", "")"></a>
                         <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
-                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion &nbsp&nbsp</span></a>
+                       // <a href="@Url.Action("Config", "AccesoView")><span class="blue-text"><i class="small mdi mdi-cog"></i></a>
                     }
                     else
                     {
@@ -55,11 +56,15 @@
                     @* PROCEDIMIENTO PARA EMPRESA 1 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
                     @if (Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
                     {
-                        if (Auth.Usuario.perfil_ID == 6)
+                        if (Auth.Usuario.perfil_ID != 6 )
                         {
                             <li>
                                 <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
-                                @if (Auth.Usuario.empresa_ID == 1)
+                                @if (Auth.Usuario.empresa_ID == 4)
+                                {
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                }
+                                else if (Auth.Usuario.empresa_ID == 1)
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                 }
@@ -71,24 +76,20 @@
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                 }
-                                else if (Auth.Usuario.empresa_ID == 4)
-                                {
-                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
-                                }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
@@ -117,19 +118,13 @@
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
-                                if (Auth.Usuario.perfil_ID != 4)
-                                {
-                                    if (Auth.Usuario.perfil_ID != 5)
-                                    {
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
-                                    }
-                                }
                             }
                             @* FIN DE MENU DE ACTUALIZACIONES *@
                         }
-                        else if (Auth.Usuario.perfil_ID == 7)
+                        else if (Auth.Usuario.perfil_ID != 6)
                         {
                             <li>
                                 <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
@@ -158,11 +153,11 @@
                             </li>
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
@@ -187,7 +182,7 @@
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-sync"></i><span style="color: black">Material de apoyo</span></a></li>
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
@@ -203,57 +198,63 @@
                             }
                             @* FIN DE MENU DE ACTUALIZACIONES *@
                         }
-                        else if (Auth.Usuario.perfil_ID == 8)
+                        else if (Auth.Usuario.perfil_ID == 6)
                         {
                             <li>
-                                <input type="text" name="ID_empresa1" value="1" />
+                                
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <input type="hidden" name="ID_empresa1" value="1" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="1" id="sgc_emp1"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <input type="hidden" name="ID_empresa11" value="1" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="1" id="ci_emp1"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li>
-                                <input type="text" name="ID_empresa2" value="2" />
+                                
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <input type="hidden" name="ID_empresa2" value="2" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="2" id="sgc_emp2"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 }))"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <input type="hidden" name="ID_empresa22" value="2" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="2" id="ci_emp2"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <input type="text" name="ID_empresa3" value="3" />
+                                
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <input type="hidden" name="ID_empresa3" value="3" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="3" id="sgc_emp3"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 }))"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="3" id="ci_emp3"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li>
-                                <input type="text" name="ID_empresa4" value="4" />
+                                
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <input type="hidden" name="ID_empresa4" value="4" />
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="4" id="sgc_emp4"><a href="@Url.Action("Index", "ProcesosView", new { id = 4 }) )"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="4" id="ci_emp4"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
@@ -267,10 +268,10 @@
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
                                     <div class="collapsible-body">
                                         <ul>
-                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SANA</span></a></li>
-                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">ECOLSUR</span></a></li>
-                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">SAU</span></a></li>
-                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">SANA</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">ECOLSUR</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">SAU</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">CICLO AMBIENTAL</span></a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -278,26 +279,21 @@
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">Material de apoyo</span></a></li>
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID !=5)
                             {
-                                if (Auth.Usuario.perfil_ID != 4)
-                                {
-                                    if (Auth.Usuario.perfil_ID != 5)
-                                    {
-                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
-                                    }
-                                }
+                              <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                             }
                             @* FIN DE MENU DE ACTUALIZACIONES *@
                         }
                     }
 
+                    @*AQUI HAY MAS PROCESOS*@
                     @* PROCEDIMIENTO PARA EMPRESA 2 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
-                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
+                    <!--else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
                     {
                         if (Auth.Usuario.perfil_ID == 6)
                         {
@@ -325,22 +321,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -353,15 +349,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -370,9 +366,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 7)
                         {
                             <li>
@@ -399,22 +395,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -427,15 +423,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -444,9 +440,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 8)
                         {
                             <li>
@@ -490,22 +486,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -518,15 +514,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -535,13 +531,13 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
-                    }
+                        <!--}
+                    }-->
 
                     @* PROCEDIMIENTO PARA EMPRESA 3 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
-                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 3 || Auth.Usuario.empresa_ID != 4)
+                    <!--else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 4)
                     {
                         if (Auth.Usuario.perfil_ID == 6)
                         {
@@ -569,22 +565,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -597,15 +593,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -614,9 +610,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 7)
                         {
                             <li>
@@ -643,22 +639,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -671,15 +667,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -688,9 +684,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 8)
                         {
                             <li>
@@ -734,22 +730,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -762,15 +758,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -779,13 +775,13 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
-                    }
+                        <!--}
+                    }-->
 
                     @* PROCEDIMIENTO PARA EMPRESA 4 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
-                    else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 3)
+                    <!--else if (Auth.Usuario.empresa_ID != 1 || Auth.Usuario.empresa_ID != 2 || Auth.Usuario.empresa_ID != 3)
                     {
                         if (Auth.Usuario.perfil_ID == 6)
                         {
@@ -813,22 +809,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -841,15 +837,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -858,9 +854,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 7)
                         {
                             <li>
@@ -887,22 +883,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -915,15 +911,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -932,9 +928,9 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
+                        <!--}
                         else if (Auth.Usuario.perfil_ID == 8)
                         {
                             <li>
@@ -978,22 +974,22 @@
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
 
                             @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Indicadores</span></a></li>-->
                             @* FIN DE MENU INDICADORES DE CALIDAD*@
 
                             @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Auditoria Interna</span></a></li>-->
                             @* FIN DE MENU AUDITORIA INTERNA*@
 
                             @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Acciones</span></a></li>-->
                             @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
                             @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                            <!--if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                             {
                                 <li>
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
@@ -1005,15 +1001,15 @@
                                         </ul>
                                     </div>
                                 </li>
-                            }
+                            }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
                             @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
                             @* FIN DE MENU DE MATERIAL DE APOYO *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3)
+                            <!--if (Auth.Usuario.perfil_ID != 3)
                             {
                                 if (Auth.Usuario.perfil_ID != 4)
                                 {
@@ -1022,10 +1018,10 @@
                                         <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
-                            }
+                            }-->
                             @* FIN DE MENU DE ACTUALIZACIONES *@
-                        }
-                    }
+                        <!--}
+                    }-->
 
                 </ul>
             </li>

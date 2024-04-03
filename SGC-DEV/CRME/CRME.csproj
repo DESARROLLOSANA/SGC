@@ -324,6 +324,7 @@
     <Compile Include="Controllers\NuevoEmpleadosViewController.cs" />
     <Compile Include="Controllers\PanelInvViewController.cs" />
     <Compile Include="Controllers\PanelViewController.cs" />
+    <Compile Include="Controllers\ProcesosViewController.cs" />
     <Compile Include="Controllers\ProveedoresViewController.cs" />
     <Compile Include="Controllers\PuestosViewController.cs" />
     <Compile Include="Controllers\ReporteViewController.cs" />
@@ -443,6 +444,22 @@
     <Compile Include="Migrations\202403121642360_MigrationNewColums.Designer.cs">
       <DependentUpon>202403121642360_MigrationNewColums.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403151917542_addIndicadoresTable.cs" />
+    <Compile Include="Migrations\202403151917542_addIndicadoresTable.Designer.cs">
+      <DependentUpon>202403151917542_addIndicadoresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403152145003_addIndicadoresTable1.cs" />
+    <Compile Include="Migrations\202403152145003_addIndicadoresTable1.Designer.cs">
+      <DependentUpon>202403152145003_addIndicadoresTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403211444461_TablaPeriodos.cs" />
+    <Compile Include="Migrations\202403211444461_TablaPeriodos.Designer.cs">
+      <DependentUpon>202403211444461_TablaPeriodos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404022214220_Tabla TIpo.cs" />
+    <Compile Include="Migrations\202404022214220_Tabla TIpo.Designer.cs">
+      <DependentUpon>202404022214220_Tabla TIpo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Archivos.cs" />
@@ -456,6 +473,7 @@
     <Compile Include="Models\cat_fechamodificado_laptop.cs" />
     <Compile Include="Models\cat_fechamodificado_movil.cs" />
     <Compile Include="Models\cat_fechamodificado_nobreak.cs" />
+    <Compile Include="Models\cat_indicadores.cs" />
     <Compile Include="Models\cat_km_actuales_vehiculos.cs" />
     <Compile Include="Models\cat_km_proximo_vehiculos.cs" />
     <Compile Include="Models\cat_mantenimiento_vehiculos.cs" />
@@ -477,11 +495,14 @@
     <Compile Include="Models\Ce_cos.cs" />
     <Compile Include="Models\cat_permisos_perfil.cs" />
     <Compile Include="Models\cat_permisos_empresa.cs" />
+    <Compile Include="Models\cat_periodos.cs" />
+    <Compile Include="Models\Procesos.cs" />
     <Compile Include="Models\Condicion.cs" />
     <Compile Include="Models\Cuestionario.cs" />
     <Compile Include="Models\Equipo_Menor.cs" />
     <Compile Include="Models\Estados.cs" />
     <Compile Include="Models\Familia.cs" />
+    <Compile Include="Controllers\IndicadoresViewController.cs" />
     <Compile Include="Models\Inventario_Lista_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Laptops_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Lineas_Excel.cs" />
@@ -543,6 +564,7 @@
     <Compile Include="Models\Solicitud_Mtto.cs" />
     <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\TipoDocumentoes.cs" />
     <Compile Include="Models\Tipo_Solicitud.cs" />
     <Compile Include="Models\Unidad_Medida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -781,12 +803,17 @@
     <Content Include="Upload\Sistema\Loading_02.gif" />
     <Content Include="Upload\Sistema\loadingciclo.gif" />
     <Content Include="Upload\Sistema\LOGO SAU.png" />
-    <Content Include="Upload\Sistema\Logo _CA.png" />
+    <Content Include="Upload\Sistema\Logo_CA.png" />
     <Content Include="Upload\Sistema\mdi-account-search.png" />
     <Content Include="Upload\Sistema\mdi-account.png" />
     <Content Include="Upload\Sistema\mdi-chart.png" />
     <Content Include="Upload\Sistema\mdi-logout.png" />
     <Content Include="Upload\Sistema\mdi-sync.png" />
+    <Content Include="Upload\Sistema\organigramas.png" />
+    <Content Include="Upload\Sistema\Política de  Ecolsur 2..jpg" />
+    <Content Include="Upload\Sistema\Política de  Ecolsur.jpg" />
+    <Content Include="Upload\Sistema\Política de Calidad SANA 1.jpg" />
+    <Content Include="Upload\Sistema\Política de Calidad SANA 2.jpg" />
     <Content Include="Upload\Sistema\sana.png" />
     <Content Include="Upload\Sistema\sana_azul.png" />
     <Content Include="Upload\Sistema\SIRE_FINAL.png" />
@@ -1006,6 +1033,19 @@
     <Content Include="Views\UnidadMedidaView\_TablaMedidas.cshtml" />
     <Content Include="Views\UnidadMedidaView\Index.cshtml" />
     <Content Include="Views\ResguardosHeramientas\_TablaHerramientas.cshtml" />
+    <Content Include="Views\IndicadoresView\index.cshtml" />
+    <Content Include="Views\IndicadoresView\_TablaLineas.cshtml" />
+    <Content Include="Views\IndicadoresView\_FormularioIndicadores.cshtml" />
+    <Content Include="Views\IndicadoresView\ComboResponMed.cshtml" />
+    <Content Include="Views\IndicadoresView\ComboFrec.cshtml" />
+    <Content Include="Views\IndicadoresView\ComboProc.cshtml" />
+    <Content Include="Views\IndicadoresView\VisualizarInd.cshtml" />
+    <Content Include="Views\IndicadoresView\GenerarGrafica.cshtml" />
+    <Content Include="Views\IndicadoresView\ComboResponMej.cshtml" />
+    <Content Include="Views\ProcesosView\CrearProceso.cshtml" />
+    <Content Include="Views\ProcesosView\Index.cshtml" />
+    <Content Include="Views\ProcesosView\_Formulario.cshtml" />
+    <Content Include="Views\ProcesosView\_TablaProcesos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1013,6 +1053,7 @@
     <Folder Include="Upload\Sistema\files\" />
     <Folder Include="Upload\Temporales\Descargas\" />
     <Folder Include="Upload\Temporales\Egresados\" />
+    <Folder Include="Views\VisualizarIndicadores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1087,6 +1128,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403121642360_MigrationNewColums.resx">
       <DependentUpon>202403121642360_MigrationNewColums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403151917542_addIndicadoresTable.resx">
+      <DependentUpon>202403151917542_addIndicadoresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403152145003_addIndicadoresTable1.resx">
+      <DependentUpon>202403152145003_addIndicadoresTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403211444461_TablaPeriodos.resx">
+      <DependentUpon>202403211444461_TablaPeriodos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404022214220_Tabla TIpo.resx">
+      <DependentUpon>202404022214220_Tabla TIpo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IndicadoresGraficaLineas.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaBarras.rdlc" />

@@ -1,0 +1,253 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.cat_indicadores>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+    string strorden = ""; string iconorder = "";
+}
+
+
+<div class="row margin-10">
+    <div class="col l6 m6 s11 titlecircle">
+        <b>Indicadores Registrados</b>
+    </div>
+    <div class="col l6 m6 s1 separator">
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m4 l4 input-field">
+        <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("VisualizarInd","IndicadoresView")"><i class="mdi mdi-plus"></i> Asignar Indicador</a>
+    </div>
+</div>
+<div id="TablaIndicadores">
+    
+
+
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Empresa</td>
+                        <td class="center hide-on-small-only">Proceso</td>
+                        <td class="center hide-on-small-only">Indicador</td>
+                        <td class="center hide-on-small-only">Forma calculo</td>
+                        <td class="center hide-on-small-only">Res Esperado</td>
+                        <td class="center hide-on-small-only">Resp medicion</td>
+                        <td class="center hide-on-small-only">Frec medicion</td>
+                        <td class="center hide-on-small-only">Resp mejora</td>
+                        <td class="center hide-on-small-only">Ene</td>
+                        <td class="center hide-on-small-only">Feb</td>
+                        <td class="center hide-on-small-only">Mar</td>
+                        <td class="center hide-on-small-only">Abr</td>
+                        <td class="center hide-on-small-only">May</td>
+                        <td class="center hide-on-small-only">Jun</td>
+                        <td class="center hide-on-small-only">Jul</td>
+                        <td class="center hide-on-small-only">Ago</td>
+                        <td class="center hide-on-small-only">Sep</td>
+                        <td class="center hide-on-small-only">Oct</td>
+                        <td class="center hide-on-small-only">Nov</td>
+                        <td class="center hide-on-small-only">Dic</td>
+                        <td class="center hide-on-small-only">%Cumplimiento</td>
+                        <td class="center hide-on-small-only">Grafica</td>
+                        @*@<td class="center">Opciones</td>*@
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="23" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                     foreach (var item in Model)
+                        {
+                <tr class="table-body">
+                    <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => db.Empresa.Find(item.empresa_ID).Em_Descripcion)</td>
+
+                    @*@if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 1)
+                    {
+                        <td class="center hide-on-small-only" style="">SANA</td>
+                    }
+                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
+                    {
+                        <td class="center hide-on-small-only" style="">ECOLSUR</td>
+                    }
+                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
+                    {
+                        <td class="center hide-on-small-only" style="">SAU</td>
+                    }
+                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
+                    {
+                        <td class="center hide-on-small-only" style="">CICLO AMBIENTAL</td>
+                    }*@
+                  
+
+                    @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.procesos.Find(item.proceso).descripcion)</td>*@
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).descripcion)</td>     @*Nombre del proceso*@
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.indicador)</td>   @*Nombre del Indicador*@
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.form_cal)</td>    @*Formula del Calcula*@
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.res_esp) %</td>     @*Resultado Esperado*@
+
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).responsable)</td> @*Nombre del responsable de Medicion*@
+
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.cat_periodos.Find(item.frec_med).periodo_des)</td>    @*Frecuencia de la Medicion*@
+
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Puestos.Find(item.resp_mej).Pu_Descripcion)</td> @*Responsable de Mejora*@
+
+
+                    @*INICIO PORCENTAJES MENSUAL Y ANUAL*@
+                    @if (item.ene != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" /></td>
+                    }
+
+                    @if (item.feb != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" /></td>
+                    }
+                    @if (item.mar != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" /></td>
+                    }
+                    @if (item.abr != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" /></td>
+                    }
+                    @if (item.may != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" /></td>
+                    }
+                    @if (item.jun != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
+                    }
+                    @if (item.jul != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" /></td>
+                    }
+                    @if (item.ago != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" /></td>
+                    }
+                    @if (item.sep != 0
+                        )
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" /></td>
+                    }
+                    @if (item.oct != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" /></td>
+                    }
+                    @if (item.nov != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" /></td>
+                    }
+                    @if (item.dec != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                    }
+                    @if (item.por_cum != 0)
+                    {
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.por_cum) %</td>
+                    }
+                    else
+                    {
+                        <td class="center hide-on-small-only" style="">0 %</td>
+                    }
+                    @*FIN PORCENTAJES MENSUAL Y ANUAL*@
+
+                    <td class="center hide-on-small-only" style="">
+                        <a href="#" class="graficaIndicador" data-position="bottom" data-delay="50" title="Grafica" style="cursor:pointer;" id-item="@item.indicadores_ID"><i class="mdi mdi-chart-bar mdi-24px black-text"></i></a>
+                    </td>
+
+                    @* <td class="center">
+            <a href="#ancla" class="editarIndicador" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.indicadores_ID" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+            <a class="eliminarIndicador" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.indicadores_ID"><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+        </td> *@
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaLineas", new { page })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "TablaIndicadores",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>

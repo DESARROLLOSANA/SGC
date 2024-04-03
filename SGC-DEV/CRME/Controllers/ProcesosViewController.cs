@@ -34,9 +34,9 @@ namespace CRME.Controllers
         HelpersController helper = new HelpersController();
         SqlConnection conexion = new SqlConnection();
         // GET: ProcesosView
-        public ActionResult Index() // id desde el menu
+        public ActionResult Index(int? id) // id desde el menu
         {
-            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             return View();
             
         }
