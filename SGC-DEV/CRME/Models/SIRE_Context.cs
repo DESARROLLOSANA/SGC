@@ -84,7 +84,7 @@ namespace CRME.Models
         public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
         public virtual DbSet<cat_periodos> cat_periodos { get; set; }
 
-
+        //
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Departamentos>()
