@@ -1,7 +1,7 @@
 ﻿@using CustomHelpers
 
 @{
-    ViewBag.Title = "Procesos";
+    ViewBag.Title = "Control Interno";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div id="TablaEmpresas">
-            @Html.Action("_Formulario", "ProcesosView", new { id = ViewBag.id })
+            @Html.Action("_Formulario", "CtrlInternoView", new { id = ViewBag.id })
         </div>
         <div class="row">
             <div class="col l12 m12 s12">
@@ -99,7 +99,7 @@
                 $(".loading-subir").css('display', 'block')
 
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '@Url.Action("Cargarfile", "ProcesosView")');
+                xhr.open('POST', '@Url.Action("Cargarfile", "CtrlInternoView")');
                 xhr.send(formdata);
                 xhr.onreadystatechange = function (result) {
 
@@ -183,7 +183,7 @@
                     var depto = $("#Departamento").val();
                     var empre = $("#Em_Cve_Empresa").val();
                     $.ajax({
-                        url: '@Url.Action("GuardarProceso", "ProcesosView")',
+                        url: '@Url.Action("GuardarProceso", "CtrlInternoView")',
                         data: frmValues + "&ruta=" + ruta + "&Dp_cve_Departamento=" + depto + "&Em_Cve_Empresa=" + empre,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
@@ -195,7 +195,7 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                window.location = "/ProcesosView/index?id=" + result.idemp;
+                                window.location = "/CtrlInternoView/index?id=" + result.idemp;
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante

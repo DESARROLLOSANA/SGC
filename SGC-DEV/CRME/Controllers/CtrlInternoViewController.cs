@@ -27,9 +27,8 @@ using System.Data.Entity.Validation;
 
 namespace CRME.Controllers
 {
-    public class ProcesosViewController : Controller
+    public class CtrlInternoViewController : Controller
     {
-
         private SIRE_Context db = new SIRE_Context();
         HelpersController helper = new HelpersController();
         SqlConnection conexion = new SqlConnection();
@@ -37,130 +36,133 @@ namespace CRME.Controllers
         public ActionResult Index(int? id) // id desde el menu
         {
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.ide = id;
             return View();
-            
+
         }
 
-        public ActionResult _TablaProcesos(int? page, int? dep) // NO FUNCIONAL FILTRO DEP
+        public ActionResult _TablaProcesos(int? page, int? dep, int? ide) // NO FUNCIONAL FILTRO DEP
         {
 
             const int pageSize = 10;
             int pageNumber = (page ?? 1);
-            List<Procesos> lista = new List<Procesos>();
+            List<Control_Interno> lista = new List<Control_Interno>();
             if (dep != null || dep != 0)
             {
-                 lista = db.Procesos.Where(x=> x.Dp_cve_Departamento == dep).ToList();
-                
+                lista = db.Control_Interno.Where(x => x.Dp_cve_Departamento == dep).ToList();
+
             }
+            ViewBag.ide = ide;
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult CrearProceso(int? ide ,int? idp) // id desde el menu
+        public ActionResult CrearCtrlint(int? ide, int? idp) // id desde el menu
         { // find
-            ViewBag.ide = 1;
-            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.ide = ide; ;
+            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == ide).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.id = idp;
             return PartialView();
         }
 
         public ActionResult _Formulario(long? id)
         {
-            Procesos edificiossolicitud = new Procesos();
+            Control_Interno edificiossolicitud = new Control_Interno();
 
             if (id != null)
             {
                 ViewBag.edit = 1;
-                edificiossolicitud = db.Procesos.Find(id);
-                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion", edificiossolicitud.idTD);               
+                edificiossolicitud = db.Control_Interno.Find(id);
+                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion", edificiossolicitud.idTD);
             }
             else
             {
-                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");              
+                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");
             }
 
             return PartialView(edificiossolicitud);
         }
 
-        public ActionResult GuardarProceso(Procesos proceso, string ruta)
+        public ActionResult GuardarProceso(Control_Interno proceso, string ruta)
         {
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
-            bool success = false;
             int idemp = 0;
+            bool success = false;
             string mensajefound = "";
 
             if (proceso.id == 0)
             {
-                var found = db.Procesos.FirstOrDefault(x => x.descripcion == proceso.descripcion);
+                var found = db.Control_Interno.FirstOrDefault(x => x.descripcion == proceso.descripcion);
 
-                //if (found != null)
-                //{
-                //    mensajefound = "¡Ya existe una herramienta igual!";
-                //}
-                //else
-                //{
-                try
+                if (found != null)
                 {
-                    Procesos Edificio = new Procesos();
-
-                    //Usuarios
-                    Edificio.descripcion = proceso.descripcion;
-                    Edificio.idTD = proceso.idTD;
-                    Edificio.version = proceso.version;
-                    Edificio.FechaEmision = proceso.FechaEmision;
-                    Edificio.UltimaActu = proceso.UltimaActu;
-                    Edificio.ControlCambios = proceso.ControlCambios;
-                    Edificio.Indicadores = ruta;
-                    Edificio.responsable = proceso.responsable;
-                    Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
-                    Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
-                    idemp = proceso.Em_Cve_Empresa;
-                    db.Procesos.Add(Edificio);
-
-                    if (db.SaveChanges() > 0)
+                    mensajefound = "¡Ya existe el control interno " + found.descripcion + "!";
+                }
+                else
+                {
+                    try
                     {
-                        success = true;
+                        Control_Interno Edificio = new Control_Interno();
+
+                        //Usuarios
+                        Edificio.descripcion = proceso.descripcion;
+                        Edificio.idTD = proceso.idTD;
+                        Edificio.version = proceso.version;
+                        Edificio.FechaEmision = proceso.FechaEmision;
+                        Edificio.UltimaActu = proceso.UltimaActu;
+                        Edificio.ControlCambios = proceso.ControlCambios;
+                        Edificio.Indicadores = ruta;
+                        Edificio.responsable = proceso.responsable;
+                        Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
+                        Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
+                        idemp = proceso.Em_Cve_Empresa;
+
+                        db.Control_Interno.Add(Edificio);
+
+                        if (db.SaveChanges() > 0)
+                        {
+                            success = true;
+                        }
+
+                        auditoria.modulo = "Control_Interno";
+                        auditoria.idregistro = Edificio.id;
+                        auditoria.accion = "Registro";
+                        auditoria.tabla = "Control_Interno";
+                        //auditoria.idusuario = Auth.Usuario.sistemas_ID;
+                        auditoria.fecha = DateTime.Now;
+
+                        db.Auditoria.Add(auditoria);
+
+                        if (db.SaveChanges() > 0)
+                        {
+                            success = true;
+                        }
                     }
-
-                    auditoria.modulo = "Procesos";
-                    auditoria.idregistro = Edificio.id;
-                    auditoria.accion = "Registro";
-                    auditoria.tabla = "Procesos";
-                    //auditoria.idusuario = Auth.Usuario.sistemas_ID;
-                    auditoria.fecha = DateTime.Now;
-
-                    db.Auditoria.Add(auditoria);
-
-                    if (db.SaveChanges() > 0)
+                    catch (DbEntityValidationException ex)
                     {
-                        success = true;
-                    }           
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    var errorMessages = ex.EntityValidationErrors
-                    .SelectMany(x => x.ValidationErrors)
-                    .Select(x => x.ErrorMessage);
+                        var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
 
-                    // Join the list to a single string.
-                    var fullErrorMessage = string.Join("; ", errorMessages);
+                        // Join the list to a single string.
+                        var fullErrorMessage = string.Join("; ", errorMessages);
 
-                    // Combine the original exception message with the new one.
-                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+                        // Combine the original exception message with the new one.
+                        var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
 
-                    // Throw a new DbEntityValidationException with the improved exception message.
-                    //throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                        // Throw a new DbEntityValidationException with the improved exception message.
+                        //throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
 
-                    mensajefound = exceptionMessage + "fatal error";
+                        mensajefound = exceptionMessage + "fatal error";
 
-                }
-
+                    }
+                }                
             }
             else
             {
                 try
                 {
-                    Procesos Edificio = db.Procesos.Find(proceso.id);                  
+                    Control_Interno Edificio = db.Control_Interno.Find(proceso.id);
                     Edificio.descripcion = proceso.descripcion;
                     Edificio.idTD = proceso.idTD;
                     Edificio.version = proceso.version;
@@ -179,10 +181,10 @@ namespace CRME.Controllers
                         success = true;
                     }
 
-                    auditoria.modulo = "Procesos";
+                    auditoria.modulo = "CtrlInterno";
                     auditoria.idregistro = Edificio.id;
                     auditoria.accion = "Modificacion";
-                    auditoria.tabla = "Procesos";
+                    auditoria.tabla = "Control_Interno";
                     // auditoria.idusuario = Auth.Usuario.sistemas_ID;
                     auditoria.fecha = DateTime.Now;
 

@@ -1,7 +1,7 @@
 ﻿@using CustomHelpers
 
 @{
-    ViewBag.Title = "Procesos";
+    ViewBag.Title = "Control interno";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -11,14 +11,14 @@
     <div class="col l12 m12 s12">
         <div class="row">
             <div class="col l9 m9 s12">
-                <h5>Procesos</h5>
+                <h5>Control interno</h5>
             </div>
         </div>
         <div class="col s12 m6 l6 input-field form-simple center-align">
             @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
         </div>
         <div id="TablaEmpresas">
-            @Html.Action("_TablaProcesos", "ProcesosView")
+            @Html.Action("_TablaProcesos", "CtrlInternoView", new { ide = ViewBag.ide })
         </div>
         <div class="row">
             <div class="col l12 m12 s12">
@@ -62,7 +62,7 @@
         $("#TablaEmpresas").on('click', '.editarEmpresa', function (e) {
             e.preventDefault();
             var Id_Condicion = $(this).attr("id-item");
-            window.location = "/ProcesosView/CrearProceso" + "?idp=" + Id_Condicion;
+            window.location = "/CtrlInternoView/CrearCtrlint" + "?idp=" + Id_Condicion;
         });
 
         $("#TablaEmpresas").off('click', '.eliminarEmpresa');
@@ -146,7 +146,7 @@ function ComboSucursal() {
     $(document).on("change", "#Departamento", function () {
                 // Se obtiene el valor seleccionado en el dropdown "Empresa"
         var dep = $(this).val();
-        $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "ProcesosView")', { dep }, function (response, status, xhr) {
+        $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "CtrlInternoView")', { dep }, function (response, status, xhr) {
                                     if (status == "success") {
                                     }
                                 });
