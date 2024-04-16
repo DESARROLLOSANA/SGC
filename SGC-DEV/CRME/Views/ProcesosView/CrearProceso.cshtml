@@ -195,7 +195,7 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                window.location = "/ProcesosView/index";
+                                window.location = "/ProcesosView/index?id=" + result.idemp;
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante

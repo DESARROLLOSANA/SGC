@@ -1,0 +1,110 @@
+﻿
+@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Control_Interno>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+@*<div class="row margin-10">
+    <div class="col l6 m6 s11 titlecircle">
+        <b>Lista de procesos</b>
+    </div>
+    <div class="col l6 m6 s1 separator">
+    </div>
+</div>*@
+<div id="tblPersonas">
+    <div class="row">
+            
+        @*como se pasara la parte de empresa por menu*@
+        @*@if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 2)
+        {*@
+        <input type="hidden" value="@ViewBag.ide" />
+        @{
+            var idempre = ViewBag.ide;
+        }
+        <div class="col s12 m6 l6 input-field">
+            <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearCtrlint","CtrlInternoView", new { ide = idempre})"><i class="mdi mdi-plus"></i> Alta de control interno</a>            
+        </div>
+       @*}*@             
+    </div>
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Nombre del documento</td>
+                        <td class="center">Tipo de documento</td>
+                        <td class="center hide-on-small-only">Version</td>
+                        <td class="center hide-on-small-only">Fecha de emicion</td>
+                        <td class="center hide-on-small-only">Ultima actualización</td>
+                        <td class="center hide-on-small-only">Control de cambios</td>
+                        <td class="center hide-on-small-only">Indicadores</td>
+                        <td class="center hide-on-small-only">responsable</td>
+                        @*<td class="center">Opciones</td>*@
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="9" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                <tr class="table-body">
+                    <td class="center-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    <td class="center-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => db.TipoDocumento.Find(item.idTD).descripcion)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.version)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaEmision)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.UltimaActu)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>
+                    <td class="center-align">
+                        <a href="@item.Indicadores.Replace("~","")#toolbar=0" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px red-text"></i></a>&nbsp;&nbsp;
+                    </td>                    
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.responsable)</td>
+                    @*<td class="center">
+                        <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                        <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+                    </td>*@
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaProcesos", new { page })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "tblPersonas",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>
+
+
+

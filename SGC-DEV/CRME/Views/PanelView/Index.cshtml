@@ -8,14 +8,16 @@
 }
     <div class="container ">
         <div class="row form-general margin-top-30">
-            <div class="col l12 m12 s12">
+            <div class="col s12">
                 <div class="row">
-                    <div class="col s12 m12 l12 center-align">
-                        <div class="carousel">
-                            <a class="carousel-item" href="#one!"><img class="responsive-img waves-effect" width="1000%" height="150%" src="~/Upload/Sistema/Política de Calidad SANA 1.jpg" /></a>
-                            <a class="carousel-item" href="#two!"><img class="responsive-img waves-effect" width="1000%" height="150%" src="~/Upload/Sistema/Política de Calidad SANA 2.jpg" /></a>
-                            <a class="carousel-item" href="#three!"><img class="responsive-img waves-effect" width="1000%" height="150%" src="~/Upload/Sistema/Política de  Ecolsur.jpg" /></a>
-                            <a class="carousel-item" href="#four!"><img class="responsive-img waves-effect" width="1000%" height="150%" src="~/Upload/Sistema/Política de  Ecolsur 2..jpg" /></a>
+                    <div class="col s12 center-align">
+                        <div class="carousel" data-indicators="true">
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="width:contain" src="~/Upload/Sistema/sana.png" /></a>
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="width:contain" src="~/Upload/Sistema/Sana - Valores 1.jpg" /></a>
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="" src="~/Upload/Sistema/Sana - Valores 2.jpg" /></a>
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="width:contain" src="~/Upload/Sistema/ecolsur.png" /></a>
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="" src="~/Upload/Sistema/Ecolsur- Valores 1.jpg" /></a>
+                            <a class="carousel-item"><img class="responsive-img waves-effect" style="" src="~/Upload/Sistema/Ecolsur- Valores 2.jpg" /></a>
                         </div>
                     </div>
                 </div>
@@ -26,7 +28,15 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.carousel').carousel();
-        });
+            $('.carousel').carousel({
+                dist: 50
+            });
+
+            autoplay();
+            function autoplay() {
+                $('.carousel').carousel('next');
+                setTimeout(autoplay, 4500);
+            };
+        }); 
     </script>
     } 

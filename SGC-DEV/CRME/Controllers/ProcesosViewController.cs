@@ -41,13 +41,17 @@ namespace CRME.Controllers
             
         }
 
-        public ActionResult _TablaProcesos(int? page)
+        public ActionResult _TablaProcesos(int? page, int? dep) // NO FUNCIONAL FILTRO DEP
         {
+
             const int pageSize = 10;
             int pageNumber = (page ?? 1);
-
-            var lista = db.Procesos.ToList();
-
+            List<Procesos> lista = new List<Procesos>();
+            if (dep != null || dep != 0)
+            {
+                 lista = db.Procesos.Where(x=> x.Dp_cve_Departamento == dep).ToList();
+                
+            }
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
@@ -82,11 +86,12 @@ namespace CRME.Controllers
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
+            int idemp = 0;
             string mensajefound = "";
 
             if (proceso.id == 0)
             {
-                var found = db.Equipo_Menor.FirstOrDefault(x => x.Descripcion == proceso.descripcion);
+                var found = db.Procesos.FirstOrDefault(x => x.descripcion == proceso.descripcion);
 
                 //if (found != null)
                 //{
@@ -106,8 +111,10 @@ namespace CRME.Controllers
                     Edificio.UltimaActu = proceso.UltimaActu;
                     Edificio.ControlCambios = proceso.ControlCambios;
                     Edificio.Indicadores = ruta;
-                    Edificio.responsable = proceso.responsable;                  
-
+                    Edificio.responsable = proceso.responsable;
+                    Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
+                    Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
+                    idemp = proceso.Em_Cve_Empresa;
                     db.Procesos.Add(Edificio);
 
                     if (db.SaveChanges() > 0)
@@ -161,7 +168,10 @@ namespace CRME.Controllers
                     Edificio.UltimaActu = proceso.UltimaActu;
                     Edificio.ControlCambios = proceso.ControlCambios;
                     Edificio.Indicadores = ruta;
-                    Edificio.responsable = proceso.responsable;                    
+                    Edificio.responsable = proceso.responsable;
+                    Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
+                    Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
+                    idemp = proceso.Em_Cve_Empresa;
                     db.Entry(Edificio).State = EntityState.Modified;
 
                     if (db.SaveChanges() > 0)
@@ -200,7 +210,7 @@ namespace CRME.Controllers
                     mensajefound = exceptionMessage + "fatal error";
                 }
             }
-            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = success, mensajefound, idemp }, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> Cargarfile()

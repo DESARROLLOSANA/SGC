@@ -1,4 +1,6 @@
 ﻿@using PagedList.Mvc
+@using Microsoft.SqlServer.Types;
+
 @model PagedList.IPagedList<CRME.Models.cat_indicadores>
 @{
     CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
@@ -19,7 +21,7 @@
     </div>
 </div>
 <div id="TablaIndicadores">
-    
+
 
 
     <div class="row">
@@ -27,10 +29,13 @@
             <table class="striped highlight light-blue">
                 <thead class="table-header-blue">
                     <tr class="table-header-tr-blue">
+                        <td colspan="23" class="center-align">INDICADORES @DateTime.Now.Year</td>
+                    </tr>
+                    <tr class="table-header-tr-blue">
                         <td class="center">Empresa</td>
                         <td class="center hide-on-small-only">Proceso</td>
                         <td class="center hide-on-small-only">Indicador</td>
-                        <td class="center hide-on-small-only">Forma calculo</td>
+                        <td class="center hide-on-small-only">Calculo</td>
                         <td class="center hide-on-small-only">Res Esperado</td>
                         <td class="center hide-on-small-only">Resp medicion</td>
                         <td class="center hide-on-small-only">Frec medicion</td>
@@ -47,9 +52,9 @@
                         <td class="center hide-on-small-only">Oct</td>
                         <td class="center hide-on-small-only">Nov</td>
                         <td class="center hide-on-small-only">Dic</td>
-                        <td class="center hide-on-small-only">%Cumplimiento</td>
+                        <td class="center hide-on-small-only">Avance</td>
                         <td class="center hide-on-small-only">Grafica</td>
-                        @*@<td class="center">Opciones</td>*@
+                        <td class="center">Opciones</td>
                     </tr>
                 </thead>
                 <tbody class="table-body-blue">
@@ -63,161 +68,671 @@
                     }
                     else
                     {
-                     foreach (var item in Model)
+                        foreach (var item in Model)
                         {
-                <tr class="table-body">
-                    <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => db.Empresa.Find(item.empresa_ID).Em_Descripcion)</td>
+                            <tr class="table-body">
+                                <td class="center hide-on-small-only" style="" hidden>@Html.DisplayFor(modelItem => item.indicadores_ID)</td>
+                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => db.Empresa.Find(db.Procesos.Find(item.proceso).Em_Cve_Empresa).Em_Descripcion)</td>
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).descripcion)</td>     @*Nombre del proceso*@
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.indicador)</td>   @*Nombre del Indicador*@
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.form_cal)</td>    @*Formula del Calcula*@
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.res_esp) %</td>     @*Resultado Esperado*@
 
-                    @*@if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 1)
-                    {
-                        <td class="center hide-on-small-only" style="">SANA</td>
-                    }
-                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
-                    {
-                        <td class="center hide-on-small-only" style="">ECOLSUR</td>
-                    }
-                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
-                    {
-                        <td class="center hide-on-small-only" style="">SAU</td>
-                    }
-                    else if (db.Procesos.Find(item.proceso).Em_Cve_Empresa == 2)
-                    {
-                        <td class="center hide-on-small-only" style="">CICLO AMBIENTAL</td>
-                    }*@
-                  
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).responsable)</td> @*Nombre del responsable de Medicion*@
 
-                    @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.procesos.Find(item.proceso).descripcion)</td>*@
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).descripcion)</td>     @*Nombre del proceso*@
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.indicador)</td>   @*Nombre del Indicador*@
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.form_cal)</td>    @*Formula del Calcula*@
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.res_esp) %</td>     @*Resultado Esperado*@
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.cat_periodos.Find(item.frec_med).periodo_des)</td>    @*Frecuencia de la Medicion*@
 
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).responsable)</td> @*Nombre del responsable de Medicion*@
-
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.cat_periodos.Find(item.frec_med).periodo_des)</td>    @*Frecuencia de la Medicion*@
-
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Puestos.Find(item.resp_mej).Pu_Descripcion)</td> @*Responsable de Mejora*@
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Puestos.Find(item.resp_mej).Pu_Descripcion)</td> @*Responsable de Mejora*@
 
 
-                    @*INICIO PORCENTAJES MENSUAL Y ANUAL*@
-                    @if (item.ene != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" /></td>
-                    }
 
-                    @if (item.feb != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" /></td>
-                    }
-                    @if (item.mar != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" /></td>
-                    }
-                    @if (item.abr != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" /></td>
-                    }
-                    @if (item.may != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" /></td>
-                    }
-                    @if (item.jun != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
-                    }
-                    @if (item.jul != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" /></td>
-                    }
-                    @if (item.ago != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" /></td>
-                    }
-                    @if (item.sep != 0
-                        )
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" /></td>
-                    }
-                    @if (item.oct != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" /></td>
-                    }
-                    @if (item.nov != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" /></td>
-                    }
-                    @if (item.dec != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
-                    }
-                    @if (item.por_cum != 0)
-                    {
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.por_cum) %</td>
-                    }
-                    else
-                    {
-                        <td class="center hide-on-small-only" style="">0 %</td>
-                    }
-                    @*FIN PORCENTAJES MENSUAL Y ANUAL*@
+                                @*INICIO DE DELIVERACION POR PERIODOS*@
+                                @*INICIO PORCENTAJES MENSUAL Y ANUAL*@
+                                @using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmDatos" }))
+                                {
+                                    if (item.frec_med == 1) //MENSUAL
+                                    {
+                                        if (item.ene != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" /></td>
+                                        }
 
-                    <td class="center hide-on-small-only" style="">
-                        <a href="#" class="graficaIndicador" data-position="bottom" data-delay="50" title="Grafica" style="cursor:pointer;" id-item="@item.indicadores_ID"><i class="mdi mdi-chart-bar mdi-24px black-text"></i></a>
-                    </td>
+                                        if (item.feb != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" /></td>
+                                        }
+                                        if (item.mar != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" /></td>
+                                        }
+                                        if (item.abr != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" /></td>
+                                        }
+                                        if (item.may != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" /></td>
+                                        }
+                                        if (item.jun != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
+                                        }
+                                        if (item.jul != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" /></td>
+                                        }
+                                        if (item.ago != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" /></td>
+                                        }
+                                        if (item.sep != 0
+                                            )
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" /></td>
+                                        }
+                                        if (item.oct != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" /></td>
+                                        }
+                                        if (item.nov != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" /></td>
+                                        }
+                                        if (item.dec != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                                        }
+                                        if (item.por_cum != 1)
+                                        {
+                                            int a = item.ene;
+                                            int b = item.feb;
+                                            int c = item.mar;
+                                            int d = item.abr;
+                                            int e = item.may;
+                                            int f = item.jun;
+                                            int g = item.jul;
+                                            int h = item.ago;
+                                            int i = item.sep;
+                                            int j = item.oct;
+                                            int k = item.nov;
+                                            int l = item.dec;
+                                            float m = item.res_esp;
+                                            int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+                                            float pretotal = sum * m;
+                                            float total = pretotal / m;
 
-                    @* <td class="center">
-            <a href="#ancla" class="editarIndicador" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.indicadores_ID" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-            <a class="eliminarIndicador" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.indicadores_ID"><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
-        </td> *@
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => total) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style="">0 %</td>
+                                        }
+                                    }
+                                    else if (item.frec_med == 2) // BIMESTRAL
+                                    {
+                                        if (item.ene != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" readonly /></td>
+                                        }
 
-                </tr>
+                                        if (item.feb != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" /></td>
+                                        }
+                                        if (item.mar != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" readonly /></td>
+                                        }
+                                        if (item.abr != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" /></td>
+                                        }
+                                        if (item.may != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" readonly /></td>
+                                        }
+                                        if (item.jun != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
+                                        }
+                                        if (item.jul != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" readonly /></td>
+                                        }
+                                        if (item.ago != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" /></td>
+                                        }
+                                        if (item.sep != 0
+                                            )
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" readonly /></td>
+                                        }
+                                        if (item.oct != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" /></td>
+                                        }
+                                        if (item.nov != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-samall-only" style=""><input type="text" name="por_nov" value="" readonly /></td>
+                                        }
+                                        if (item.dec != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                                        }
+                                        if (item.por_cum != 1)
+                                        {
+                                            int a = item.ene;
+                                            int b = item.feb;
+                                            int c = item.mar;
+                                            int d = item.abr;
+                                            int e = item.may;
+                                            int f = item.jun;
+                                            int g = item.jul;
+                                            int h = item.ago;
+                                            int i = item.sep;
+                                            int j = item.oct;
+                                            int k = item.nov;
+                                            int l = item.dec;
+                                            float m = item.res_esp;
+                                            int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+                                            float pretotal = sum * m;
+                                            float total = pretotal / m;
+
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => total) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style="">0 %</td>
+                                        }
+                                    }
+                                    else if (item.frec_med == 3) //TRIMESTRAL
+                                    {
+                                        if (item.ene != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" readonly /></td>
+                                        }
+
+                                        if (item.feb != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" readonly /></td>
+                                        }
+                                        if (item.mar != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" /></td>
+                                        }
+                                        if (item.abr != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" readonly /></td>
+                                        }
+                                        if (item.may != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" readonly /></td>
+                                        }
+                                        if (item.jun != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
+                                        }
+                                        if (item.jul != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" readonly /></td>
+                                        }
+                                        if (item.ago != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" readonly /></td>
+                                        }
+                                        if (item.sep != 0
+                                            )
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" /></td>
+                                        }
+                                        if (item.oct != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" readonly /></td>
+                                        }
+                                        if (item.nov != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" readonly /></td>
+                                        }
+                                        if (item.dec != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                                        }
+                                        if (item.por_cum != 1)
+                                        {
+                                            int a = item.ene;
+                                            int b = item.feb;
+                                            int c = item.mar;
+                                            int d = item.abr;
+                                            int e = item.may;
+                                            int f = item.jun;
+                                            int g = item.jul;
+                                            int h = item.ago;
+                                            int i = item.sep;
+                                            int j = item.oct;
+                                            int k = item.nov;
+                                            int l = item.dec;
+                                            float m = item.res_esp;
+                                            int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+                                            float pretotal = sum * m;
+                                            float total = pretotal / m;
+
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => total) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style="">0 %</td>
+                                        }
+                                    }
+                                    else if (item.frec_med == 4) //SEMESTRAL
+                                    {
+                                        if (item.ene != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" readonly /></td>
+                                        }
+
+                                        if (item.feb != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" readonly /></td>
+                                        }
+                                        if (item.mar != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" readonly /></td>
+                                        }
+                                        if (item.abr != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" readonly /></td>
+                                        }
+                                        if (item.may != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" readonly /></td>
+                                        }
+                                        if (item.jun != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" /></td>
+                                        }
+                                        if (item.jul != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" readonly /></td>
+                                        }
+                                        if (item.ago != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" readonly /></td>
+                                        }
+                                        if (item.sep != 0
+                                            )
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" readonly /></td>
+                                        }
+                                        if (item.oct != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" readonly /></td>
+                                        }
+                                        if (item.nov != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" readonly /></td>
+                                        }
+                                        if (item.dec != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                                        }
+                                        if (item.por_cum != 1)
+                                        {
+                                            int a = item.ene;
+                                            int b = item.feb;
+                                            int c = item.mar;
+                                            int d = item.abr;
+                                            int e = item.may;
+                                            int f = item.jun;
+                                            int g = item.jul;
+                                            int h = item.ago;
+                                            int i = item.sep;
+                                            int j = item.oct;
+                                            int k = item.nov;
+                                            int l = item.dec;
+                                            float m = item.res_esp;
+                                            int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+                                            float pretotal = sum * m;
+                                            float total = pretotal / m;
+
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => total) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style="">0 %</td>
+                                        }
+                                    }
+                                    else if (item.frec_med == 5) //ANUAL
+                                    {
+                                        if (item.ene != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ene)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ene" value="" readonly /></td>
+                                        }
+
+                                        if (item.feb != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feb)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_feb" value="" readonly /></td>
+                                        }
+                                        if (item.mar != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.mar)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_mar" value="" readonly /></td>
+                                        }
+                                        if (item.abr != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.abr)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_abr" value="" readonly /></td>
+                                        }
+                                        if (item.may != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.may)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_may" value="" readonly /></td>
+                                        }
+                                        if (item.jun != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jun)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jun" value="" readonly /></td>
+                                        }
+                                        if (item.jul != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.jul)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_jul" value="" readonly /></td>
+                                        }
+                                        if (item.ago != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ago)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_ago" value="" readonly /></td>
+                                        }
+                                        if (item.sep != 0
+                                            )
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.sep)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_sep" value="" readonly /></td>
+                                        }
+                                        if (item.oct != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.oct)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_oct" value="" readonly /></td>
+                                        }
+                                        if (item.nov != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nov)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_nov" value="" readonly /></td>
+                                        }
+                                        if (item.dec != 0)
+                                        {
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.dec)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style=""><input type="text" name="por_dic" value="" /></td>
+                                        }
+                                        if (item.por_cum != 1)
+                                        {
+                                            int a = item.ene;
+                                            int b = item.feb;
+                                            int c = item.mar;
+                                            int d = item.abr;
+                                            int e = item.may;
+                                            int f = item.jun;
+                                            int g = item.jul;
+                                            int h = item.ago;
+                                            int i = item.sep;
+                                            int j = item.oct;
+                                            int k = item.nov;
+                                            int l = item.dec;
+                                            float m = item.res_esp;
+                                            int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+                                            float pretotal = sum * m;
+                                            float total = pretotal / m;
+
+                                            <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => total) %</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="center hide-on-small-only" style="">0 %</td>
+                                        }
+                                    }
+                                }
+                                @*FIN PORCENTAJES MENSUAL Y ANUAL*@
+                                @*FIN DE DELIVERACION POR PERIODOS*@
+
+                                <td class="center hide-on-small-only" style="">
+                                    <a href="@Url.Action("GenerarReporte", "IndicadoresView", new {idIndicador=item.indicadores_ID})" class="GenerarReporte" data-position="bottom" data-delay="50" title="Grafica" style="cursor:pointer;"><i class="mdi mdi-chart-bar mdi-24px black-text"></i></a>
+                                </td>
+
+                                <td class="center">
+                                    <a href="@Url.Action("SaveDatos","IndicadoresView", new {idIndi = item.indicadores_ID })" class="editarIndicador" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;"><i class="mdi mdi-content-save mdi-24px black-text"></i></a>
+                                </td>
+
+                            </tr>
                         }
                     }
                 </tbody>
