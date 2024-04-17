@@ -37,11 +37,12 @@ namespace CRME.Controllers
         public ActionResult Index(int? id) // id desde el menu
         {
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.ide = id;
             return View();
             
         }
 
-        public ActionResult _TablaProcesos(int? page, int? dep) // NO FUNCIONAL FILTRO DEP
+        public ActionResult _TablaProcesos(int? page, int? dep, int? ide) // NO FUNCIONAL FILTRO DEP
         {
 
             const int pageSize = 10;
@@ -52,12 +53,13 @@ namespace CRME.Controllers
                  lista = db.Procesos.Where(x=> x.Dp_cve_Departamento == dep).ToList();
                 
             }
+            ViewBag.ide = ide;
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult CrearProceso(int? ide ,int? idp) // id desde el menu
         { // find
-            ViewBag.ide = 1;
+            ViewBag.ide = ide;
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.id = idp;
             return PartialView();

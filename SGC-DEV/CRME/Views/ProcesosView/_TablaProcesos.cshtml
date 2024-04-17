@@ -14,14 +14,18 @@
 </div>*@
 <div id="tblPersonas">
     <div class="row">
-            
+
         @*como se pasara la parte de empresa por menu*@
         @*@if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 2)
         {*@
+        <input type="hidden" value="@ViewBag.ide" />
+        @{
+            var idempre = ViewBag.ide;
+        }
         <div class="col s12 m6 l6 input-field">
-            <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearProceso","ProcesosView")"><i class="mdi mdi-plus"></i> Alta de procesos</a>            
+            <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearProceso","ProcesosView", new { ide = idempre})"><i class="mdi mdi-plus"></i> Alta de procesos</a>
         </div>
-       @*}*@             
+        @*}*@
     </div>
     <div class="row">
         <div class="col l12 m12 s12">
