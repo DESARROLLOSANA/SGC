@@ -10,12 +10,12 @@ namespace CRME.Models
         public int id { get; set; }
         public int Em_Cve_Empresa { get; set; }
         public string Proceso { get; set; }
-        public int DesviacionDet { get; set; }
+        public string DesviacionDet { get; set; }
         public string ResponsableAC { get; set; }
         public string AccionCorrectiva { get; set; }
         public string FechaCompromiso { get; set; }
         public string Avance { get; set; }// archivo fisico
         public string Estatus { get; set; }       
-        public int Evidencia { get; set; }//archivo
+        public string Evidencia { get; set; }//archivo
     }
 }
