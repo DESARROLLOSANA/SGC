@@ -78,7 +78,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -113,9 +113,9 @@
                             }
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
@@ -146,7 +146,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -181,9 +181,9 @@
                             }
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-sync"></i><span style="color: black">Material de apoyo</span></a></li>
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-sync"></i><span style="color: black">Apoyo</span></a></li>
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             if (Auth.Usuario.perfil_ID != 3)
@@ -192,7 +192,7 @@
                                 {
                                     if (Auth.Usuario.perfil_ID != 5)
                                     {
-                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ReporteView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                                     }
                                 }
                             }
@@ -206,9 +206,9 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <input type="hidden" name="ID_empresa1" value="1" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="1" id="sgc_emp1"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <input type="hidden" name="ID_empresa11" value="1" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="1" id="ci_emp1"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 1 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -219,11 +219,11 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <input type="hidden" name="ID_empresa2" value="2" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="2" id="sgc_emp2"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <input type="hidden" name="ID_empresa22" value="2" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="2" id="ci_emp2"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 2 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
-                                </div>
+                                </div>  
                             </li>
                             <li>
                                 
@@ -231,8 +231,8 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <input type="hidden" name="ID_empresa3" value="3" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="3" id="sgc_emp3"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="3" id="ci_emp3"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 3 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -243,8 +243,8 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <input type="hidden" name="ID_empresa4" value="4" />
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="4" id="sgc_emp4"><a href="@Url.Action("Index", "ProcesosView", new { id = 4 }) )"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);" value="4" id="ci_emp4"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 5 @*4*@ })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new {id = 5 @*4*@})"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -278,15 +278,12 @@
                             }
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">Material de apoyo</span></a></li>
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-star-outline"></i><span style="color: black">Apoyo</span></a></li>
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID !=5)
-                            {
-                              <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
-                            }
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ReporteView")"><i class="small mdi mdi-sync"></i><span style="color: black">Actualizaciones</span></a></li>
                             @* FIN DE MENU DE ACTUALIZACIONES *@
                         }
                     }
@@ -317,7 +314,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -352,9 +349,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -391,7 +388,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -426,9 +423,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -450,7 +447,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -461,7 +458,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -471,7 +468,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -482,7 +479,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -517,9 +514,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -561,7 +558,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -596,9 +593,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -635,7 +632,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -670,9 +667,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -694,7 +691,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -705,7 +702,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -715,7 +712,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -726,7 +723,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -761,9 +758,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -805,7 +802,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -840,9 +837,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -879,7 +876,7 @@
                                 }
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -914,9 +911,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)
@@ -938,7 +935,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -949,7 +946,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -959,7 +956,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -970,7 +967,7 @@
                                 <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">Sistema de Gestión de Calidad (SGC)</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
                                         <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
                                     </ul>
                                 </div>
@@ -1004,9 +1001,9 @@
                             }-->
                             @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                            @* INICIO DE MENU DE MATERIAL DE APOYO *@
-                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Material de apoyo</span></a></li>-->
-                            @* FIN DE MENU DE MATERIAL DE APOYO *@
+                            @* INICIO DE MENU DE Apoyo *@
+                            <!--<li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Apoyo</span></a></li>-->
+                            @* FIN DE MENU DE Apoyo *@
 
                             @* INICIO DE MENU DE ACTUALIZACIONES *@
                             <!--if (Auth.Usuario.perfil_ID != 3)

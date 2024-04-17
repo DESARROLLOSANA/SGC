@@ -46,6 +46,8 @@
 
         public int por_cum { get; set; }
 
+        public int year { get; set; }
+
         
     }
 }
