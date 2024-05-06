@@ -68,6 +68,74 @@
             });
         });
 
+        @*CONTROL DE CAMBIOS*@
+        $("#FrmProceso").off("click", "#CargarArchivo2");
+        $("#FrmProceso").on("click", "#CargarArchivo2", function (e) {
+            e.preventDefault();
+            var formdata = new FormData();
+            var fileInput = document.getElementById('fileInputArchivo');
+            var archivo = $('#fileInputArchivo').val();
+            var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            if (fileInput.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension != ".pdf") {
+                $('#ruta2').val("");
+                $("#nbArchivo2").val("");
+                ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput.files.length; i++) {
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+
+                $(".loading-subir").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("Cargarfile", "ProcesosView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ruta2").val(obj.FileT);
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                    }
+                    $(".loading-subir").css('display', 'none')
+                }
+            }
+
+            return false;
+
+        })
+
+        @*INDICADOR*@
         $("#FrmProceso").off("click", "#CargarArchivo");
         $("#FrmProceso").on("click", "#CargarArchivo", function (e) {
             e.preventDefault();

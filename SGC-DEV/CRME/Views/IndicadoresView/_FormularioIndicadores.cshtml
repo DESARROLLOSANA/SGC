@@ -215,6 +215,13 @@ else
                     <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                 </div>
             </div>
+            @*AÑO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.year, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el año", @maxlength = 100, @Style = "margin-bottom:0px !important;", @Value = DateTime.Now.Year } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
         </div>
             @*FINAL DE INSERCION DE 0 EN MESES*@
         </div>

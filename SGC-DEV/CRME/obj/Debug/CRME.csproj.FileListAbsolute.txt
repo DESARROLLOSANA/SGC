@@ -1475,7 +1475,6 @@ C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\WebGrease.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\EnvDTE.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\Microsoft.VisualStudio.Shell.Interop.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
-C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\EnvDTE80.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\stdole.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\Microsoft.VisualStudio.OLE.Interop.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.dll
@@ -1722,3 +1721,10 @@ C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\th\CrystalDecisions.Web.resou
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\tr\CrystalDecisions.Web.resources.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\zh-CHS\CrystalDecisions.Web.resources.dll
 C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\zh-CHT\CrystalDecisions.Web.resources.dll
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\obj\Debug\CRME.Migrations.Doc_apoyo.resources
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\obj\Debug\CRME.Migrations.Apoyos.resources
+C:\Users\SistemasSana\Desktop\SGC\SGC-DEV\CRME\obj\Debug\CRME.Migrations.Permisos.resources

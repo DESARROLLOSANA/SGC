@@ -13,7 +13,7 @@ namespace CRME.Models
         public string version { get; set; }
         public string FechaEmision { get; set; }
         public string UltimaActu { get; set; }
-        public string ControlCambios { get; set; }
+        public string ControlCambios { get; set; } //archivo 
         public string Indicadores { get; set; } // archivo fisico
         public string responsable { get; set; }
         public int Dp_cve_Departamento { get; set; }

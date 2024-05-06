@@ -1084,6 +1084,12 @@ namespace CRME.DataSets {
             
             private global::System.Data.DataColumn columnValor16;
             
+            private global::System.Data.DataColumn columnValor17;
+            
+            private global::System.Data.DataColumn columnValor18;
+            
+            private global::System.Data.DataColumn columnValor19;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public Reportes1DataTable() {
@@ -1247,6 +1253,30 @@ namespace CRME.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Valor17Column {
+                get {
+                    return this.columnValor17;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Valor18Column {
+                get {
+                    return this.columnValor18;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Valor19Column {
+                get {
+                    return this.columnValor19;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1298,7 +1328,10 @@ namespace CRME.DataSets {
                         string Valor13, 
                         string Valor14, 
                         string Valor15, 
-                        string Valor16) {
+                        string Valor16, 
+                        string Valor17, 
+                        string Valor18, 
+                        string Valor19) {
                 Reportes1Row rowReportes1Row = ((Reportes1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Valor1,
@@ -1316,7 +1349,10 @@ namespace CRME.DataSets {
                         Valor13,
                         Valor14,
                         Valor15,
-                        Valor16};
+                        Valor16,
+                        Valor17,
+                        Valor18,
+                        Valor19};
                 rowReportes1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReportes1Row);
                 return rowReportes1Row;
@@ -1362,6 +1398,9 @@ namespace CRME.DataSets {
                 this.columnValor14 = base.Columns["Valor14"];
                 this.columnValor15 = base.Columns["Valor15"];
                 this.columnValor16 = base.Columns["Valor16"];
+                this.columnValor17 = base.Columns["Valor17"];
+                this.columnValor18 = base.Columns["Valor18"];
+                this.columnValor19 = base.Columns["Valor19"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1399,6 +1438,12 @@ namespace CRME.DataSets {
                 base.Columns.Add(this.columnValor15);
                 this.columnValor16 = new global::System.Data.DataColumn("Valor16", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValor16);
+                this.columnValor17 = new global::System.Data.DataColumn("Valor17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValor17);
+                this.columnValor18 = new global::System.Data.DataColumn("Valor18", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValor18);
+                this.columnValor19 = new global::System.Data.DataColumn("Valor19", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValor19);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnValor5}, true));
                 this.columnValor5.AllowDBNull = false;
@@ -2127,6 +2172,54 @@ namespace CRME.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Valor17 {
+                get {
+                    try {
+                        return ((string)(this[this.tableReportes1.Valor17Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Valor17\' de la tabla \'Reportes1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReportes1.Valor17Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Valor18 {
+                get {
+                    try {
+                        return ((string)(this[this.tableReportes1.Valor18Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Valor18\' de la tabla \'Reportes1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReportes1.Valor18Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Valor19 {
+                get {
+                    try {
+                        return ((string)(this[this.tableReportes1.Valor19Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Valor19\' de la tabla \'Reportes1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReportes1.Valor19Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsValor1Null() {
                 return this.IsNull(this.tableReportes1.Valor1Column);
             }
@@ -2303,6 +2396,42 @@ namespace CRME.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetValor16Null() {
                 this[this.tableReportes1.Valor16Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsValor17Null() {
+                return this.IsNull(this.tableReportes1.Valor17Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetValor17Null() {
+                this[this.tableReportes1.Valor17Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsValor18Null() {
+                return this.IsNull(this.tableReportes1.Valor18Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetValor18Null() {
+                this[this.tableReportes1.Valor18Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsValor19Null() {
+                return this.IsNull(this.tableReportes1.Valor19Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetValor19Null() {
+                this[this.tableReportes1.Valor19Column] = global::System.Convert.DBNull;
             }
         }
         

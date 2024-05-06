@@ -14,7 +14,9 @@
                 <h5>Indicadores</h5>
             </div>
         </div>
-
+        @*<div class="col s12 m6 l6 input-field form-simple center-align">
+            @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
+        </div>*@
         <div id="TablaIndicadores">
             @Html.Action("_TablaLineas", "IndicadoresView")
         </div>
@@ -87,10 +89,12 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                $("#TablaIndicadores").load('@Url.Action("_TablaLineas", "ProveedoresView")', function (response, status, xhr) {
+                                $("#ModalAlert").modal('open');
+                                window.location = "/IndicadoresView/index";
+                                @*$("#TablaIndicadores").load('@Url.Action("_TablaLineas", "ProveedoresView")', function (response, status, xhr) {
                                     if (status == "success") {
                                     }
-                                });
+                                });*@
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante

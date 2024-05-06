@@ -84,6 +84,11 @@ namespace CRME.Models
         public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
         public virtual DbSet<cat_periodos> cat_periodos { get; set; }
         public virtual DbSet<Control_Interno> Control_Interno { get; set; }
+        public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
+        public virtual DbSet<Acciones_correctivas> Acciones_correctivas { get; set; }
+        public virtual DbSet<ArchivosOrganigrama> ArchivosOrganigrama { get; set; }
+        public virtual DbSet<Doc_apoyo> Doc_apoyo { get; set; }
+        public virtual DbSet<Permisos> Permisos { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Departamentos>()

@@ -18,7 +18,7 @@
             @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
         </div>
         <div id="TablaEmpresas">
-            @Html.Action("_TablaProcesos", "ProcesosView")
+            @Html.Action("_TablaProcesos", "ProcesosView", new { ide = ViewBag.ide })
         </div>
         <div class="row">
             <div class="col l12 m12 s12">

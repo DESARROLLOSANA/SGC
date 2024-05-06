@@ -1,8 +1,0 @@
-﻿@model CRME.Models.cat_sistemas
-
-@*<div class="col s12 m12 l12">*@
-<b class="">Responsable de la mejora:</b>
-
-@Html.DropDownListFor(model => model.sistemas_ID, new SelectList(ViewBag.sistemas_ID, "Value", "Text"), " ", htmlAttributes: new { @class = "select classic" })
-
-@*</div>*@

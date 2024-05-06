@@ -37,11 +37,12 @@ namespace CRME.Controllers
         public ActionResult Index(int? id) // id desde el menu
         {
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.ide = id;
             return View();
             
         }
 
-        public ActionResult _TablaProcesos(int? page, int? dep) // NO FUNCIONAL FILTRO DEP
+        public ActionResult _TablaProcesos(int? page, int? dep, int? ide) // NO FUNCIONAL FILTRO DEP
         {
 
             const int pageSize = 10;
@@ -52,12 +53,13 @@ namespace CRME.Controllers
                  lista = db.Procesos.Where(x=> x.Dp_cve_Departamento == dep).ToList();
                 
             }
+            ViewBag.ide = ide;
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult CrearProceso(int? ide ,int? idp) // id desde el menu
         { // find
-            ViewBag.ide = 1;
+            ViewBag.ide = ide;
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.id = idp;
             return PartialView();
@@ -81,7 +83,7 @@ namespace CRME.Controllers
             return PartialView(edificiossolicitud);
         }
 
-        public ActionResult GuardarProceso(Procesos proceso, string ruta)
+        public ActionResult GuardarProceso(Procesos proceso, string ruta, string ruta2)
         {
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
@@ -110,6 +112,7 @@ namespace CRME.Controllers
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
                     Edificio.ControlCambios = proceso.ControlCambios;
+                    //Edificio.ControlCambios = ruta2;
                     Edificio.Indicadores = ruta;
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
@@ -167,6 +170,7 @@ namespace CRME.Controllers
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
                     Edificio.ControlCambios = proceso.ControlCambios;
+                    //Edificio.ControlCambios = ruta2;
                     Edificio.Indicadores = ruta;
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;

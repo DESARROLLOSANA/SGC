@@ -14,8 +14,6 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int indicadores_ID { get; set; }
 
-        public int empresa_ID { get; set; }
-
         public int proceso { get; set; }
 
         [StringLength(30)]
@@ -47,6 +45,8 @@
         public int por_cum { get; set; }
 
         public int year { get; set; }
+
+        public int mes { get; set; }
 
         
     }

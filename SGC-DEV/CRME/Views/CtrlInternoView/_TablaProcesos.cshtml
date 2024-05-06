@@ -14,18 +14,16 @@
 </div>*@
 <div id="tblPersonas">
     <div class="row">
-            
+
         @*como se pasara la parte de empresa por menu*@
-        @*@if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 2)
-        {*@
         <input type="hidden" value="@ViewBag.ide" />
-        @{
-            var idempre = ViewBag.ide;
-        }
-        <div class="col s12 m6 l6 input-field">
-            <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearCtrlint","CtrlInternoView", new { ide = idempre})"><i class="mdi mdi-plus"></i> Alta de control interno</a>            
-        </div>
-       @*}*@             
+        @{ var idempre = ViewBag.ide; }
+        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+        {
+            <div class="col s12 m6 l6 input-field">
+                <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearCtrlint","CtrlInternoView", new { ide = idempre})"><i class="mdi mdi-plus"></i> Alta de control interno</a>
+            </div>
+        } 
     </div>
     <div class="row">
         <div class="col l12 m12 s12">
@@ -40,7 +38,10 @@
                         <td class="center hide-on-small-only">Control de cambios</td>
                         <td class="center hide-on-small-only">Indicadores</td>
                         <td class="center hide-on-small-only">responsable</td>
-                        @*<td class="center">Opciones</td>*@
+                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        {
+                            <td class="center">Opciones</td>
+                        }
                     </tr>
                 </thead>
                 <tbody class="table-body-blue">
@@ -65,12 +66,18 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>
                     <td class="center-align">
                         <a href="@item.Indicadores.Replace("~","")#toolbar=0" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px red-text"></i></a>&nbsp;&nbsp;
-                    </td>                    
+                    </td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.responsable)</td>
-                    @*<td class="center">
-                        <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-                        <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
-                    </td>*@
+                    @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                    {
+                        <td class="center">
+                            <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                            <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+                        </td>
+                    }
+
+
+
                 </tr>
                         }
                     }

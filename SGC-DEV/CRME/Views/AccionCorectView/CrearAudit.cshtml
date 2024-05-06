@@ -1,0 +1,213 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "acciones Correctivas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@*<input type="hidden" id="Em_Cve_Empresa" value="@ViewBag.ide" />*@
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div id="TablaEmpresas">
+            @Html.Action("_Formulario", "AccionCorectView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+        });
+
+        $("#FrmProceso").off("click", "#CargarArchivo");
+        $("#FrmProceso").on("click", "#CargarArchivo", function (e) {
+            e.preventDefault();
+            var formdata = new FormData();
+            var fileInput = document.getElementById('fileInputArchivo');
+            var archivo = $('#fileInputArchivo').val();
+            var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            if (fileInput.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension != "image/*,.pdf,.doc,.docx,.xlsx,.xls") {
+                $('#ruta').val("");
+                $("#nbArchivo").val("");
+                ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput.files.length; i++) {
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+
+                $(".loading-subir").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("Cargarfile", "AccionCorectView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ruta").val(obj.FileT);
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                    }
+                    $(".loading-subir").css('display', 'none')
+                }
+            }
+
+            return false;
+
+        })
+
+        @*$("#FrmRequerimiento").off('click', '.saveRequ');
+        $("#FrmRequerimiento").on('click', '.saveRequ', function (e) {
+            e.preventDefault();
+            if ($("#FrmRequerimiento").valid()) {
+                EliminarComaMontosFormulario($("#FrmRequerimiento"));
+                var frmValues = $("#FrmRequerimiento").serialize();
+                var ruta = $("#ruta").val();
+                //var idAlumno = $(this).attr("id-alumno");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveRequerimientoCal", "AutorizacionView")',
+                    cache: false,
+                    data: frmValues + "&ruta=" + ruta + "&Id_Calendario=" + Id_Calendario,
+                    success: function (result) {
+                        if (result.success) {
+                            $('#mensaje-error-model1').text("");
+                            $('#modal3').modal('close');
+                            ConfigModal($('#ModalAlert1'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                            $("#ModalAlert1").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert1").modal('open');
+                            ConfiguracionFecha();
+                        } else {
+                            $('#mensaje-error-model1').text(result.mensajefound);
+                        }
+                    }
+
+                });
+            }
+
+
+        });*@
+
+         guardarpersona();
+        function guardarpersona() {
+
+            $("#FrmProceso").off('click', '.guardarProceso');
+            $("#FrmProceso").on("click", ".guardarProceso", function (e) {
+                //alert(" ");
+                e.preventDefault();
+                $(".guardarProceso").attr("disabled", true);
+                CargarReglasGeneralFormuario();
+                if ($("#FrmProceso").valid()) {
+                    var frmValues = $("#FrmProceso").serialize();
+                    var ruta = $("#ruta").val();
+                    var depto = $("#Departamento").val();
+                    var empre = $("#Em_Cve_Empresa").val();
+                    $.ajax({
+                        url: '@Url.Action("GuardarProceso", "AccionCorectView")',
+                        data: frmValues + "&ruta=" + ruta ,
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+                            $(".guardarProceso").attr("disabled", false);
+                            if (result.success) {//si es true el resultado
+                                $('#mensaje-error-model').text("");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                                window.location = "/AccionCorectView/index";
+                            }
+                            else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                } else {
+                    $(".guardarProceso").attr("disabled", false);
+                }
+            });
+        }
+
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#FrmProceso").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+
+        }
+
+    </script>
+}
+
+
+

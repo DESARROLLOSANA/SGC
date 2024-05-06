@@ -38,6 +38,7 @@ else
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col s12 m12 l12 input-field">
             <b class="">Tipo docuento:</b>
@@ -54,6 +55,7 @@ else
             </div>
         </div>              
     </div>
+
     <div class="row">
         <div class="col s12 m3 l3 input-field">
             <b class="">Versión:</b>
@@ -80,18 +82,17 @@ else
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
-        <div class="col s12 m2 l2 input-field">
+        @*<div class="col s12 m2 l2 input-field">
             <b class="">Control de cambios:</b>
             <div class="input-field margin-top-0">
                 @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el control de cambios", maxlength = 100, style = " !important;" })
                 @Html.ValidationMessageFor(model => model.ControlCambios, "", new { @class = "text-danger" })
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
-        </div>
+        </div>*@
     </div>
 
     <div class="row">
-             
         <div class="col s12 m12 l12 input-field">
             <b class="">Responsable:</b>
             <div class="input-field margin-top-0">
@@ -101,10 +102,51 @@ else
             </div>
         </div>
     </div>
+
+    @*CONTROL DE CAMBIOS*@
     <div class="row">
         <div class="col s12">
             <div class="row">
                 <div class="col s12 m12 l12">
+                    <b class="">Control de Cambios:</b>
+                    <div class="row margin-0">
+                        <div class="col s12 m12 l7 file-field input-field">
+                            <div class="btn light-blue darken-4">
+                                <i class="mdi mdi-folder-open"></i> EXAMINAR
+                                <input type="file" id="fileInputArchivo" accept=".pdf">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input id="nbArchivo2" class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field margin-top-0">
+                            <input id="ruta2" class="file-path validate" type="hidden">
+
+                        </div>
+                        <div class="col s12 m12 l3 input-field">
+                            <button type="button" class="btn light-blue darken-4 btn-block" id="CargarArchivo2"><i class="mdi mdi-cloud-upload load-icon"></i> CARGAR</button>
+                        </div>
+                        <div class="col s12 m12 l2 input-field">
+                            <div class="loading loading-subir">
+                                <div class="row center">
+                                    @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
+        </div>
+    </div>
+
+
+    @*INDICADOR*@
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <b class="">Indicador:</b>
                     <div class="row margin-0">
                         <div class="col s12 m12 l7 file-field input-field">
                             <div class="btn light-blue darken-4">
@@ -125,7 +167,7 @@ else
                         <div class="col s12 m12 l2 input-field">
                             <div class="loading loading-subir">
                                 <div class="row center">
-                                 @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
+                                    @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
                                 </div>
                             </div>
                         </div>
@@ -159,4 +201,3 @@ else
     </div>
 
 }
-
