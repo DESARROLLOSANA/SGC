@@ -86,6 +86,7 @@ namespace CRME.Models
         public virtual DbSet<cat_periodos> cat_periodos { get; set; }
         public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
         public virtual DbSet<Acciones_correctivas> Acciones_correctivas { get; set; }
+        public virtual DbSet<EstadosAC> EstadosAC { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

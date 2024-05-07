@@ -15,7 +15,7 @@ namespace CRME.Models
         public string AccionCorrectiva { get; set; }
         public string FechaCompromiso { get; set; }
         public string Avance { get; set; }// archivo fisico
-        public string Estatus { get; set; }       
+        public int Estatus { get; set; }       
         public string Evidencia { get; set; }//archivo
     }
 }
