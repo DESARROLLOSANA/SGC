@@ -87,7 +87,9 @@ namespace CRME.Models
         public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
         public virtual DbSet<Acciones_correctivas> Acciones_correctivas { get; set; }
         public virtual DbSet<EstadosAC> EstadosAC { get; set; }
-
+        public virtual DbSet<actualizaciones> actualizaciones { get; set; }
+        public virtual DbSet<SolicitudActualizaciones> SolicitudActualizaciones { get; set; }
+        public virtual DbSet<Correos_Calidad> Correos_Calidad { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
