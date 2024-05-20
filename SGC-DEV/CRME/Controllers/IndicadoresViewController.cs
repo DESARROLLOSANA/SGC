@@ -71,6 +71,7 @@ namespace CRME.Controllers
                     {
                         cat_indicadores catinb = new cat_indicadores();
                         var year = DateTime.Now.Year;
+                        var month = DateTime.Now.Month;
                         catinb.proceso = catind.proceso;
                         catinb.indicador = catind.indicador;
                         catinb.form_cal = catind.form_cal;
@@ -90,6 +91,7 @@ namespace CRME.Controllers
                         catinb.oct = catind.oct;
                         catinb.nov = catind.nov;
                         catinb.dec = catind.dec;
+                        catinb.mes = month;
                         catinb.year = year;
                         db.cat_indicadores.Add(catinb);
                         if (db.SaveChanges() > 0)
@@ -184,50 +186,36 @@ namespace CRME.Controllers
 
 
         //Metodo para guardas los porcentajes de la tabla.
-        public ActionResult SaveDatos(cat_indicadores catind, int idIndi)
+        public ActionResult SaveDatos(cat_indicadores catind, int? idIndi, int? id_Ene, int? id_Feb, int? id_Mar, int? id_Abr, int? id_May, int? id_Jun, int? id_Jul, int? id_Ago, int? id_Sep, int? id_Oct, int? id_Nov, int? id_Dec)
         {
             var ind = db.cat_indicadores.Find(idIndi);
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.cat_indicadores.FirstOrDefault(x => x.indicadores_ID == idIndi);
             try
-             {
-                cat_indicadores Condi = db.cat_indicadores.Find(catind.indicadores_ID);
-                //int a = ind.ene;
-                //int b = ind.feb;
-                //int c = ind.mar;
-                //int d = ind.abr;
-                //int e = ind.may;
-                //int f = ind.jun;
-                //int g = ind.jul;
-                //int h = ind.ago;
-                //int i = ind.sep;
-                //int j = ind.oct;
-                //int k = ind.nov;
-                //int l = ind.dec;
-                //float m = catind.res_esp;
-                //int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+            {
+                //int? sum = Ene + Feb + Mar + Abr + May + Jun + Jul + Ago + Sep + Oct + Nov + Dec;
                 //float pretotal = sum * m;
                 //float total = pretotal / m;
-                //var ftotal = (int)total;
+                //var ftotal = (int)sum;
 
-                cat_indicadores catibn = new cat_indicadores();
+                //cat_indicadores catibn = new cat_indicadores();
+                catind.indicadores_ID = (int)db.cat_indicadores.FirstOrDefault(x => x.indicadores_ID == idIndi);
 
-                catibn.ene = catind.ene;
-                catibn.feb = catind.feb;
-                catibn.mar = catind.mar;
-                catibn.abr = catind.abr;
-                catibn.may = catind.may;
-                catibn.jun = catind.jun;
-                catibn.jul = catind.jul;
-                catibn.ago = catind.ago;
-                catibn.sep = catind.sep;
-                catibn.oct = catind.oct;
-                catibn.nov = catind.nov;
-                catibn.dec = catind.dec;
-                //ind.por_cum = ftotal;
-                db.Entry(ind).State = EntityState.Modified;
+                catind.ene = (int)id_Ene;
+                catind.feb = (int)id_Feb;
+                catind.mar = (int)id_Mar;
+                catind.abr = (int)id_Abr;
+                catind.may = (int)id_May;
+                catind.jun = (int)id_Jun;
+                catind.jul = (int)id_Jul;
+                catind.ago = (int)id_Ago;
+                catind.sep = (int)id_Sep;
+                catind.oct = (int)id_Oct;
+                catind.nov = (int)id_Nov;
+                catind.dec = (int)id_Dec;
+                //catind.por_cum = ftotal;
+                db.Entry(catind).State = EntityState.Modified;
 
                 if (db.SaveChanges() > 0)
                 {
