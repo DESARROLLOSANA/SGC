@@ -14,7 +14,9 @@
                 <h5>Indicadores</h5>
             </div>
         </div>
-
+        @*<div class="col s12 m6 l6 input-field form-simple center-align">
+            @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
+        </div>*@
         <div id="TablaIndicadores">
             @Html.Action("_TablaLineas", "IndicadoresView")
         </div>
@@ -60,37 +62,53 @@
         guardarDatos();
         function guardarDatos() {
 
-            $("#FrmDatos").off('click', '.editarIndicador');
-            $("#FrmDatos").on("click", ".editarIndicador", function (e) {
+            $("#TablaIndicadores").off('click', '.editarIndicador');
+            $("#TablaIndicadores").on("click", ".editarIndicador", function (e) {
                 //alert(" ");
                 e.preventDefault();
-                var indicadores_ID = $(this).attr("idIndi");
-                $(".editarIndicador").attr("disabled", true);
+                var idIndi = $(this).attr("id-item");
+                // meses
+                var id_Ene = $("#id_Ene").val();
+                var id_Feb = $("#id_Feb").val();
+                var id_Mar = $("#id_Mar").val();
+                var id_Abr = $("#id_Abr").val();
+                var id_May = $("#id_May").val();
+                var id_Jun = $("#id_Jun").val();
+                var id_Jul = $("#id_Jul").val();
+                var id_Ago = $("#id_Ago").val();
+                var id_Sep = $("#id_Sep").val();
+                var id_Oct = $("#id_Oct").val();
+                var id_Nov = $("#id_Nov").val();
+                var id_Dec = $("#id_Dec").val();
+                //$(".editarIndicador").attr("disabled", true);
                 //CargarReglasGeneralFormuario();
-                if ($("#FrmDatos").valid()) {
-                    var frmValues = $("#FrmDatos").serialize();
-                    $.ajax({
-                        url: '@Url.Action("SaveDatos", "IndicadoresView")',
-                        data: frmValues,
+                //if ($("#FrmDatos").valid()) {
+                //    var frmValues = $("#FrmDatos").serialize();
+                $.ajax({
+                    url: '@Url.Action("SaveDatos", "IndicadoresView")',
+                    data: { idIndi, id_Ene, id_Feb, id_Mar, id_Abr, id_May, id_Jun, id_Jul, id_Ago, id_Sep, id_Oct, id_Nov, id_Dec},
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
                             $(".editarIndicador").attr("disabled", false);
                             if (result.success) {//si es true el resultado
-                                $('#mensaje-error-model').text("");
-                                $("#New_UpdateIndicador").load('@Url.Action("_TablaLineas", "IndicadoresView")', function (response, status, xhr) {
-                                    if (status == "success") {
-                                        guardarDatos();
-                                    }
-                                });
                                 ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
                                 $("#ModalAlert").modal({
                                     dismissible: false,
                                 });
-                                $("#ModalAlert").modal('open');
-                                $("#TablaIndicadores").load('@Url.Action("_TablaLineas", "ProveedoresView")', function (response, status, xhr) {
+                                $('#mensaje-error-model').text("");
+                                $("#TablaIndicadores").load('@Url.Action("_TablaLineas", "IndicadoresView")', function (response, status, xhr) {
                                     if (status == "success") {
+                                        guardarDatos();
                                     }
                                 });
+
+                                $("#ModalAlert").modal('open');
+                                $("#ModalAlert").modal('open');
+                                window.location = "/IndicadoresView/index";
+                                @*$("#TablaIndicadores").load('@Url.Action("_TablaLineas", "ProveedoresView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });*@
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
@@ -101,9 +119,9 @@
                             }
                         }
                     });
-                } else {
-                    $(".editarIndicador").attr("disabled", false);
-                }
+                //} else {
+                //    $(".editarIndicador").attr("disabled", false);
+                //}
             });
         }
 
