@@ -42,13 +42,13 @@ namespace CRME.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "IndicadoresView");
+                return RedirectToAction("Index", "AccesoView");
             }
             ViewBag.HiddenMenu = 1;
             return View();
         }
 
-        //GUARDAR FORMULARIO
+        //Metodo para guardar los indicadores.
 
         public ActionResult SaveIndicador(cat_indicadores catind)
         {
@@ -70,6 +70,8 @@ namespace CRME.Controllers
                     try
                     {
                         cat_indicadores catinb = new cat_indicadores();
+                        var year = DateTime.Now.Year;
+                        var month = DateTime.Now.Month;
                         catinb.proceso = catind.proceso;
                         catinb.indicador = catind.indicador;
                         catinb.form_cal = catind.form_cal;
@@ -89,6 +91,8 @@ namespace CRME.Controllers
                         catinb.oct = catind.oct;
                         catinb.nov = catind.nov;
                         catinb.dec = catind.dec;
+                        catinb.mes = month;
+                        catinb.year = year;
                         db.cat_indicadores.Add(catinb);
                         if (db.SaveChanges() > 0)
                         {
@@ -181,48 +185,37 @@ namespace CRME.Controllers
         }
 
 
-        //GUARDAR DATOS
-        public ActionResult SaveDatos(cat_indicadores catind, int idIndi)
+        //Metodo para guardas los porcentajes de la tabla.
+        public ActionResult SaveDatos(cat_indicadores catind, int? idIndi, int? id_Ene, int? id_Feb, int? id_Mar, int? id_Abr, int? id_May, int? id_Jun, int? id_Jul, int? id_Ago, int? id_Sep, int? id_Oct, int? id_Nov, int? id_Dec)
         {
             var ind = db.cat_indicadores.Find(idIndi);
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.cat_indicadores.FirstOrDefault(x => x.indicadores_ID == idIndi);
             try
-             {
-                //int a = ind.ene;
-                //int b = ind.feb;
-                //int c = ind.mar;
-                //int d = ind.abr;
-                //int e = ind.may;
-                //int f = ind.jun;
-                //int g = ind.jul;
-                //int h = ind.ago;
-                //int i = ind.sep;
-                //int j = ind.oct;
-                //int k = ind.nov;
-                //int l = ind.dec;
-                //float m = catind.res_esp;
-                //int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+            {
+                //int? sum = Ene + Feb + Mar + Abr + May + Jun + Jul + Ago + Sep + Oct + Nov + Dec;
                 //float pretotal = sum * m;
                 //float total = pretotal / m;
-                //var ftotal = (int)total;
+                //var ftotal = (int)sum;
 
-                found.ene = catind.ene;
-                found.feb = catind.feb;
-                ind.mar = catind.mar;
-                found.abr = catind.abr;
-                found.may = catind.may;
-                found.jun = catind.jun;
-                found.jul = catind.jul;
-                found.ago = catind.ago;
-                found.sep = catind.sep;
-                found.oct = catind.oct;
-                found.nov = catind.nov;
-                ind.dec = catind.dec;
-                //ind.por_cum = ftotal;
-                db.Entry(ind).State = EntityState.Modified;
+                //cat_indicadores catibn = new cat_indicadores();
+                catind.indicadores_ID = (int)db.cat_indicadores.FirstOrDefault(x => x.indicadores_ID == idIndi);
+
+                catind.ene = (int)id_Ene;
+                catind.feb = (int)id_Feb;
+                catind.mar = (int)id_Mar;
+                catind.abr = (int)id_Abr;
+                catind.may = (int)id_May;
+                catind.jun = (int)id_Jun;
+                catind.jul = (int)id_Jul;
+                catind.ago = (int)id_Ago;
+                catind.sep = (int)id_Sep;
+                catind.oct = (int)id_Oct;
+                catind.nov = (int)id_Nov;
+                catind.dec = (int)id_Dec;
+                //catind.por_cum = ftotal;
+                db.Entry(catind).State = EntityState.Modified;
 
                 if (db.SaveChanges() > 0)
                 {
@@ -250,30 +243,31 @@ namespace CRME.Controllers
 
         }
 
-        //Metodo para llenar la tabla
+        //Metodo para llenar la tabla.
         public ActionResult _TablaLineas(int? page, string filtro)
         {
             const int pageSize = 10;
             int pageNumber = (page ?? 1);
                 var lista = db.cat_indicadores.OrderByDescending(x => x.indicadores_ID).ToList();
+            //List<Procesos> lista = new List<Procesos>();
 
-                ViewBag.filtro = filtro;
+            ViewBag.filtro = filtro;
 
                 return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
-        //Llamar al Visualizador
+        //Llamar al Visualizador.
         public ActionResult VisualizarInd(long? tg)
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "IndicadoresView");
+                return RedirectToAction("Index", "AccesoView");
             }
 
             return View();
         }
 
-        //Metodo para la vista del formulario
+        //Metodo para la vista del formulario.
         public ActionResult _FormularioIndicadores(long? indicadores_ID)
         {
             Procesos condicion = new Procesos();
@@ -306,6 +300,7 @@ namespace CRME.Controllers
             return PartialView(Indicadores);
         }
 
+        //Metodo para generar el reporte.
         public ActionResult GenerarReporte(int? idIndicador)
         {
             if (!User.Identity.IsAuthenticated)
@@ -317,6 +312,7 @@ namespace CRME.Controllers
             var ind = db.cat_indicadores.Find(idIndicador);
             ViewBag.indicador = new SelectList(db.cat_indicadores.Where(x => x.indicadores_ID == idIndicador).ToList(), "Indicadores_ID", "Proceso");
             var serializerCat = new JavaScriptSerializer();
+            var nombre = db.Procesos.Find(ind.proceso).descripcion;
 
             var TituloColumna1 = string.Empty;
             var TituloColumna2 = string.Empty;
@@ -340,29 +336,29 @@ namespace CRME.Controllers
 
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Valor1",  typeof(int));   
-            dt.Columns.Add("Valor2",  typeof(string)); 
-            dt.Columns.Add("Valor3",  typeof(string)); 
-            dt.Columns.Add("Valor4",  typeof(int)); 
-            dt.Columns.Add("Valor5",  typeof(int)); 
-            dt.Columns.Add("Valor6",  typeof(int)); 
-            dt.Columns.Add("Valor7",  typeof(int)); 
-            dt.Columns.Add("Valor8",  typeof(int)); 
-            dt.Columns.Add("Valor9",  typeof(int)); 
-            dt.Columns.Add("Valor10", typeof(int)); 
-            dt.Columns.Add("Valor11", typeof(int)); 
-            dt.Columns.Add("Valor12", typeof(int)); 
-            dt.Columns.Add("Valor13", typeof(int)); 
-            dt.Columns.Add("Valor14", typeof(int)); 
-            dt.Columns.Add("Valor15", typeof(int)); 
-            dt.Columns.Add("Valor16", typeof(int)); 
-            //dt.Columns.Add("Valor17", typeof(int)); 
-            //dt.Columns.Add("Valor18", typeof(int)); 
-            //dt.Columns.Add("Valor19", typeof(int)); 
+            dt.Columns.Add("Valor1", typeof(int));
+            dt.Columns.Add("Valor2", typeof(string));
+            dt.Columns.Add("Valor3", typeof(string));
+            dt.Columns.Add("Valor4", typeof(int));
+            dt.Columns.Add("Valor5", typeof(int));
+            dt.Columns.Add("Valor6", typeof(int));
+            dt.Columns.Add("Valor7", typeof(int));
+            dt.Columns.Add("Valor8", typeof(int));
+            dt.Columns.Add("Valor9", typeof(int));
+            dt.Columns.Add("Valor10", typeof(int));
+            dt.Columns.Add("Valor11", typeof(int));
+            dt.Columns.Add("Valor12", typeof(int));
+            dt.Columns.Add("Valor13", typeof(int));
+            dt.Columns.Add("Valor14", typeof(int));
+            dt.Columns.Add("Valor15", typeof(int));
+            dt.Columns.Add("Valor16", typeof(int));
+            dt.Columns.Add("Valor17", typeof(int));
+            dt.Columns.Add("Valor18", typeof(int));
+            dt.Columns.Add("Valor19", typeof(int));
 
             var row = dt.NewRow();
 
-            TituloColumna1 = "Ejemplo";
+            TituloColumna1 = nombre;
             TituloColumna2 = "Ejemplo2";
             TituloColumna3 = "Ejemplo3";
             TituloColumna4 = "Ejemplo4";
@@ -382,8 +378,6 @@ namespace CRME.Controllers
             //TituloColumna18 = "Ejemplo18";
             //TituloColumna19 = "Ejemplo19";
 
-            //foreach ()
-
             row["Valor1"] = ind.proceso;
             row["Valor2"] = ind.indicador;
             row["Valor3"] = ind.form_cal;
@@ -391,21 +385,51 @@ namespace CRME.Controllers
             row["Valor5"] = ind.resp_med;
             row["Valor6"] = ind.frec_med;
             row["Valor7"] = ind.resp_mej;
-            row["Valor8"] = ind.ene;
-            row["Valor9"] = ind.feb;
-            row["Valor10"] = ind.mar;
-            row["Valor11"] = ind.abr;
-            row["Valor12"] = ind.may;
-            row["Valor13"] = ind.jun;
-            row["Valor14"] = ind.jul;
-            row["Valor15"] = ind.ago;
-            row["Valor16"] = ind.sep;
-            //row["valor17"] = ind.oct;
-            //row["valor18"] = ind.nov;
-            //row["valor19"] = ind.dec;
+
+            if (ind.frec_med == 1)
+            {
+                row["Valor8"] = ind.ene;
+                row["Valor9"] = ind.feb;
+                row["Valor10"] = ind.mar;
+                row["Valor11"] = ind.abr;
+                row["Valor12"] = ind.may;
+                row["Valor13"] = ind.jun;
+                row["Valor14"] = ind.jul;
+                row["Valor15"] = ind.ago;
+                row["Valor16"] = ind.sep;
+                row["valor17"] = ind.oct;
+                row["valor18"] = ind.nov;
+                row["valor19"] = ind.dec;
+            }
+            else if (ind.frec_med == 2)
+            {
+                row["Valor9"] = ind.feb;
+                row["Valor11"] = ind.abr;
+                row["Valor13"] = ind.jun;
+                row["Valor15"] = ind.ago;
+                row["valor17"] = ind.oct;
+                row["valor19"] = ind.dec;
+            }
+            else if (ind.frec_med == 3)
+            {
+               
+                row["Valor10"] = ind.mar;
+                row["Valor13"] = ind.jun;
+                row["Valor16"] = ind.sep;
+                row["valor19"] = ind.dec;
+            }
+            else if (ind.frec_med == 4)
+            {
+                row["Valor13"] = ind.jun;
+                row["valor19"] = ind.dec;
+            }
+            else if (ind.frec_med == 5)
+            {
+                row["valor19"] = ind.dec;
+            }
 
 
-            dt.Rows.Add(row); 
+            dt.Rows.Add(row);
 
             string path = string.Empty;
             LocalReport localReport = new LocalReport();
@@ -415,7 +439,7 @@ namespace CRME.Controllers
             ReportDataSource reporte = new ReportDataSource("Reportes1", dt);
             localReport.DataSources.Add(reporte);
 
-            
+
 
             ReportParameter Titulo1 = new ReportParameter("Titulo1", TituloColumna1);
             ReportParameter Titulo2 = new ReportParameter("Titulo2", TituloColumna2);
@@ -475,67 +499,6 @@ namespace CRME.Controllers
             return File(renderedBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
         }
 
-        ////Carga de combos
-
-        ////COMBO RESPONSABLE MEDICION Y MEJORA
-
-        ////COMBO RESPONSABLE MEDICION
-        //public ActionResult ComboResponMed(int? sistemas_ID)
-        //{
-        //    if (sistemas_ID != null)
-        //    {
-        //        ViewBag.sistemas_ID = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username", sistemas_ID);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.sistemas_ID = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username");
-        //    }
-
-        //    return View();
-        //}
-
-        ////COMBO RESPONSABLE MEJORA
-        //public ActionResult ComboResponMej(int? sistemas_ID)
-        //{
-        //    if (sistemas_ID != null)
-        //    {
-        //        ViewBag.sistemas_ID = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "nombre", sistemas_ID);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.sistemas_ID = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "nombre");
-        //    }
-
-        //    return View();
-        //}
-        ////COMBO FRECUENCIA
-        //public ActionResult ComboFrec(int? periodo_ID)
-        //{
-        //    if (periodo_ID != null)
-        //    {
-        //        ViewBag.periodo_ID = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des", periodo_ID);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.periodo_ID = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des");
-        //    }
-
-        //    return View();
-        //}
-        ////COMBO PROCESOS
-        //public ActionResult ComboProc(int? id)
-        //{
-        //    if (id != null)
-        //    {
-        //        ViewBag.id = new SelectList(db.Procesos.ToList(), "id", "descripcion", id);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.id = new SelectList(db.Procesos.ToList(), "id", "descripcion");
-        //    }
-
-        //    return View();
-        //}
     }
 
 
