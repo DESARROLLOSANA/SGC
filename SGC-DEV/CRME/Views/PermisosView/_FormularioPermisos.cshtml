@@ -34,85 +34,141 @@ else
         <div class="col s12 m12 l12">
             <div class="row">
                 <div class="col s12 m4 l4 input-field">
-                    <b class="">Proceso:</b>
+                    <b class="">Usuario:</b>
                     <div class="input-field margin-top-0">
-                        @if (Model.Id_perfil == 0)
+                        @if (Model.User_ID == 0)
                         {
-                            @Html.DropDownListFor(model => model.Id_perfil, new SelectList(ViewBag.Perfiles, "Value", "Text"), "-- Seleccione el perfil --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.User_ID, new SelectList(ViewBag.Perfiles, "Value", "Text"), "-- Seleccione el usuario --", htmlAttributes: new { @class = "select classic" })
                         }
                         else
                         {
-                            @Html.DropDownListFor(model => model.Id_perfil, new SelectList(ViewBag.Perfiles, "Value", "Text"), "-- Seleccione el perfil --", new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.User_ID, new SelectList(ViewBag.Perfiles, "Value", "Text"), "-- Seleccione el usuario --", new { @class = "select classic" })
                         }
-                        @Html.ValidationMessageFor(model => model.Id_perfil, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.User_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
                 <div class="col s12 m4 l4 input-field">
-                    <b class="">Descripcion</b>
+                    <b class="">Empresa</b>
                     <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese una breve descripcion", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
-                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        @if (Model.User_ID == 0)
+                        {
+                            @Html.DropDownListFor(model => model.empresa_ID, new SelectList(ViewBag.Empresas, "Value", "Text"), "-- Seleccione la empresa --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.empresa_ID, new SelectList(ViewBag.Empresas, "Value", "Text"), "-- Seleccione la empresa --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.empresa_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                @*CHECKBOX PARA LOS PERMISOS*@
+                @*INICIO CHECKBOX PARA MODULOS*@
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Modulos:</b>
+                    <div class=" form-check-input">
+                        <input type="checkbox" class="radio" id="SGC" name="SGC" value="1"/>
+                        <label for="SGC">SGC</label> &nbsp; &nbsp;
+
+                        <input type="checkbox" class="radio" id="CI" name="CI" value="1"/>
+                        <label for="CI">Con Int</label>&nbsp; &nbsp;
+
+                        @*<input type="checkbox" id="Ind" name="Ind" />
+                        <label for="Ind">Indi</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="AI" name="AI" />
+                        <label for="AI">Aud Int</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="AC" name="AC" />
+                        <label for="AC">Acci</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="OA" name="OA" />
+                        <label for="OA">Alt Org</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="OS" name="OS" />
+                        <label for="OS">Ver Org</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="AP" name="AP" />
+                        <label for="AP">Apoy</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="AA" name="AA" />
+                        <label for="AA">Act Alt</label>&nbsp; &nbsp;
+
+                        <input type="checkbox" id="AS" name="AS" />
+                        <label for="AS">Act Ver</label>&nbsp; &nbsp;*@
+                    </div>
+                </div>
+                @*FINAL CHECKBOX PARA MODULOS*@
+                <br /><br /><br />
+                <div class="s12 m12 l12 input-field">
+                    <b class="">Permisos</b>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Crear</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.User_ID == 0)
+                        {
+                            @Html.DropDownListFor(model => model.cre, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.cre, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.cre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Leer</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.User_ID == 0)
+                        {
+                            @Html.DropDownListFor(model => model.rea, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.rea, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.rea, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Actualizar</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.User_ID == 0)
+                        {
+                            @Html.DropDownListFor(model => model.upd, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.upd, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.upd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
 
                 <div class="col s12 m4 l4 input-field">
-                    <b class="">Crear:</b>
-
-                    <div>
-                        @Html.DropDownListFor(model => model.cre,
-                      new List<SelectListItem> {
-                           new SelectListItem { Text = "No Permitir", Value = "false"},
-                                   new SelectListItem { Text = "Permitir", Value = "true"}
-                        }, "--Seleccione la opcion --",
-                      new { @class = "select classic" })
+                    <b class="">Eliminar</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.User_ID == 0)
+                        {
+                            @Html.DropDownListFor(model => model.del, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.del, new SelectList(ViewBag.Cat_Perm, "Value", "Text"), "-- Seleccione el permiso --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.del, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="col s12 m4 l4 input-field">
-                    <b class="">Leer:</b>
-                    <div class="form-check">
-                        @Html.DropDownListFor(model => model.rea,
-                      new List<SelectListItem> {
-                           new SelectListItem { Value = "false" , Text = "No Permitir" },
-                           new SelectListItem { Value = "true" , Text = "Permitir" }
-                        }, "--Seleccione la opcion --",
-                      new { @class = "select classic" })
-                    </div>
-                </div>
-
-                    <div class="col s12 m4 l4 input-field">
-                        <b class="">Editar:</b>
-                        <div class="form-check">
-                            @Html.DropDownListFor(model => model.upd,
-                          new List<SelectListItem> {
-                               new SelectListItem { Value = "false" , Text = "No Permitir" },
-                               new SelectListItem { Value = "true" , Text = "Permitir" }
-                            }, "--Seleccione la opcion --",
-                          new { @class = "select classic"})
-                        </div>
-                    </div>
 
 
-                        <div class="col s12 m4 l4 input-field">
-                            <b class="">Eliminar:</b>
-                            <div class="form-check">
-                                @Html.DropDownListFor(model => model.del,
-                              new List<SelectListItem> {
-                                   new SelectListItem { Text = "No Permitir", Value = "false"},
-                                   new SelectListItem { Text = "Permitir", Value = "true"}
-                                }, "--Seleccione la opcion --",
-                              new { @class = "select classic" })
-                            </div>
-                        </div>
-
-                        </div>
-
-                    </div>
+            </div>
         </div>
+    </div>
 
     @* ---------------Botones----------------*@
     <div class="row">

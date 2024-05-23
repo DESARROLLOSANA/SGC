@@ -21,14 +21,15 @@
     </div>
 }
 
-<div id="TablaDocApo">
+<div id="TablaPermisos">
     <div class="row">
         <div class="col l12 m12 s12">
             <table class="striped highlight light-blue">
                 <thead class="table-header-blue">
                     <tr class="table-header-tr-blue">
-                        <td class="center">Perfil</td>
-                        <td class="center">Descripcion</td>
+                        <td class="center">Usuario</td>
+                        <td class="center">Empresa</td>
+                        <td class="center">Modulos</td>
                         <td class="center">Crear</td>
                         <td class="center">Leer</td>
                         <td class="center">Editar</td>
@@ -40,7 +41,7 @@
                     @if (Model.Count == 0)
                     {
                         <tr class="table-body">
-                            <td colspan="7" class="center">
+                            <td colspan="8" class="center">
                                 <b>No se encontraron coincidencias</b>
                             </td>
                         </tr>
@@ -51,40 +52,92 @@
                         {
 
                 <tr class="table-body">
-                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.cat_perfiles.Find(item.Id_perfil).perfil)</td>
-                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => item.descripcion) </td>
-                    @if (item.cre == true)
+                    @*INICIO DE USUARIO*@
+                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.cat_sistemas.Find(item.User_ID).username)</td>
+                    @*FIN DE USUARIO*@
+
+                    @*INICIO DE EMPRESA*@
+                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.Empresa.Find(item.empresa_ID).Em_Descripcion)</td>
+                    @*FIN DE EMPRESA*@
+
+                    @*INICIO DE MODULOS*@
+                    @if (item.modulo1_ID == 1 && item.modulo2_ID == 1)
                     {
-                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                     <td class="center" style="text-transform: uppercase;"> Ambos </td>
+                    }
+                    else if (item.modulo1_ID == 1 && item.modulo2_ID == 0)
+                    {
+                     <td class="center" style="text-transform: uppercase;"> SGC </td>
+                    }
+                    else if (item.modulo1_ID == 0 && item.modulo2_ID == 1)
+                    {
+                     <td class="center" style="text-transform: uppercase;"> Control Interno </td>
                     }
                     else
                     {
-                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                     <td class="center" style="text-transform: uppercase;"> Ninguno </td>
                     }
-                    @if (item.rea == true)
+                    @*FINAL DE MODULOS*@
+
+                    @*INICIO DE ESPECIFICACION DE PERMISOS*@
+
+                    @*CREAR*@
+                    @if (item.cre == 1)
                     {
                         <td class="center" style="text-transform: uppercase;"> Si </td>
                     }
-                    else
+                    else if (item.cre == 2)
                     {
                         <td class="center" style="text-transform: uppercase;"> NO </td>
                     }
-                    @if (item.upd == true)
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*LEER*@
+                    @if (item.rea == 1)
                     {
                         <td class="center" style="text-transform: uppercase;"> Si </td>
                     }
-                    else
+                    else if (item.rea == 2)
                     {
                         <td class="center" style="text-transform: uppercase;"> NO </td>
                     }
-                    @if (item.del == true)
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*ACTUALIZAR*@
+                    @if (item.upd == 1)
                     {
                         <td class="center" style="text-transform: uppercase;"> Si </td>
                     }
-                    else
+                    else if (item.upd == 2)
                     {
                         <td class="center" style="text-transform: uppercase;"> NO </td>
                     }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*BORRAR*@
+                    @if (item.del == 1)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                    }
+                    else if (item.del == 2)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                    }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+                    @*FIN DE ESPECIFICACION DE PERMISOS*@
+
                     <td class="center">
                         <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_per" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
                     </td>

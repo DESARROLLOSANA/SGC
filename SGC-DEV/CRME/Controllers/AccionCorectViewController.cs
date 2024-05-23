@@ -67,21 +67,25 @@ namespace CRME.Controllers
         {
             Acciones_correctivas edificiossolicitud = new Acciones_correctivas();
 
+
+
             if (id != null)
             {
                 ViewBag.edit = 1;
                 edificiossolicitud = db.Acciones_correctivas.Find(id);
                 ViewBag.tipodoc = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", edificiossolicitud.Em_Cve_Empresa);
+                ViewBag.est = new SelectList(db.EstadosAC.ToList(), "id", "descripcion", edificiossolicitud.Estatus);
             }
             else
             {
                 ViewBag.tipodoc = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.est = new SelectList(db.EstadosAC.ToList(), "id", "descripcion");
             }
 
             return PartialView(edificiossolicitud);
         }
 
-        public ActionResult GuardarProceso(Acciones_correctivas proceso, string ruta)
+        public ActionResult GuardarAccion(Acciones_correctivas accion, string ruta)
         {
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
@@ -89,9 +93,9 @@ namespace CRME.Controllers
             bool success = false;
             string mensajefound = "";
 
-            if (proceso.id == 0)
+            if (accion.id == 0)
             {
-                var found = db.Acciones_correctivas.FirstOrDefault(x => x.Proceso == proceso.Proceso);
+                var found = db.Acciones_correctivas.FirstOrDefault(x => x.Proceso == accion.Proceso);
 
                 if (found != null)
                 {
@@ -104,16 +108,16 @@ namespace CRME.Controllers
                         Acciones_correctivas Edificio = new Acciones_correctivas();
 
                         //Usuarios
-                        Edificio.Proceso = proceso.Proceso;
-                        Edificio.DesviacionDet = proceso.DesviacionDet;                        
-                        Edificio.ResponsableAC = proceso.ResponsableAC;
+                        Edificio.Proceso = accion.Proceso;
+                        Edificio.DesviacionDet = accion.DesviacionDet;                        
+                        Edificio.ResponsableAC = accion.ResponsableAC;
                         Edificio.Evidencia = ruta;
-                        Edificio.AccionCorrectiva = proceso.AccionCorrectiva;
-                        Edificio.FechaCompromiso = proceso.FechaCompromiso;
-                        Edificio.Estatus = proceso.Estatus;
-                        Edificio.Avance = proceso.Avance;
-                        Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
-                        idemp = proceso.Em_Cve_Empresa;
+                        Edificio.AccionCorrectiva = accion.AccionCorrectiva;
+                        Edificio.FechaCompromiso = accion.FechaCompromiso;
+                        Edificio.Estatus = accion.Estatus;
+                        Edificio.Avance = accion.Avance;
+                        Edificio.Em_Cve_Empresa = accion.Em_Cve_Empresa;
+                        idemp = accion.Em_Cve_Empresa;
 
                         db.Acciones_correctivas.Add(Edificio);
 
@@ -160,17 +164,17 @@ namespace CRME.Controllers
             {
                 try
                 {
-                    Acciones_correctivas Edificio = db.Acciones_correctivas.Find(proceso.id);
-                    Edificio.Proceso = proceso.Proceso;
-                    Edificio.DesviacionDet = proceso.DesviacionDet;
-                    Edificio.ResponsableAC = proceso.ResponsableAC;
+                    Acciones_correctivas Edificio = db.Acciones_correctivas.Find(accion.id);
+                    Edificio.Proceso = accion.Proceso;
+                    Edificio.DesviacionDet = accion.DesviacionDet;
+                    Edificio.ResponsableAC = accion.ResponsableAC;
                     Edificio.Evidencia = ruta;
-                    Edificio.AccionCorrectiva = proceso.AccionCorrectiva;
-                    Edificio.FechaCompromiso = proceso.FechaCompromiso;
-                    Edificio.Estatus = proceso.Estatus;
-                    Edificio.Avance = proceso.Avance;
-                    Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
-                    idemp = proceso.Em_Cve_Empresa;
+                    Edificio.AccionCorrectiva = accion.AccionCorrectiva;
+                    Edificio.FechaCompromiso = accion.FechaCompromiso;
+                    Edificio.Estatus = accion.Estatus;
+                    Edificio.Avance = accion.Avance;
+                    Edificio.Em_Cve_Empresa = accion.Em_Cve_Empresa;
+                    idemp = accion.Em_Cve_Empresa;
                     db.Entry(Edificio).State = EntityState.Modified;
 
                     if (db.SaveChanges() > 0)
@@ -247,16 +251,17 @@ namespace CRME.Controllers
                 {
                     foreach (string file in Request.Files)
                     {
-                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + "image/*,.pdf,.doc,.docx,.xlsx,.xls")))
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf")))
                         {
-                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + "image/*,.pdf,.doc,.docx,.xlsx,.xls"));
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf"));
                         }
 
                         HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
                         string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo + Path.GetExtension(Path.GetFileName(hpf.FileName)));
-                        Filet = "~/Upload/Sistema/files/" + nombreArchivo + "image/*,.pdf,.doc,.docx,.xlsx,.xls";
+                        Filet = "~/Upload/Sistema/files/" + nombreArchivo + ".pdf";
                         hpf.SaveAs(savedFileName);
                         success = true;
+                        mensaje = "¡Archivo subido con éxito!";
                     }
 
                 }

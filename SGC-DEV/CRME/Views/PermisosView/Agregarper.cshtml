@@ -10,7 +10,7 @@
     <div class="col s12">
         <div class="row">
             <div class="col s12 margin-top-25">
-                <div id="New_UpdatePersona">
+                <div id="TablaPermisos">
                     @Html.Action("_FormularioPermisos", "PermisosView")
                 </div>
             </div>
@@ -51,9 +51,19 @@
                 /*CargarReglasGeneralFormuario();*/
                 if ($("#FrmPermiso").valid()) {
                     var frmValues = $("#FrmPermiso").serialize();
+                    var SGC = 0;
+                    var CI = 0;
+
+                    if ($("#SGC").val() != 0) {
+                        SGC = $("#SGC").val();
+                    }
+
+                    if ($("#CI").val() != 0) {
+                        CI = $("#CI").val();
+                    }
                     $.ajax({
                         url: '@Url.Action("SavePermisos", "PermisosView")',
-                        data: frmValues,
+                        data: frmValues + "&SGC=" + SGC + "&CI=" + CI,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
                             $(".guardarPermiso").attr("disabled", false);

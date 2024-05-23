@@ -124,15 +124,15 @@ namespace CRME.Controllers
             html += "<div>";
             html += "<p> Hola " + usuario.nombre + ", </p>";
             html += "<p>Nos ha notificado que no recuerda su contraseña para ingresar a SGC.</p>";
-            html += "<p>Para cambiar su contraseña dé click en el siguiente enlace.<p>";
+            html += "<p>Para cambiar su contraseña haga click en el siguiente enlace.<p>";
             html += "</br>";
             html += "<a href='" + ruta + "' target='_blank'>Restablecer Contraseña</a>";
             html += "</br>";
             html += "<p>El enlace caducará en 24 hrs., así que asegúrese de utilizarlo inmediatamente.</p>";
             html += "</br>";
             html += "<p>¡Gracias por utilizar SGC!</p>";
-            html += "<hr style=\"color:#FF8C00;\"/>";
-            html += "<i style=\"color:#FF8C00;\">&copy; Todos los derechos reservados | SIRE " + DateTime.Now.Year + "</i>";
+            html += "<hr style=\"color:#8892c6;\"/>";
+            html += "<i style=\"color:#8892c6;\">&copy; Todos los derechos reservados | SIRE " + DateTime.Now.Year + "</i>";
             html += "</br>";
             html += "</br>";
             html += "</div>";

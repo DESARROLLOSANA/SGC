@@ -50,8 +50,8 @@
             });
         });
 
-        $("#FrmProceso").off("click", "#CargarArchivo");
-        $("#FrmProceso").on("click", "#CargarArchivo", function (e) {
+        $("#FrmAccion").off("click", "#CargarArchivo");
+        $("#FrmAccion").on("click", "#CargarArchivo", function (e) {
             e.preventDefault();
             var formdata = new FormData();
             var fileInput = document.getElementById('fileInputArchivo');
@@ -64,7 +64,7 @@
                 });
                 $("#ModalAlert").modal('open');
             }
-            else if (extension != "image/*,.pdf,.doc,.docx,.xlsx,.xls") {
+            else if (extension != ".pdf" || extension != ".jpeg" || extension != ".jpg" || extension != ".xls" || extension != ".xlsx" || extension != ".docx") {
                 $('#ruta').val("");
                 $("#nbArchivo").val("");
                 ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
@@ -153,19 +153,17 @@
          guardarpersona();
         function guardarpersona() {
 
-            $("#FrmProceso").off('click', '.guardarProceso');
-            $("#FrmProceso").on("click", ".guardarProceso", function (e) {
+            $("#FrmAccion").off('click', '.guardarProceso');
+            $("#FrmAccion").on("click", ".guardarProceso", function (e) {
                 //alert(" ");
                 e.preventDefault();
                 $(".guardarProceso").attr("disabled", true);
                 CargarReglasGeneralFormuario();
-                if ($("#FrmProceso").valid()) {
-                    var frmValues = $("#FrmProceso").serialize();
-                    var ruta = $("#ruta").val();
-                    var depto = $("#Departamento").val();
-                    var empre = $("#Em_Cve_Empresa").val();
+                if ($("#FrmAccion").valid()) {
+                    var frmValues = $("#FrmAccion").serialize();
+                    var ruta = $("#ruta").val();                   
                     $.ajax({
-                        url: '@Url.Action("GuardarProceso", "AccionCorectView")',
+                        url: '@Url.Action("GuardarAccion", "AccionCorectView")',
                         data: frmValues + "&ruta=" + ruta ,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
@@ -195,7 +193,7 @@
         }
 
         function CargarReglasGeneralFormuario() {
-            var formulario = $("#FrmProceso").removeData("validator").removeData("unobtrusiveValidation");
+            var formulario = $("#FrmAccion").removeData("validator").removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(formulario);
 
             jQuery.extend(jQuery.validator.messages, {

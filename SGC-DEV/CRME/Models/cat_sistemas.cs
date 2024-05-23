@@ -47,6 +47,7 @@ namespace CRME.Models
         public int? estatus_ID { get; set; }
 
         public int Pu_Cve_Puesto { get; set; }
+        public int De_Cve_Departamento { get; set; }
 
         [StringLength(260)]
         public string foto { get; set; }

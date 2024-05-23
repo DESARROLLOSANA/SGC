@@ -69,38 +69,56 @@ namespace CRME.Controllers
 
         public ActionResult _FormularioPermisos(long? Id_per)
         {
-            cat_perfiles cond = new cat_perfiles();
+            cat_sistemas cond = new cat_sistemas();
+            Empresa emp = new Empresa();
+            cat_perm perm = new cat_perm();
             Permisos Permiso = new Permisos();
 
             if (Id_per != null)
             {
                 ViewBag.edit = 1;
 
-                cond = db.cat_perfiles.Find(Id_per);
-                ViewBag.Perfiles = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil", cond.perfil);
-
+                cond = db.cat_sistemas.Find(Id_per);
+                ViewBag.Perfiles = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username", cond.username);
+                emp = db.Empresa.Find(Id_per);
+                ViewBag.Empresas = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", emp.Em_Descripcion);
+                perm = db.cat_perms.Find(Id_per);
+                ViewBag.Cat_Perm = new SelectList(db.cat_perms.ToList(), "Id", "descripcion", perm.descripcion);
                 Permiso = db.Permisos.Find(Id_per);
             }
             else
             {
-                ViewBag.Perfiles = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil");
+                ViewBag.Perfiles = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username");
+                ViewBag.Empresas = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.Cat_Perm = new SelectList(db.cat_perms.ToList(), "Id", "descripcion");
             }
 
             return PartialView(Permiso);
         }
 
+        public ActionResult _TablaModulos(int? page, string filtro)
+        {
+            const int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var lista = db.Permisos.OrderByDescending(x => x.Id_per).ToList();
 
-        public ActionResult savePermisos(Permisos permiso)
+            ViewBag.filtro = filtro;
+
+            return PartialView(lista.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        public ActionResult savePermisos(Permisos permiso, int? SGC, int? CI)
         {
             Permisos ind = new Permisos();
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.Permisos.FirstOrDefault(x => x.Id_perfil == permiso.Id_perfil);
+            var found = db.Permisos.FirstOrDefault(x => x.empresa_ID == permiso.empresa_ID);
 
             if (found != null)
             {
-                mensajefound = "¡Ya existen permisos asignados al perfil!";
+                mensajefound = "¡Ya existen permisos asignados al usuario";
 
             }
             else
@@ -111,12 +129,16 @@ namespace CRME.Controllers
                     try
                     {
                         Permisos perm = new Permisos();
-                        perm.descripcion = permiso.descripcion;
-                        perm.Id_perfil = permiso.Id_perfil;
+                        perm.empresa_ID = permiso.empresa_ID;
+                        perm.User_ID = permiso.User_ID;
+                        perm.modulo1_ID = permiso.modulo1_ID;
+                        perm.modulo2_ID = permiso.modulo2_ID;
                         perm.cre = permiso.cre;
                         perm.rea = permiso.rea;
                         perm.upd = permiso.upd;
                         perm.del = permiso.del;
+                        perm.modulo1_ID = (int)SGC;
+                        perm.modulo2_ID = (int)CI;
                         db.Permisos.Add(perm);
                         if (db.SaveChanges() > 0)
                         {
@@ -148,8 +170,8 @@ namespace CRME.Controllers
                     {
                         Permisos Condi = db.Permisos.Find(permiso.Id_per);
 
-                        Condi.descripcion = permiso.descripcion;
-                        Condi.Id_perfil = permiso.Id_perfil;
+                        Condi.empresa_ID = permiso.empresa_ID;
+                        Condi.User_ID = permiso.User_ID;
                         Condi.cre = permiso.cre;
                         Condi.rea = permiso.rea;
                         Condi.upd = permiso.upd;

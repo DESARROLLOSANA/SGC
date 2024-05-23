@@ -303,6 +303,7 @@
     <Compile Include="Controllers\AccesoViewController.cs" />
     <Compile Include="Controllers\AccionCorectViewController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActualizacionesViewController.cs" />
     <Compile Include="Controllers\AlumnoViewController.cs" />
     <Compile Include="Controllers\AuditoriaViewController.cs" />
     <Compile Include="Controllers\AutorizacionViewController.cs" />
@@ -486,9 +487,30 @@
     <Compile Include="Migrations\202404261633136_Permisos.Designer.cs">
       <DependentUpon>202404261633136_Permisos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405091759291_Mopes.cs" />
+    <Compile Include="Migrations\202405091759291_Mopes.Designer.cs">
+      <DependentUpon>202405091759291_Mopes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405092034374_catalogo_Per.cs" />
+    <Compile Include="Migrations\202405092034374_catalogo_Per.Designer.cs">
+      <DependentUpon>202405092034374_catalogo_Per.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405172314416_Actualizaciones.cs" />
+    <Compile Include="Migrations\202405172314416_Actualizaciones.Designer.cs">
+      <DependentUpon>202405172314416_Actualizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405202257504_Day.cs" />
+    <Compile Include="Migrations\202405202257504_Day.Designer.cs">
+      <DependentUpon>202405202257504_Day.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405211642547_dve.cs" />
+    <Compile Include="Migrations\202405211642547_dve.Designer.cs">
+      <DependentUpon>202405211642547_dve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Acciones_correctivas.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\actualizaciones.cs" />
     <Compile Include="Models\Archivos.cs" />
     <Compile Include="Models\ArchivosOrganigrama.cs" />
     <Compile Include="Models\Auditoria.cs" />
@@ -507,7 +529,9 @@
     <Compile Include="Models\cat_km_actuales_vehiculos.cs" />
     <Compile Include="Models\cat_km_proximo_vehiculos.cs" />
     <Compile Include="Models\cat_mantenimiento_vehiculos.cs" />
-    <Compile Include="Models\cat_menu.cs" />
+    <Compile Include="Models\cat_perm.cs" />
+    <Compile Include="Models\Correos_Calidad.cs" />
+    <Compile Include="Models\modulos.cs" />
     <Compile Include="Models\cat_observaciones_movil.cs" />
     <Compile Include="Models\cat_perfiles.cs" />
     <Compile Include="Models\cat_proveedores.cs" />
@@ -528,6 +552,8 @@
     <Compile Include="Models\cat_periodos.cs" />
     <Compile Include="Models\Control_Interno.cs" />
     <Compile Include="Models\Doc_apoyo.cs" />
+    <Compile Include="Models\EstadosAC.cs" />
+    <Compile Include="Models\Mope.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Procesos.cs" />
     <Compile Include="Models\Condicion.cs" />
@@ -594,6 +620,7 @@
     <Compile Include="Models\Resguardo_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardo_Lista_Unidades_excel.cs" />
     <Compile Include="Models\SIRE_Context.cs" />
+    <Compile Include="Models\SolicitudActualizaciones.cs" />
     <Compile Include="Models\Solicitud_Mtto.cs" />
     <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Models\Sucursal.cs" />
@@ -1128,6 +1155,14 @@
     <Content Include="Views\PermisosView\_TablaPermisos.cshtml" />
     <Content Include="Views\PermisosView\Agregarper.cshtml" />
     <Content Include="Views\PermisosView\_FormularioPermisos.cshtml" />
+    <Content Include="Views\PermisosView\_TablaModulos.cshtml" />
+    <Content Include="Views\ActualizacionesView\CrearActu.cshtml" />
+    <Content Include="Views\ActualizacionesView\CrearSoli.cshtml" />
+    <Content Include="Views\ActualizacionesView\Index.cshtml" />
+    <Content Include="Views\ActualizacionesView\_Formulario.cshtml" />
+    <Content Include="Views\ActualizacionesView\_FormularioSoli.cshtml" />
+    <Content Include="Views\ActualizacionesView\_TablaActu.cshtml" />
+    <Content Include="Views\IndicadoresView\_FormularioDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1230,6 +1265,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404261633136_Permisos.resx">
       <DependentUpon>202404261633136_Permisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405091759291_Mopes.resx">
+      <DependentUpon>202405091759291_Mopes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405092034374_catalogo_Per.resx">
+      <DependentUpon>202405092034374_catalogo_Per.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405172314416_Actualizaciones.resx">
+      <DependentUpon>202405172314416_Actualizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405202257504_Day.resx">
+      <DependentUpon>202405202257504_Day.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405211642547_dve.resx">
+      <DependentUpon>202405211642547_dve.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IndicadoresGraficaLineas.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaBarras.rdlc" />

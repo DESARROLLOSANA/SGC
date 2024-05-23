@@ -16,16 +16,16 @@
     <div class="row">
             
         @*como se pasara la parte de empresa por menu*@
-        @if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 2)
-        {
+        @*@if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 2)
+        {*@
         <input type="hidden" value="@ViewBag.ide" />
-        {
+        @{
             var idempre = ViewBag.ide;
         }
         <div class="col s12 m6 l6 input-field">
             <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearAudit","AccionCorectView")"><i class="mdi mdi-plus"></i> Alta de acciones Correctivas</a>            
         </div>
-       }            
+       @*}*@             
     </div>
     <div class="row">
         <div class="col l12 m12 s12">
@@ -41,16 +41,14 @@
                         <td class="center hide-on-small-only">Avance</td>
                         <td class="center hide-on-small-only">Estatus</td>
                         <td class="center hide-on-small-only">Evidencia</td>
-                        <td class="center">Opciones</td>
-                        @*@foreach (var itm in Model)
-                        {
-                          if (itm.Estatus != 1)
-                          {
-                           <td class="center">Opciones</td>
-                          }
-                          
-                        }*@
-
+                        @foreach (var item in Model)
+                        { 
+                         if (item.Estatus !=2 ) 
+                            { 
+                             <td class="center">Opciones</td>
+                            }
+                        }
+                        
                     </tr>
                 </thead>
                 <tbody class="table-body-blue">
@@ -74,28 +72,22 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.AccionCorrectiva)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaCompromiso)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Avance)</td>
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Estatus)</td>
-
-                    @if (item.Evidencia != null)
-                    {
-                        <td class="center-align">
-                            <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px green-text"></i></a>&nbsp;&nbsp;
-                        </td>
-                    }
-                    else
-                    {
-                        <td class="center-align">
-                            <i class="mdi mdi-file-document mdi-24px red-text"></i>&nbsp;&nbsp;
-                        </td>
-                    }
-
-                    <td class="center">
-                        <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
-                        {
-                            <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
-                        }
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.EstadosAC.Find(item.Estatus).descripcion)</td>
+                    <td class="center-align">
+                        <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="Evidencia" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file mdi-24px black-text"></i></a>&nbsp;&nbsp;
                     </td>
+                    @if (item.Estatus != 2)
+                    {
+                     <td class="center">
+                      <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                    @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                     {
+                      <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+                     }
+                     </td>
+                    }
+                    
+                    
                 </tr>
                         }
                     }

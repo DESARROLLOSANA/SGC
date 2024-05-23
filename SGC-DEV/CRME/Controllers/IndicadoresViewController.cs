@@ -27,8 +27,6 @@ using System.Data.Entity.Validation;
 using Microsoft.Reporting.WebForms;
 using Microsoft.SqlServer.Types;
 
-
-
 namespace CRME.Controllers
 {
     public class IndicadoresViewController : Controller
@@ -56,7 +54,7 @@ namespace CRME.Controllers
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.cat_indicadores.FirstOrDefault(x => x.proceso == catind.proceso);
+            var found = db.cat_Indicadores.FirstOrDefault(x => x.proceso == catind.proceso);
 
             if (found != null)
             {
@@ -71,6 +69,8 @@ namespace CRME.Controllers
                     {
                         cat_indicadores catinb = new cat_indicadores();
                         var year = DateTime.Now.Year;
+                        var month = DateTime.Now.Month;
+                        var dia = DateTime.Now.Day;
                         catinb.proceso = catind.proceso;
                         catinb.indicador = catind.indicador;
                         catinb.form_cal = catind.form_cal;
@@ -78,20 +78,23 @@ namespace CRME.Controllers
                         catinb.resp_med = catind.resp_med;
                         catinb.frec_med = catind.frec_med;
                         catinb.resp_mej = catind.resp_mej;
-                        catinb.ene = catind.ene;
-                        catinb.feb = catind.feb;
-                        catinb.mar = catind.mar;
-                        catinb.abr = catind.abr;
-                        catinb.may = catind.may;
-                        catinb.jun = catind.jun;
-                        catinb.jul = catind.jul;
-                        catinb.ago = catind.ago;
-                        catinb.sep = catind.sep;
-                        catinb.oct = catind.oct;
-                        catinb.nov = catind.nov;
-                        catinb.dec = catind.dec;
+                        catinb.ene = 0;
+                        catinb.feb = 0;
+                        catinb.mar = 0;
+                        catinb.abr = 0;
+                        catinb.may = 0;
+                        catinb.jun = 0;
+                        catinb.jul = 0;
+                        catinb.ago = 0;
+                        catinb.sep = 0;
+                        catinb.oct = 0;
+                        catinb.nov = 0;
+                        catinb.dec = 0;
+                        catinb.por_cum = 0;
+                        catinb.mes = month;
                         catinb.year = year;
-                        db.cat_indicadores.Add(catinb);
+                        catinb.dia = dia;
+                        db.cat_Indicadores.Add(catinb);
                         if (db.SaveChanges() > 0)
                         {
                             success = true;
@@ -120,20 +123,20 @@ namespace CRME.Controllers
                 {
                     try
                     {
-                        cat_indicadores Condi = db.cat_indicadores.Find(catind.indicadores_ID);
+                        cat_indicadores Condi = db.cat_Indicadores.Find(catind.indicadores_ID);
 
-                        int a = Condi.ene;
-                        int b = Condi.feb;
-                        int c = Condi.mar;
-                        int d = Condi.abr;
-                        int e = Condi.may;
-                        int f = Condi.jun;
-                        int g = Condi.jul;
-                        int h = Condi.ago;
-                        int i = Condi.sep;
-                        int j = Condi.oct;
-                        int k = Condi.nov;
-                        int l = Condi.dec;
+                        int a = (int)Condi.ene;
+                        int b = (int)Condi.feb;
+                        int c = (int)Condi.mar;
+                        int d = (int)Condi.abr;
+                        int e = (int)Condi.may;
+                        int f = (int)Condi.jun;
+                        int g = (int)Condi.jul;
+                        int h = (int)Condi.ago;
+                        int i = (int)Condi.sep;
+                        int j = (int)Condi.oct;
+                        int k = (int)Condi.nov;
+                        int l = (int)Condi.dec;
                         float m = Condi.res_esp;
                         int sum = a + b + c + d + e + f + g + h + i + j + k + l;
                         float pretotal = sum * m;
@@ -184,50 +187,67 @@ namespace CRME.Controllers
 
 
         //Metodo para guardas los porcentajes de la tabla.
-        public ActionResult SaveDatos(cat_indicadores catind, int idIndi)
+        public ActionResult SaveDatos(cat_indicadores caind)
         {
-            var ind = db.cat_indicadores.Find(idIndi);
+            
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.cat_indicadores.FirstOrDefault(x => x.indicadores_ID == idIndi);
             try
-             {
-                cat_indicadores Condi = db.cat_indicadores.Find(catind.indicadores_ID);
-                //int a = ind.ene;
-                //int b = ind.feb;
-                //int c = ind.mar;
-                //int d = ind.abr;
-                //int e = ind.may;
-                //int f = ind.jun;
-                //int g = ind.jul;
-                //int h = ind.ago;
-                //int i = ind.sep;
-                //int j = ind.oct;
-                //int k = ind.nov;
-                //int l = ind.dec;
-                //float m = catind.res_esp;
-                //int sum = a + b + c + d + e + f + g + h + i + j + k + l;
+            {
+                var id = db.cat_Indicadores.FirstOrDefault(x => x.indicadores_ID == caind.indicadores_ID);
+                int Id_Ene = caind.ene;
+                int Id_Feb = caind.feb;
+                int Id_Mar = caind.mar;
+                int Id_Abr = caind.abr;
+                int Id_May = caind.may;
+                int Id_Jun = caind.jun;
+                int Id_Jul = caind.jul;
+                int Id_Ago = caind.ago;
+                int Id_Sep = caind.sep;
+                int Id_Oct = caind.oct;
+                int Id_Nov = caind.nov;
+                int Id_Dec = caind.dec;
+
+                int sum = Id_Ene + Id_Feb + Id_Mar + Id_Abr + Id_May + Id_Jun + Id_Jul + Id_Ago + Id_Sep + Id_Oct + Id_Nov + Id_Dec;
                 //float pretotal = sum * m;
                 //float total = pretotal / m;
-                //var ftotal = (int)total;
+                var ftotal = sum;
 
-                cat_indicadores catibn = new cat_indicadores();
+                cat_indicadores catibn = db.cat_Indicadores.Find(caind.indicadores_ID);
 
-                catibn.ene = catind.ene;
-                catibn.feb = catind.feb;
-                catibn.mar = catind.mar;
-                catibn.abr = catind.abr;
-                catibn.may = catind.may;
-                catibn.jun = catind.jun;
-                catibn.jul = catind.jul;
-                catibn.ago = catind.ago;
-                catibn.sep = catind.sep;
-                catibn.oct = catind.oct;
-                catibn.nov = catind.nov;
-                catibn.dec = catind.dec;
-                //ind.por_cum = ftotal;
-                db.Entry(ind).State = EntityState.Modified;
+                if (catibn.indicadores_ID == caind.indicadores_ID)
+                {
+                 catibn.ene = Id_Ene;
+                 catibn.feb = Id_Feb;
+                 catibn.mar = Id_Mar;
+                 catibn.abr = Id_Abr;
+                 catibn.may = Id_May;
+                 catibn.jun = Id_Jun;
+                 catibn.jul = Id_Jul;
+                 catibn.ago = Id_Ago;
+                 catibn.sep = Id_Sep;
+                 catibn.oct = Id_Oct;
+                 catibn.nov = Id_Nov;
+                 catibn.dec = Id_Dec;
+                 catibn.por_cum = ftotal;
+                 db.Entry(catibn).State = EntityState.Modified;
+                }
+
+                //catibn.ene = Id_Ene;
+                //catibn.feb = Id_Feb;
+                //catibn.mar = Id_Mar;
+                //catibn.abr = Id_Abr;
+                //catibn.may = Id_May;
+                //catibn.jun = Id_Jun;
+                //catibn.jul = Id_Jul;
+                //catibn.ago = Id_Ago;
+                //catibn.sep = Id_Sep;
+                //catibn.oct = Id_Oct;
+                //catibn.nov = Id_Nov;
+                //catibn.dec = Id_Dec;
+                //catibn.por_cum = ftotal;
+                //db.Entry(catibn).State = EntityState.Modified;
 
                 if (db.SaveChanges() > 0)
                 {
@@ -249,7 +269,7 @@ namespace CRME.Controllers
                 // Throw a new DbEntityValidationException with the improved exception message.
                 //throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
                 mensajefound = exceptionMessage + "fatal error";
-        }
+            }
 
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
 
@@ -260,12 +280,12 @@ namespace CRME.Controllers
         {
             const int pageSize = 10;
             int pageNumber = (page ?? 1);
-                var lista = db.cat_indicadores.OrderByDescending(x => x.indicadores_ID).ToList();
+            var lista = db.cat_Indicadores.OrderByDescending(x => x.indicadores_ID).ToList();
             //List<Procesos> lista = new List<Procesos>();
 
             ViewBag.filtro = filtro;
 
-                return PartialView(lista.ToPagedList(pageNumber, pageSize));
+            return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
         //Llamar al Visualizador.
@@ -279,6 +299,18 @@ namespace CRME.Controllers
             return View();
         }
 
+        //Metodo para vista de formulario de datos.
+        public ActionResult _FormularioDatos(int? indicadores_ID)
+        {
+            cat_indicadores idIndic = new cat_indicadores();
+
+            if (indicadores_ID != null)
+            {
+                ViewBag.edit = 1;
+                idIndic = db.cat_Indicadores.Find(indicadores_ID);
+            }
+            return PartialView("_FormularioDatos", idIndic);
+        }
         //Metodo para la vista del formulario.
         public ActionResult _FormularioIndicadores(long? indicadores_ID)
         {
@@ -300,7 +332,7 @@ namespace CRME.Controllers
                 cond = db.cat_periodos.Find(indicadores_ID);
                 ViewBag.Periodos = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des", cond.periodo_des);
 
-                Indicadores = db.cat_indicadores.Find(indicadores_ID);
+                Indicadores = db.cat_Indicadores.Find(indicadores_ID);
             }
             else
             {
@@ -321,8 +353,8 @@ namespace CRME.Controllers
             }
 
 
-            var ind = db.cat_indicadores.Find(idIndicador);
-            ViewBag.indicador = new SelectList(db.cat_indicadores.Where(x => x.indicadores_ID == idIndicador).ToList(), "Indicadores_ID", "Proceso");
+            var ind = db.cat_Indicadores.Find(idIndicador);
+            ViewBag.indicador = new SelectList(db.cat_Indicadores.Where(x => x.indicadores_ID == idIndicador).ToList(), "Indicadores_ID", "Proceso");
             var serializerCat = new JavaScriptSerializer();
             var nombre = db.Procesos.Find(ind.proceso).descripcion;
 
@@ -424,7 +456,7 @@ namespace CRME.Controllers
             }
             else if (ind.frec_med == 3)
             {
-               
+
                 row["Valor10"] = ind.mar;
                 row["Valor13"] = ind.jun;
                 row["Valor16"] = ind.sep;
@@ -510,6 +542,32 @@ namespace CRME.Controllers
 
             return File(renderedBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
         }
+
+        //public ActionResult ConsultDatos(int? idIndica)
+        //{
+
+        //    cat_indicadores Indi = new cat_indicadores();
+        //    cat_indicadores Indicadores = new cat_indicadores();
+
+        //    if (idIndica  != null)
+        //    {
+        //        ViewBag.edit = 1;
+
+        //        Indi = (cat_indicadores)db.cat_Indicadores.Where(x => x.indicadores_ID == idIndica);
+
+        //        Indicadores = db.cat_Indicadores.Find(idIndica);
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Seleccion = new SelectList(db.cat_Indicadores.ToList(), "id, "");
+        //        ViewBag.Puestos = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion");
+        //        ViewBag.Periodos = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des");
+        //    }
+
+            
+
+        //    return PartialView(Indicadores);
+        //}
 
     }
 

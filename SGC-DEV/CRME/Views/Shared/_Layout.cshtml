@@ -36,11 +36,13 @@
                 <div class="user-view">
                     @if (Auth.Usuario.foto != null)
                     {
-                        <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~", "")"></a>
-                        <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
-                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion &nbsp&nbsp</span></a>
-                        <a href="@Url.Action("Index","PermisosView")"><span class="blue-text"><i class="small mdi mdi-cog"></i></span></a>
-                       // <a href="@Url.Action("Config", "AccesoView")><span class="blue-text"><i class="small mdi mdi-cog"></i></a>
+                     <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~", "")"></a>
+                      <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
+                     <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion &nbsp&nbsp</span></a>
+                    if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                    { 
+                     <a href="@Url.Action("Index","PermisosView")"><span class="blue-text"><i class="small mdi mdi-cog"></i></span></a>
+                    }
                     }
                     else
                     {
@@ -55,173 +57,184 @@
                     <li class="active"><a href="@Url.Action("Index", "PanelView")"><i class=" small mdi mdi-home-outline"></i><span>Inicio</span></a></li>
 
                     @* PROCEDIMIENTO PARA EMPRESA 1 Y LOS 3 PERFILES ADMON CALIDAD, COLABORADOR Y ADMON SISTEMAS *@
-                   
-                    @if (Auth.Usuario.perfil_ID != 6 )
-                      {
+
+                    @if (Auth.Usuario.perfil_ID != 6 && Auth.Usuario.perfil_ID != 1)
+                    {
                         <li>
-                          <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
-                    @if (Auth.Usuario.empresa_ID == 4)
-                      {
-                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
-                         <div class="collapsible-body">
-                          <ul>
-                           <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 5 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                           <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 5 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                          </ul>
-                         </div>
-                      }
-                     else if (Auth.Usuario.empresa_ID == 1)
-                      {
-                       <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
-                        <div class="collapsible-body">
-                         <ul>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 1 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                         </ul>
-                        </div>
-                      }
-                     else if (Auth.Usuario.empresa_ID == 2)
-                      {
-                       <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
-                        <div class="collapsible-body">
-                         <ul>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 2 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                         </ul>
-                        </div>
-                      }
-                     else if (Auth.Usuario.empresa_ID == 3)
-                      {
-                       <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
-                        <div class="collapsible-body">
-                         <ul>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                          <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 3 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                         </ul>
-                        </div>
-                      }
+                            <input type="hidden" name="ID_empresa" value="@Auth.Usuario.empresa_ID" />
+                            @if (Auth.Usuario.empresa_ID == 4)
+                            {
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 5 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 5 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Auth.Usuario.empresa_ID == 1)
+                            {
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 1 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Auth.Usuario.empresa_ID == 2)
+                            {
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 2 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Auth.Usuario.empresa_ID == 3)
+                            {
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                        <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 3 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                    </ul>
+                                </div>
+                            }
                         </li>
 
-                            @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
-                            @* FIN DE MENU INDICADORES DE CALIDAD*@
+                        @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
+                        @* FIN DE MENU INDICADORES DE CALIDAD*@
 
-                            @* INICIO DE MENU AUDITORIA INTERNA*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AuditoriaView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
-                            @* FIN DE MENU AUDITORIA INTERNA*@
+                        @* INICIO DE MENU AUDITORIA INTERNA*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AuditoriaView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
+                        @* FIN DE MENU AUDITORIA INTERNA*@
 
-                            @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AccionCorectView")"><i class="small mdi mdi-tab-plus"></i><span style="color: black">Acciones</span></a></li>
-                            @* FIN DE MENU ACCIONES CORRECTIVAS *@
+                        @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AccionCorectView")"><i class="small mdi mdi-tab-plus"></i><span style="color: black">Acciones</span></a></li>
+                        @* FIN DE MENU ACCIONES CORRECTIVAS *@
 
-                            @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
-                            {
-                                <li>
-                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
-                                            {
-                                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "OrganigramaView")"><i class="small mdi mdi-tools"></i><span style="color: black">Alta</span></a></li>
-                                            }
-                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "VisualizarOrganigramaView")"><i class="small mdi mdi-family-tree"></i><span style="color: black">Visualizar</span></a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            }
-                            @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
-
-                            @* INICIO DE MENU DE Apoyo *@
-                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "DocApoyoView")"><i class="small mdi mdi-help-circle-outline"></i><span style="color: black">Apoyo</span></a></li>
-                            @* FIN DE MENU DE Apoyo *@
-
-                            @* INICIO DE MENU DE ACTUALIZACIONES *@
-                            if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
-                            {
-                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-cached"></i><span style="color: black">Actualizaciones</span></a></li>
-                            }
-                            @* FIN DE MENU DE ACTUALIZACIONES *@
-                      }
-                     else if (Auth.Usuario.perfil_ID == 6)
-                      {
-                       <li>   
-                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
-                         <div class="collapsible-body">
-                          <ul>
-                           <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                           <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 1 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                          </ul>
-                         </div>
-                       </li>
-
-                       <li>        
-                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
-                         <div class="collapsible-body">
-                          <ul>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 2 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                          </ul>
-                         </div>  
-                       </li>
-                       <li>
-                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
-                         <div class="collapsible-body">
-                          <ul>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 3 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                          </ul>
-                         </div>
-                       </li>
-
-                       <li>        
-                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
-                         <div class="collapsible-body">
-                          <ul>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 5 @*4*@ })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
-                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new {id = 5 @*4*@})"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
-                          </ul>
-                         </div>
-                       </li>
-
-                      @* INICIO DE MENU INDICADORES DE CALIDAD*@
-                       <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
-                      @* FIN DE MENU INDICADORES DE CALIDAD*@
-
-                      @* INICIO DE MENU AUDITORIA INTERNA*@
-                       <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AuditoriaView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
-                      @* FIN DE MENU AUDITORIA INTERNA*@
-
-                      @* INICIO DE MENU ACCIONES CORRECTIVAS*@
-                       <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AccionCorectView")"><i class="small mdi mdi-tab-plus"></i><span style="color: black">Acciones</span></a></li>
-                      @* FIN DE MENU ACCIONES CORRECTIVAS *@
-
-                      @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
-                       if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                        @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                        if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
                         {
-                         <li>
-                          <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
-                           <div class="collapsible-body">
-                            <ul>
-                             @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
-                              {
-                               <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "OrganigramaView")"><i class="small mdi mdi-tools"></i><span style="color: black">Alta</span></a></li>
-                              }
-                               <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "VisualizarOrganigramaView")"><i class="small mdi mdi-family-tree"></i><span style="color: black">Visualizar</span></a></li>
-                            </ul>
-                           </div>
-                         </li>
+                            <li>
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                                        {
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "OrganigramaView")"><i class="small mdi mdi-tools"></i><span style="color: black">Alta</span></a></li>
+                                        }
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "VisualizarOrganigramaView")"><i class="small mdi mdi-family-tree"></i><span style="color: black">Visualizar</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
                         }
-                      @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                        @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
 
-                      @* INICIO DE MENU DE Apoyo *@
-                       <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "DocApoyoView")"><i class="small mdi mdi-help-circle-outline"></i><span style="color: black">Apoyo</span></a></li>
-                      @* FIN DE MENU DE Apoyo *@
+                        @* INICIO DE MENU DE Apoyo *@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "DocApoyoView")"><i class="small mdi mdi-help-circle-outline"></i><span style="color: black">Apoyo</span></a></li>
+                        @* FIN DE MENU DE Apoyo *@
 
-                      @* INICIO DE MENU DE ACTUALIZACIONES *@
-                       <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ReporteView")"><i class="small mdi mdi-cached"></i><span style="color: black">Actualizaciones</span></a></li>
-                      @* FIN DE MENU DE ACTUALIZACIONES *@
-                      }
+                        @* INICIO DE MENU DE ACTUALIZACIONES *@
+                        if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                        {
+                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ActualizacionesView")"><i class="small mdi mdi-cached"></i><span style="color: black">Actualizaciones</span></a></li>
+                        }
+                        @* FIN DE MENU DE ACTUALIZACIONES *@
+                    }
+                    else if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                    {
+                        <li>
+                            <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 1 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 1 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 2 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 2 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 3 })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new { id = 3 })"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "ProcesosView", new { id = 5 @*4*@ })"><i class="small mdi mdi-clipboard-outline"></i><span style="color: black">S.G.C</span></a></li>
+                                    <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index", "CtrlInternoView", new {id = 5 @*4*@})"><i class="small mdi mdi-laptop"></i><span style="color: black">Control Interno</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        @* INICIO DE MENU INDICADORES DE CALIDAD*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "IndicadoresView")"><i class="small mdi mdi-book-open-variant"></i><span style="color: black">Indicadores</span></a></li>
+                        @* FIN DE MENU INDICADORES DE CALIDAD*@
+
+                        @* INICIO DE MENU AUDITORIA INTERNA*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AuditoriaView")"><i class="small mdi mdi-certificate"></i><span style="color: black">Auditoria Interna</span></a></li>
+                        @* FIN DE MENU AUDITORIA INTERNA*@
+
+                        @* INICIO DE MENU ACCIONES CORRECTIVAS*@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AccionCorectView")"><i class="small mdi mdi-tab-plus"></i><span style="color: black">Acciones</span></a></li>
+                        @* FIN DE MENU ACCIONES CORRECTIVAS *@
+
+                        @* INICIO DE MENU Y SUBMENUS DEL ORGANIGRAMA *@
+                        if (Auth.Usuario.perfil_ID != 3 || Auth.Usuario.perfil_ID != 4 || Auth.Usuario.perfil_ID != 5)
+                        {
+                            <li>
+                                <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Organigrama<i class="mdi mdi-chevron-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                                        {
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "OrganigramaView")"><i class="small mdi mdi-tools"></i><span style="color: black">Alta</span></a></li>
+                                        }
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "VisualizarOrganigramaView")"><i class="small mdi mdi-family-tree"></i><span style="color: black">Visualizar</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @* FIN DEL MENU Y SUBMENUS DEL ORGANIGRAMA *@
+
+                        @* INICIO DE MENU DE Apoyo *@
+                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "DocApoyoView")"><i class="small mdi mdi-help-circle-outline"></i><span style="color: black">Apoyo</span></a></li>
+                        @* FIN DE MENU DE Apoyo *@
+
+                        @* INICIO DE MENU DE ACTUALIZACIONES *@
+                        <li>
+                            <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Actualizaciones<i class="mdi mdi-chevron-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                   @* @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                                    { *@
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ActualizacionesView")"><i class="small mdi mdi-cached"></i><span style="color: black">Alta</span></a></li>
+                                    @*}*@
+                                    <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("CrearSoli", "ActualizacionesView")"><i class="small mdi mdi-cached"></i><span style="color: black">Visualizar</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        @* FIN DE MENU DE ACTUALIZACIONES *@
+                    }
                 </ul>
             </li>
         </ul>
