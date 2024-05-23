@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model CRME.Models.cat_indicadores
 @{
     CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
@@ -232,4 +233,240 @@ else
         </div>
     </div>
 
+=======
+﻿@model CRME.Models.cat_indicadores
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s1 titlecircle">
+            <b>Nuevo Indicador</b>
+        </div>
+        <div class="col l6 m6 s1 titlecircle">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar Indicador</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmIndicador" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.indicadores_ID)
+    @*--------------Datos de los indicadores del proceso---------- *@
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="row">
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Proceso:</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.proceso == 0)
+                        {
+                            @Html.DropDownListFor(model => model.proceso, new SelectList(ViewBag.Procesos, "Value", "Text"), "-- Seleccione el proceso --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.proceso, new SelectList(ViewBag.Procesos, "Value", "Text"), "-- Seleccione el proceso --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.proceso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Indicador</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.indicador, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el indicador", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.indicador, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                @*FORMULA DE CALCULO*@
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Formula de calculo</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.form_cal, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese la formula del calculo", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.form_cal, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+          
+            
+            <div class="row">
+
+                @*FRECUENCIA DE MEDICION*@
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Frecuencia de medicion:</b>
+                    <div class="input-field margin-top-0">
+                        @if (Model.frec_med == 0)
+                        {
+                            @Html.DropDownListFor(model => model.frec_med, new SelectList(ViewBag.Periodos, "Value", "Text"), "-- Seleccione el periodo --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.frec_med, new SelectList(ViewBag.Periodos, "Value", "Text"), "-- Seleccione el periodo --", new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.frec_med, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*RESULTADO ESPERADO*@
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Resultado Esperado</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.res_esp, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el resultado que espera", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.res_esp, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+
+
+                @*RESPONSABLE DE MEDICION*@
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Responsable de medicion:</b>
+                <div class="input-field margin-top-0">
+                    @if (Model.resp_med == 0)
+                    {
+                        @Html.DropDownListFor(model => model.resp_med, new SelectList(ViewBag.Puestos, "Value", "Text"), "-- Seleccione el puesto responsable --", htmlAttributes: new { @class = "select classic" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.resp_med, new SelectList(ViewBag.Puestos, "Value", "Text"), "-- Seleccione el puesto responsable --", new { @class = "select classic" })
+                    }
+                    @Html.ValidationMessageFor(model => model.resp_med, "", new { @class = "text-danger" })
+                </div>
+                </div>
+
+                @*RESPONSABLE DE MEJORA*@
+            <div class="col s12 m4 l4 input-field">
+                <b class="">Responsable de mejora:</b>
+                <div class="input-field margin-top-0">
+                    @if (Model.resp_mej == 0)
+                    {
+                        @Html.DropDownListFor(model => model.resp_mej, new SelectList(ViewBag.Puestos, "Value", "Text"), "-- Seleccione el puesto responsable --", htmlAttributes: new { @class = "select classic" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.resp_mej, new SelectList(ViewBag.Puestos, "Value", "Text"), "-- Seleccione el puesto responsable --", new { @class = "select classic" })
+                    }
+                    @Html.ValidationMessageFor(model => model.resp_mej, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            </div>
+
+            @*INICIO DE INSERCION DE 0 EN MESES*@
+            @*ENERO*@
+        <div class="row">
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*FEBRERO*@
+            <div class="col s12 m6 l input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*MARZO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*ABRIL*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*MAYO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*JUNIO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*JULIO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*AGOSTO*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*SEPTIEMBRE*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*OCTUBRE*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*NOVIEMBRE*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            @*DICIEMBRE*@
+            <div class="col s12 m6 l6 input-field">
+                <div class="input-field margin-top-0">
+                    @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el porcentaje de enero", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+        </div>
+            @*FINAL DE INSERCION DE 0 EN MESES*@
+        </div>
+    </div>
+
+    @* ---------------Botones----------------*@
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","IndicadoresView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="button" class="btn blue darken-4 waves-effect guardarIndicador" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+>>>>>>> ad71fbb916f671a3ef4c36985bbcb320cb741e1a
 }
