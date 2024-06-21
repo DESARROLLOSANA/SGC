@@ -7,12 +7,12 @@ namespace CRME.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.cat_sistemas", "empresa_ID", c => c.Int());
+            AddColumn("dbo.cat_sistemas", "Em_Cve_Empresa", c => c.Int());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.cat_sistemas", "empresa_ID");
+            DropColumn("dbo.cat_sistemas", "Em_Cve_Empresa");
         }
     }
 }

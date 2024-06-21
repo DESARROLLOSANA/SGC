@@ -12,7 +12,7 @@ namespace CRME.Migrations
                 c => new
                     {
                         indicadores_ID = c.Int(nullable: false, identity: true),
-                        empresa_ID = c.Int(nullable: false),
+                        Em_Cve_Empresa = c.Int(nullable: false),
                         proceso = c.String(maxLength: 50),
                         indicador = c.String(maxLength: 30),
                         form_cal = c.String(maxLength: 30),

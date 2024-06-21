@@ -1,0 +1,102 @@
+﻿@model CRME.Models.Doc_apoyo
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s1 titlecircle">
+            <b>Nuevo Documento de Apoyo</b>
+        </div>
+        <div class="col l6 m6 s1 titlecircle">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar Documento de Apoyo</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmDocApoyo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id_doc)
+
+    <!-- ----------------Datos personales---------------- -->
+    <div class="row">
+        <div class="col s12 m12 l12 input-field">
+            <b class="">Nombre del documento:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.Nombre_doc, new { @class = "Validate form-simple", placeholder = "Ingrese el nombre del documento", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.Nombre_doc, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="row margin-0">
+                        <div class="col s12 m12 l7 file-field input-field">
+                            <div class="btn light-blue darken-4">
+                                <i class="mdi mdi-folder-open"></i> EXAMINAR
+                                <input type="file" id="fileInputArchivo" accept=".pdf">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input id="nbArchivo" class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field margin-top-0">
+                            <input id="ruta" class="file-path validate" type="hidden">
+
+                        </div>
+                        <div class="col s12 m12 l3 input-field">
+                            <button type="button" class="btn light-blue darken-4 btn-block" id="CargarArchivo"><i class="mdi mdi-cloud-upload load-icon"></i> CARGAR</button>
+                        </div>
+                        <div class="col s12 m12 l2 input-field">
+                            <div class="loading loading-subir">
+                                <div class="row center">
+                                    @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
+        </div>
+    </div>
+    <!-- ---------------Botones---------------- -->
+    <!--<div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col l12  m12 s12 left-align">
+                    <a class="btn green darken-4 waves-effect" style="cursor:pointer;" id="agregaevi"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</a>-->
+    @*<button type="submit" class="btn green darken-4 waves-effect agregaevi" style="margin-left: 10px"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</button>*@
+    <!--</div>
+            </div>
+        </div>
+    </div>-->
+    <!-- ---------------Botones---------------- -->
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "DocApoyoView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="submit" class="btn blue darken-4 waves-effect guardarDocumento" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

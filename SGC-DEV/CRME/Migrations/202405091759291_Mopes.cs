@@ -12,7 +12,7 @@ namespace CRME.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        empresa_ID = c.Int(nullable: false),
+                        Em_Cve_Empresa = c.Int(nullable: false),
                         modulo = c.String(maxLength: 50),
                         user_ID = c.Int(nullable: false),
                     })

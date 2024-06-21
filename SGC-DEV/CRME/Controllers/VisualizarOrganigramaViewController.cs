@@ -35,11 +35,11 @@ namespace CRME.Controllers
         SqlConnection conexion = new SqlConnection();
         public ActionResult Index()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Index", "AccesoView");
-            //}
-            //ViewBag.HiddenMenu = 1;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return View();
         }
         //public ActionResult SaveSucursal(ArchivosOrganigrama sucursal)

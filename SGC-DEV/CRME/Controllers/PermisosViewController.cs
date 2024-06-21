@@ -63,34 +63,45 @@ namespace CRME.Controllers
             {
                 return RedirectToAction("Index", "AccesoView");
             }
+            ViewBag.HiddenMenu = 1;
 
             return View();
         }
 
-        public ActionResult _FormularioPermisos(long? Id_per)
+        public ActionResult _FormularioPermisos(long? Sc_Cve_Sucursal)
         {
             cat_sistemas cond = new cat_sistemas();
             Empresa emp = new Empresa();
             cat_perm perm = new cat_perm();
             Permisos Permiso = new Permisos();
 
-            if (Id_per != null)
+            if (Sc_Cve_Sucursal != null)
             {
                 ViewBag.edit = 1;
 
-                cond = db.cat_sistemas.Find(Id_per);
+                cond = db.cat_sistemas.Find(Sc_Cve_Sucursal);
                 ViewBag.Perfiles = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username", cond.username);
-                emp = db.Empresa.Find(Id_per);
+                emp = db.Empresa.Find(Sc_Cve_Sucursal);
                 ViewBag.Empresas = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", emp.Em_Descripcion);
-                perm = db.cat_perms.Find(Id_per);
+                perm = db.cat_perms.Find(Sc_Cve_Sucursal);
                 ViewBag.Cat_Perm = new SelectList(db.cat_perms.ToList(), "Id", "descripcion", perm.descripcion);
-                Permiso = db.Permisos.Find(Id_per);
+                Permiso = db.Permisos.Find(Sc_Cve_Sucursal);
+               
+                if (Permiso.Id_per != 0)
+                {
+                    ViewBag.Permiso = new SelectList(db.Permisos.ToList(), "Id_per", "User_ID", Permiso.Id_per);
+                }
+                else
+                {
+                  ViewBag.Permiso = new SelectList(db.Permisos.ToList(), "Id_per", "User_ID");
+                }
             }
             else
             {
                 ViewBag.Perfiles = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username");
                 ViewBag.Empresas = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
                 ViewBag.Cat_Perm = new SelectList(db.cat_perms.ToList(), "Id", "descripcion");
+                ViewBag.Permiso = new SelectList(db.Permisos.ToList(), "Id_per", "User_ID");
             }
 
             return PartialView(Permiso);
@@ -114,7 +125,7 @@ namespace CRME.Controllers
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.Permisos.FirstOrDefault(x => x.empresa_ID == permiso.empresa_ID);
+            var found = db.Permisos.FirstOrDefault(x => x.User_ID == permiso.User_ID && x.empresa_ID == permiso.empresa_ID);
 
             if (found != null)
             {
@@ -131,14 +142,12 @@ namespace CRME.Controllers
                         Permisos perm = new Permisos();
                         perm.empresa_ID = permiso.empresa_ID;
                         perm.User_ID = permiso.User_ID;
-                        perm.modulo1_ID = permiso.modulo1_ID;
-                        perm.modulo2_ID = permiso.modulo2_ID;
                         perm.cre = permiso.cre;
                         perm.rea = permiso.rea;
                         perm.upd = permiso.upd;
                         perm.del = permiso.del;
-                        perm.modulo1_ID = (int)SGC;
-                        perm.modulo2_ID = (int)CI;
+                        perm.modulo1_ID = permiso.modulo1_ID;
+                        perm.modulo2_ID = permiso.modulo2_ID;
                         db.Permisos.Add(perm);
                         if (db.SaveChanges() > 0)
                         {
@@ -204,5 +213,27 @@ namespace CRME.Controllers
             }
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
+
+
+        //public ActionResult DeleteUsuario(long? Em_Cve_Empresa)
+        //{
+        //    bool success = false; ;
+        //    string mensajefound = "";
+
+        //    try
+        //    {
+        //        Permisos condi = db.Permisos.Find(Em_Cve_Empresa);
+        //        db.Entry(condi).State = EntityState.Deleted;
+        //        if (db.SaveChanges() > 0)
+        //        {
+        //            success = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        mensajefound = "Ocurrio un error al dar baja la empresa";
+        //    }
+        //    return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

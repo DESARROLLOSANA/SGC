@@ -717,11 +717,28 @@ public class ResponseObjectVM
             Filet = "";
         }
 
-        
         public bool success { get; set; }
         public object Data { get; set; }
         public string mensaje { get; set; }
         public string Filet { get; set; }
+
+    }
+
+public class ResponseObjectVM2
+    {
+        public ResponseObjectVM2()
+        {
+
+            success = false;
+            Data = null;
+            mensaje = "Ha ocurrido un problema al conectar al servidor.";
+            Filet2 = "";
+        }
+
+        public bool success { get; set; }
+        public object Data { get; set; }
+        public string mensaje { get; set; }
+        public string Filet2 { get; set; }
 
     }
 

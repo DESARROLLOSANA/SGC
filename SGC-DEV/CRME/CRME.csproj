@@ -531,6 +531,9 @@
     <Compile Include="Models\cat_mantenimiento_vehiculos.cs" />
     <Compile Include="Models\cat_perm.cs" />
     <Compile Include="Models\Correos_Calidad.cs" />
+    <Compile Include="Models\Inventario_Impresoras_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Vehiculo_Excel.cs" />
+    <Compile Include="Models\lista_cat_usuarios_excel.cs" />
     <Compile Include="Models\modulos.cs" />
     <Compile Include="Models\cat_observaciones_movil.cs" />
     <Compile Include="Models\cat_perfiles.cs" />
@@ -1163,6 +1166,8 @@
     <Content Include="Views\ActualizacionesView\_FormularioSoli.cshtml" />
     <Content Include="Views\ActualizacionesView\_TablaActu.cshtml" />
     <Content Include="Views\IndicadoresView\_FormularioDatos.cshtml" />
+    <Content Include="Views\AuditoriaView\_FormularioAceptar.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\_TablaResguardo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

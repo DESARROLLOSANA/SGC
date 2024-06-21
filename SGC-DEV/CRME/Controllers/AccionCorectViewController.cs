@@ -34,8 +34,11 @@ namespace CRME.Controllers
         // GET: ProcesosView
         public ActionResult Index() // id desde el menu
         {
-            //ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
-            //ViewBag.ide = id;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return View();
 
         }
@@ -59,6 +62,11 @@ namespace CRME.Controllers
         { // find
             //ViewBag.ide = ide; ;
             //ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == ide).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             ViewBag.id = idp;
             return PartialView();
         }

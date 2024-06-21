@@ -36,13 +36,18 @@ namespace CRME.Controllers
         // GET: ProcesosView
         public ActionResult Index(int? id) // id desde el menu
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.ide = id;
             return View();
             
         }
 
-        public ActionResult _TablaProcesos(int? page, int? dep, int? ide) // NO FUNCIONAL FILTRO DEP
+        public ActionResult _TablaProcesos(int? page, int? dep, int? ide, int? idtd)
         {
 
             const int pageSize = 10;
@@ -53,12 +58,18 @@ namespace CRME.Controllers
                  lista = db.Procesos.Where(x=> x.Dp_cve_Departamento == dep).ToList();
                 
             }
+            ViewBag.TipoDoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");
             ViewBag.ide = ide;
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult CrearProceso(int? ide ,int? idp) // id desde el menu
         { // find
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             ViewBag.ide = ide;
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.id = idp;
@@ -73,11 +84,11 @@ namespace CRME.Controllers
             {
                 ViewBag.edit = 1;
                 edificiossolicitud = db.Procesos.Find(id);
-                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion", edificiossolicitud.idTD);               
+                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion", edificiossolicitud.idTD);
             }
             else
             {
-                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");              
+                ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");
             }
 
             return PartialView(edificiossolicitud);
@@ -94,13 +105,6 @@ namespace CRME.Controllers
             if (proceso.id == 0)
             {
                 var found = db.Procesos.FirstOrDefault(x => x.descripcion == proceso.descripcion);
-
-                //if (found != null)
-                //{
-                //    mensajefound = "¡Ya existe una herramienta igual!";
-                //}
-                //else
-                //{
                 try
                 {
                     Procesos Edificio = new Procesos();
@@ -111,8 +115,7 @@ namespace CRME.Controllers
                     Edificio.version = proceso.version;
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
-                    Edificio.ControlCambios = proceso.ControlCambios;
-                    //Edificio.ControlCambios = ruta2;
+                    Edificio.ControlCambios = ruta2;
                     Edificio.Indicadores = ruta;
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
@@ -169,8 +172,7 @@ namespace CRME.Controllers
                     Edificio.version = proceso.version;
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
-                    Edificio.ControlCambios = proceso.ControlCambios;
-                    //Edificio.ControlCambios = ruta2;
+                    Edificio.ControlCambios = ruta2;
                     Edificio.Indicadores = ruta;
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
@@ -217,6 +219,8 @@ namespace CRME.Controllers
             return Json(new { success = success, mensajefound, idemp }, JsonRequestBehavior.AllowGet);
         }
 
+        //CARGAR INDICADORES
+        
         public async Task<ActionResult> Cargarfile()
         {
             bool success = false;
@@ -277,6 +281,69 @@ namespace CRME.Controllers
             });
 
             return Json(new { success = success, mensaje, Filet });
+        }
+
+        //CARGAR CONTROL CAMBIOS
+        public async Task<ActionResult> Cargarfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string FileT2 = "";
+            JsonResult Resp = await Uploadfile2();
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            ResponseObjectVM2 Respuestas = ser.Deserialize<ResponseObjectVM2>(ser.Serialize(Resp.Data));
+            success = Respuestas.success;
+            mensaje = Respuestas.mensaje;
+            FileT2 = Respuestas.Filet2;
+            ViewBag.rutatarjeta = Respuestas.Filet2;
+            return Json(new { success = success, mensaje, FileT2 });
+        }
+        public async Task<JsonResult> Uploadfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string msj = "";
+            string Filet2 = "";
+            //var year = DateTime.Now;
+            //string conver = Convert.ToString(year);
+            string name = Path.GetRandomFileName();
+
+            await Task.Run(() =>
+            {
+
+                string savedFileNameDownload = "";
+                string nombreArchivo2 = "Archivo2" + name;
+                FileStream stream = null;
+
+                try
+                {
+                    foreach (string file in Request.Files)
+                    {
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf")))
+                        {
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf"));
+                        }
+
+                        HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                        string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo2 + Path.GetExtension(Path.GetFileName(hpf.FileName)));
+                        Filet2 = "~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf";
+                        hpf.SaveAs(savedFileName);
+                        success = true;
+                    }
+
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    success = false;
+                    mensaje = "Ocurrió un problema al subir el archivo";
+                    Console.WriteLine(ex);
+                    if (stream != null)
+                        stream.Close();
+                    stream.Dispose();
+                }
+            });
+
+            return Json(new { success = success, mensaje, Filet2 });
         }
     }
 }

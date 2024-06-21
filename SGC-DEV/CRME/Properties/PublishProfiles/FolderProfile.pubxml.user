@@ -4,12 +4,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\Desarrollo-sana\OneDrive\Documentos\sire nuevo</_PublishTargetUrl>
-    <History>True|2024-02-16T15:30:36.1902148Z;True|2024-01-30T12:20:12.9277602-06:00;True|2024-01-24T14:03:32.6827104-06:00;True|2024-01-24T11:16:52.8853946-06:00;True|2024-01-24T10:46:50.1387617-06:00;True|2024-01-24T10:39:26.2336487-06:00;True|2024-01-23T15:32:08.2332959-06:00;True|2024-01-23T08:26:05.7533050-06:00;True|2024-01-23T08:19:22.6821383-06:00;True|2024-01-19T16:24:14.7108389-06:00;True|2024-01-19T14:10:39.3712163-06:00;True|2024-01-19T12:32:56.1968937-06:00;True|2023-09-08T15:54:48.6080491-06:00;True|2023-08-11T16:26:54.5999012-06:00;True|2023-08-11T16:02:26.6420732-06:00;True|2023-08-02T09:05:13.7107180-06:00;True|2023-07-20T11:37:36.6927959-06:00;True|2023-06-28T13:07:34.5808720-06:00;False|2023-06-28T13:04:53.6124154-06:00;True|2023-06-01T14:11:14.5937263-06:00;True|2023-05-04T16:06:51.1095321-06:00;True|2023-05-03T10:19:09.9780073-06:00;True|2023-05-03T08:31:45.1725125-06:00;True|2023-04-28T13:55:05.0449908-06:00;True|2023-04-28T13:54:02.1365884-06:00;False|2023-04-28T09:41:40.1015571-06:00;True|2023-04-27T14:29:23.2137291-06:00;</History>
+    <_PublishTargetUrl>C:\Users\SistemasSana\Desktop\SGC_PUBLIC</_PublishTargetUrl>
+    <History>True|2024-06-06T16:09:00.0841413Z;True|2024-06-05T16:43:57.3670379-06:00;True|2024-02-16T09:30:36.1902148-06:00;True|2024-01-30T12:20:12.9277602-06:00;True|2024-01-24T14:03:32.6827104-06:00;True|2024-01-24T11:16:52.8853946-06:00;True|2024-01-24T10:46:50.1387617-06:00;True|2024-01-24T10:39:26.2336487-06:00;True|2024-01-23T15:32:08.2332959-06:00;True|2024-01-23T08:26:05.7533050-06:00;True|2024-01-23T08:19:22.6821383-06:00;True|2024-01-19T16:24:14.7108389-06:00;True|2024-01-19T14:10:39.3712163-06:00;True|2024-01-19T12:32:56.1968937-06:00;True|2023-09-08T15:54:48.6080491-06:00;True|2023-08-11T16:26:54.5999012-06:00;True|2023-08-11T16:02:26.6420732-06:00;True|2023-08-02T09:05:13.7107180-06:00;True|2023-07-20T11:37:36.6927959-06:00;True|2023-06-28T13:07:34.5808720-06:00;False|2023-06-28T13:04:53.6124154-06:00;True|2023-06-01T14:11:14.5937263-06:00;True|2023-05-04T16:06:51.1095321-06:00;True|2023-05-03T10:19:09.9780073-06:00;True|2023-05-03T08:31:45.1725125-06:00;True|2023-04-28T13:55:05.0449908-06:00;True|2023-04-28T13:54:02.1365884-06:00;False|2023-04-28T09:41:40.1015571-06:00;True|2023-04-27T14:29:23.2137291-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:12</publishTime>
     </File>
     <File Include="App_Browsers/qt.browser">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -21,16 +21,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:12</publishTime>
     </File>
     <File Include="bin/BCrypt.Net-Next.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/CRME.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/06/2024 10:08:54</publishTime>
     </File>
     <File Include="bin/CRME.pdb">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/06/2024 10:08:54</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -45,6 +45,42 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.Web.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/de/Microsoft.ReportViewer.Common.resources.dll">
@@ -65,6 +101,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/de/Microsoft.ReportViewer.WinForms.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/en/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -80,20 +128,32 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/EPPlus.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
-    <File Include="bin/es/EntityFramework.resources.dll">
+    <File Include="bin/es/CrystalDecisions.CrystalReports.Engine.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/EntityFramework.resources.dll">
+      <publishTime>03/02/2015 03:32:42</publishTime>
     </File>
     <File Include="bin/es/EntityFramework.SqlServer.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/02/2015 03:32:42</publishTime>
     </File>
     <File Include="bin/es/Microsoft.AspNet.Identity.Core.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/03/2015 11:09:40</publishTime>
     </File>
     <File Include="bin/es/Microsoft.AspNet.Identity.EntityFramework.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/03/2015 11:09:40</publishTime>
     </File>
     <File Include="bin/es/Microsoft.AspNet.Identity.Owin.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/03/2015 11:09:40</publishTime>
     </File>
     <File Include="bin/es/Microsoft.Owin.Host.SystemWeb.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -144,7 +204,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/es/System.Web.Optimization.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/11/2014 09:28:40</publishTime>
     </File>
     <File Include="bin/es/System.Web.Razor.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -156,6 +216,30 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/es/System.Web.WebPages.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.ReportViewer.Common.resources.dll">
@@ -176,6 +260,30 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/fr/Microsoft.ReportViewer.WinForms.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/hu/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/it/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -194,6 +302,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/it/Microsoft.ReportViewer.WinForms.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/ja/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/ja/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -210,6 +330,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ja/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ko/Microsoft.ReportViewer.Common.resources.dll">
@@ -321,7 +453,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Microsoft.SqlServer.Types.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>12/10/2016 09:26:34</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ComponentModelHost.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -392,7 +524,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/nb-NO/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Owin.dll">
@@ -402,6 +558,30 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/pt/Microsoft.ReportViewer.Common.resources.dll">
@@ -461,6 +641,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Rotativa.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/ru/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/ru/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -479,7 +671,43 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/ru/Microsoft.ReportViewer.WinForms.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/sk/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x64/msvcr120.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x64/SqlServerSpatial140.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x86/msvcr120.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x86/SqlServerSpatial140.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/stdole.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
@@ -503,7 +731,43 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/th/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/WebGrease.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.Web.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
@@ -524,6 +788,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.WinForms.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.Shared.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="bin/zh-CHT/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -540,6 +816,102 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/zh-CHT/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.rtl.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.rtl.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-grid.rtl.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.rtl.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.rtl.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-reboot.rtl.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.rtl.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.rtl.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap-utilities.rtl.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.rtl.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.rtl.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Bootstrap/css/bootstrap.rtl.min.css.map">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/Aplicacion/FileInput/fileinput.css">
@@ -663,7 +1035,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>09/08/2023 16:35:33</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="DataSets/Reportes.xsc">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -693,88 +1065,88 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Reportes/IndicadoresGraficaBarras.rdlc">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/17/2024 15:53:44</publishTime>
     </File>
     <File Include="Reportes/IndicadoresGraficaLineas.rdlc">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/27/2022 17:20:02</publishTime>
     </File>
     <File Include="Reportes/IndicadoresGraficaPastel.rdlc">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/27/2022 17:20:02</publishTime>
     </File>
     <File Include="Reportes/MttoEporadico.cs">
-      <publishTime>09/08/2023 08:45:58</publishTime>
+      <publishTime>09/08/2023 08:46:00</publishTime>
     </File>
     <File Include="Reportes/MttoEporadico.rpt">
-      <publishTime>09/08/2023 08:45:57</publishTime>
+      <publishTime>09/08/2023 08:45:58</publishTime>
     </File>
     <File Include="Reportes/Reportes.rdlc">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/19/2024 13:41:34</publishTime>
     </File>
     <File Include="Reportes/ReportesConexion.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/30/2023 09:28:54</publishTime>
     </File>
     <File Include="Reportes/ResponsivaEm.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/15/2024 15:40:40</publishTime>
     </File>
     <File Include="Reportes/ResponsivaEm.rpt">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/15/2024 15:40:38</publishTime>
     </File>
     <File Include="Reportes/ResponsivaEmsambles.cs">
-      <publishTime>01/12/2024 17:10:19</publishTime>
+      <publishTime>01/12/2024 17:10:20</publishTime>
     </File>
     <File Include="Reportes/ResponsivaEmsambles.rpt">
-      <publishTime>01/12/2024 17:10:18</publishTime>
+      <publishTime>01/12/2024 17:10:20</publishTime>
     </File>
     <File Include="Reportes/ResponsivaImpSana.cs">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Reportes/ResponsivaImpSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaImpSana1.cs">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaLinSana.cs">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaLinSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaMobSana.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/22/2024 12:31:46</publishTime>
     </File>
     <File Include="Reportes/ResponsivaMobSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaUnidadesSana.cs">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaUnidadesSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaVehSana.cs">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/ResponsivaVehSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaEcolsur.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/28/2023 13:50:42</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaEcolsur.rpt">
-      <publishTime>05/02/2023 10:55:11</publishTime>
+      <publishTime>05/02/2023 10:55:12</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaSana.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/28/2023 12:17:08</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaSana.rpt">
-      <publishTime>07/07/2023 15:29:09</publishTime>
+      <publishTime>07/07/2023 15:29:10</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaSau.cs">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/28/2023 13:50:40</publishTime>
     </File>
     <File Include="Reportes/RespoonsivaSau.rpt">
-      <publishTime>05/02/2023 10:55:23</publishTime>
+      <publishTime>05/02/2023 10:55:24</publishTime>
     </File>
     <File Include="Rotativa/help-wkhtmltoimage.txt">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -789,9 +1161,45 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:11</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.min.js">
+      <publishTime>04/11/2024 10:54:11</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.bundle.js.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.bundle.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.bundle.min.js.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.esm.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.esm.js.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.esm.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.esm.min.js.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.js.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Bootstrap/js/bootstrap.min.js.map">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/Aplicacion/Chart/Chart.bundle.js">
@@ -849,22 +1257,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:33</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:33</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.min.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:33</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.slim.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:33</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.slim.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:33</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.1.slim.min.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:52:32</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -879,21 +1287,36 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:14</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:14</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:54:33</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:55:13</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/11/2024 10:55:08</publishTime>
     </File>
     <File Include="Scripts/_references.js">
+      <publishTime>04/11/2024 10:54:35</publishTime>
+    </File>
+    <File Include="SqlServerTypes/readme.htm">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x64/msvcr120.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x64/SqlServerSpatial140.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x86/msvcr120.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x86/SqlServerSpatial140.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Templates/Vista.html">
@@ -905,23 +1328,47 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Upload/Empresa/default.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Upload/Empresa/organigramas_CICLO.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Empresa/Organigrama_Ecolsur.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Empresa/Organigrama_Sana.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Empresa/Organigrama_Sau.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Upload/Plantillas/PlantillaCargaEgresados.xlsx">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/cicloAmb.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Upload/Sistema/cicloamb_fix.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Upload/Sistema/default.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Ecolsur- Valores 1.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Ecolsur- Valores 2.jpg">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/ecolsur.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Upload/Sistema/ecolsur_fix.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Upload/Sistema/evidencia/Captura.png">
-      <publishTime>02/08/2023 17:18:16</publishTime>
+      <publishTime>02/08/2023 17:18:18</publishTime>
     </File>
     <File Include="Upload/Sistema/evidencia/descarga.jpg">
-      <publishTime>02/08/2023 17:13:36</publishTime>
+      <publishTime>02/08/2023 17:13:38</publishTime>
     </File>
     <File Include="Upload/Sistema/favicon.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -945,7 +1392,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/loadingciclo.gif">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Upload/Sistema/Loading_01.gif">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -954,6 +1401,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/LOGO SAU.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Logo_CA.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/mdi-account-search.png">
@@ -971,10 +1421,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Upload/Sistema/mdi-sync.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Upload/Sistema/organigramas.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Política de  Ecolsur 2..jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Política de  Ecolsur.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Política de Calidad SANA 1.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Política de Calidad SANA 2.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Pruebas.jpg">
+      <publishTime>12/04/2024 16:53:09</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Sana - Valores 1.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Sana - Valores 2.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Upload/Sistema/sana.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/sana_azul.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/sana_fix.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Upload/Sistema/sau_fix.png">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Upload/Sistema/SIRE_FINAL.png">
@@ -990,10 +1470,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/AccesoView/Confirmar.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/06/2024 09:07:07</publishTime>
     </File>
     <File Include="Views/AccesoView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/AccionCorectView/CrearAudit.cshtml">
+      <publishTime>05/07/2024 14:38:01</publishTime>
+    </File>
+    <File Include="Views/AccionCorectView/Index.cshtml">
+      <publishTime>05/07/2024 15:15:51</publishTime>
+    </File>
+    <File Include="Views/AccionCorectView/_Formulario.cshtml">
+      <publishTime>05/07/2024 14:51:46</publishTime>
+    </File>
+    <File Include="Views/AccionCorectView/_TablaAudit.cshtml">
+      <publishTime>06/05/2024 16:15:58</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1029,6 +1521,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/CrearActu.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/CrearSoli.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/Index.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/_Formulario.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/_FormularioSoli.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ActualizacionesView/_TablaActu.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/AlumnoView/EditarAlumno.cshtml">
@@ -1085,20 +1595,35 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/AlumnoView/_TablaIdiomas.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Views/AuditoriaView/CrearAudit.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/AuditoriaView/Index.cshtml">
+      <publishTime>06/05/2024 14:38:04</publishTime>
+    </File>
+    <File Include="Views/AuditoriaView/_Formulario.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/AuditoriaView/_FormularioAceptar.cshtml">
+      <publishTime>06/05/2024 15:18:25</publishTime>
+    </File>
+    <File Include="Views/AuditoriaView/_TablaAudit.cshtml">
+      <publishTime>06/05/2024 16:00:31</publishTime>
+    </File>
     <File Include="Views/AutorizacionView/Index.cshtml">
-      <publishTime>11/09/2023 15:16:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/AutorizacionView/VisualizarCalendario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/AutorizacionView/VisualizarEvidencia.cshtml">
-      <publishTime>03/08/2023 08:35:41</publishTime>
+      <publishTime>08/03/2023 08:35:42</publishTime>
     </File>
     <File Include="Views/AutorizacionView/VisualizarRequerimientoCalendario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/AutorizacionView/VisualizarRequerimientos.cshtml">
-      <publishTime>11/08/2023 15:59:10</publishTime>
+      <publishTime>08/11/2023 15:59:12</publishTime>
     </File>
     <File Include="Views/AutorizacionView/_FormularioCalendario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1125,43 +1650,67 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/CecosView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/CecosView/_Formulario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/CecosView/_TablaCecos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/CondicionView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/CondicionView/_FormularioCondicion.cshtml">
-      <publishTime>09/01/2024 17:19:44</publishTime>
+      <publishTime>01/09/2024 17:19:46</publishTime>
     </File>
     <File Include="Views/CondicionView/_TablaCondicion.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Views/CtrlInternoView/CrearCtrlint.cshtml">
+      <publishTime>04/10/2024 16:10:24</publishTime>
+    </File>
+    <File Include="Views/CtrlInternoView/Index.cshtml">
+      <publishTime>05/07/2024 15:15:41</publishTime>
+    </File>
+    <File Include="Views/CtrlInternoView/_Formulario.cshtml">
+      <publishTime>04/10/2024 16:10:24</publishTime>
+    </File>
+    <File Include="Views/CtrlInternoView/_TablaProcesos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Views/DepartamentosView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/DepartamentosView/_Formulario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/DepartamentosView/_TablaDepartamento.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Views/DocApoyoView/Agregarda.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/DocApoyoView/Index.cshtml">
+      <publishTime>05/03/2024 12:44:56</publishTime>
+    </File>
+    <File Include="Views/DocApoyoView/_FormularioDocApo.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/DocApoyoView/_TablaDocApo.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
     <File Include="Views/EdificiosView/index.cshtml">
-      <publishTime>08/09/2023 13:37:45</publishTime>
+      <publishTime>09/08/2023 13:37:46</publishTime>
     </File>
     <File Include="Views/EdificiosView/VisualizarReporte.cshtml">
-      <publishTime>01/09/2023 14:51:26</publishTime>
+      <publishTime>09/01/2023 14:51:28</publishTime>
     </File>
     <File Include="Views/EdificiosView/_Formulario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/EdificiosView/_TablaEdificios.cshtml">
-      <publishTime>07/09/2023 15:40:46</publishTime>
+      <publishTime>09/07/2023 15:40:48</publishTime>
     </File>
     <File Include="Views/EmpleadosView/ComboDepartamento.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1176,28 +1725,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/EmpleadosView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/EmpleadosView/_Formulario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/EmpleadosView/_TablaEmpleado.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/EmpresasView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>04/02/2024 08:25:11</publishTime>
     </File>
     <File Include="Views/EmpresasView/_FormularioEmpresa.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/EmpresasView/_TablaEmpresa.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/FamiliaView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/FamiliaView/_FormularioFamilia.cshtml">
-      <publishTime>12/01/2024 10:09:39</publishTime>
+      <publishTime>01/12/2024 10:09:40</publishTime>
     </File>
     <File Include="Views/FamiliaView/_TablaFamilia.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1209,7 +1758,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/HerramientasView/VisualizarReporte.cshtml">
-      <publishTime>12/01/2024 11:40:55</publishTime>
+      <publishTime>01/12/2024 11:40:56</publishTime>
     </File>
     <File Include="Views/HerramientasView/_Formulario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1226,6 +1775,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Home/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Views/IndicadoresView/index.cshtml">
+      <publishTime>06/04/2024 14:43:34</publishTime>
+    </File>
+    <File Include="Views/IndicadoresView/VisualizarInd.cshtml">
+      <publishTime>04/10/2024 15:48:51</publishTime>
+    </File>
+    <File Include="Views/IndicadoresView/_FormularioDatos.cshtml">
+      <publishTime>06/05/2024 10:06:12</publishTime>
+    </File>
+    <File Include="Views/IndicadoresView/_FormularioIndicadores.cshtml">
+      <publishTime>06/04/2024 11:47:26</publishTime>
+    </File>
+    <File Include="Views/IndicadoresView/_TablaLineas.cshtml">
+      <publishTime>06/05/2024 15:46:34</publishTime>
+    </File>
     <File Include="Views/InventarioEnsamblesView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
@@ -1236,40 +1800,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/InventarioImpresorasView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioImpresorasView/_FormularioImpresoras.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioImpresorasView/_TablaImpresoras.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLaptopsView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLaptopsView/_FormularioLaptops.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLaptopsView/_TablaLaptops.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLineasView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLineasView/_FormularioEmpresa.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioLineasView/_TablaLineas.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMobiliarioView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMobiliarioView/_FormularioMobiliario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMobiliarioView/_TablaMobiliario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMonitoresView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1281,22 +1845,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/InventarioMovilesView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMovilesView/_FormularioMoviles.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioMovilesView/_TablaMoviles.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioTipoMobiliarioView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioTipoMobiliarioView/_FormularioEmpresa.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioTipoMobiliarioView/_TablaLineas.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/InventarioUnidadesView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1338,7 +1902,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/MedidasView/_FormularioMedidas.cshtml">
-      <publishTime>11/01/2024 11:26:54</publishTime>
+      <publishTime>01/11/2024 11:26:56</publishTime>
     </File>
     <File Include="Views/MedidasView/_TablaMedidas.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1353,7 +1917,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/MobiliarioView/Index.cshtml">
-      <publishTime>07/11/2022 08:53:02</publishTime>
+      <publishTime>11/07/2022 08:53:04</publishTime>
     </File>
     <File Include="Views/MobiliarioView/_Formulario.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1362,13 +1926,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/NuevoEmpleadosView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/NuevoEmpleadosView/_FormularioEmpresa.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/NuevoEmpleadosView/_TablaLineas.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
+    </File>
+    <File Include="Views/OrganigramaView/Index.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/OrganigramaView/_Formulario.cshtml">
+      <publishTime>05/03/2024 14:13:37</publishTime>
+    </File>
+    <File Include="Views/OrganigramaView/_TablaCecos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/PanelInvView/index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1376,14 +1949,41 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/PanelView/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Views/PermisosView/Agregarper.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/PermisosView/Index.cshtml">
+      <publishTime>06/05/2024 12:37:55</publishTime>
+    </File>
+    <File Include="Views/PermisosView/_FormularioPermisos.cshtml">
+      <publishTime>06/04/2024 10:02:25</publishTime>
+    </File>
+    <File Include="Views/PermisosView/_TablaModulos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/PermisosView/_TablaPermisos.cshtml">
+      <publishTime>06/05/2024 12:35:08</publishTime>
+    </File>
+    <File Include="Views/ProcesosView/CrearProceso.cshtml">
+      <publishTime>06/04/2024 10:16:06</publishTime>
+    </File>
+    <File Include="Views/ProcesosView/Index.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ProcesosView/_Formulario.cshtml">
+      <publishTime>06/04/2024 09:01:01</publishTime>
+    </File>
+    <File Include="Views/ProcesosView/_TablaProcesos.cshtml">
+      <publishTime>06/04/2024 10:42:59</publishTime>
+    </File>
     <File Include="Views/ProveedoresView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ProveedoresView/_FormularioEmpresa.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ProveedoresView/_TablaLineas.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/PuestosView/ComboDepartamento.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1407,22 +2007,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ReporteView/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/09/2024 08:58:55</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioAgregarBook.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioCampos.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/10/2024 08:53:50</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioFiltros.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/10/2024 08:50:15</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioGraficas.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/10/2024 08:55:15</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioIndicadores.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/10/2024 08:54:30</publishTime>
     </File>
     <File Include="Views/ReporteView/_FormularioReporte.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1440,52 +2040,52 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ResguardoImpresorasView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoImpresorasView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoImpresorasView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoImpresorasView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoLineasView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoLineasView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoLineasView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoLineasView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMobiliarioView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMobiliarioView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMobiliarioView/_formularioResguardo.cshtml">
-      <publishTime>12/01/2024 08:12:36</publishTime>
+      <publishTime>01/12/2024 08:12:38</publishTime>
     </File>
     <File Include="Views/ResguardoMobiliarioView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMovilesView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMovilesView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMovilesView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoMovilesView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardosHeramientas/Index.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1503,43 +2103,43 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ResguardosView/index.cshtml">
-      <publishTime>02/10/2023 15:12:20</publishTime>
+      <publishTime>10/02/2023 15:12:22</publishTime>
     </File>
     <File Include="Views/ResguardosView/Report.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ResguardosView/VisualizarResguardo.cshtml">
-      <publishTime>02/08/2023 11:01:39</publishTime>
+      <publishTime>08/02/2023 11:01:40</publishTime>
     </File>
     <File Include="Views/ResguardosView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardosView/_TablaReguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoUnidadesView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoUnidadesView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoUnidadesView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoUnidadesView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoVehiculosView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoVehiculosView/VisualizarResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoVehiculosView/_formularioResguardo.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/ResguardoVehiculosView/_TablaResguardos.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1548,7 +2148,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/06/2024 09:42:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1563,10 +2163,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/SucursalesView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/SucursalesView/_Fromulario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/SucursalesView/_TablaSucursal.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1581,22 +2181,34 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/UsuarioView/Index.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>03/11/2024 13:03:37</publishTime>
     </File>
     <File Include="Views/UsuarioView/_Formulario.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/UsuarioView/_TablaUsuarios.cshtml">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
+    </File>
+    <File Include="Views/VisualizarOrganigramaView/Index.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/VisualizarOrganigramaView/_Formulario.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/VisualizarOrganigramaView/_TablaCecos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/VisualizarOrganigramaView/_TablaImg.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>07/07/2023 15:29:10</publishTime>
+      <publishTime>07/07/2023 15:29:12</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/06/2024 10:08:55</publishTime>
     </File>
   </ItemGroup>
 </Project>
