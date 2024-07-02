@@ -531,6 +531,7 @@
     <Compile Include="Models\cat_mantenimiento_vehiculos.cs" />
     <Compile Include="Models\cat_perm.cs" />
     <Compile Include="Models\Correos_Calidad.cs" />
+    <Compile Include="Models\Datos_Notificacion.cs" />
     <Compile Include="Models\Inventario_Impresoras_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Vehiculo_Excel.cs" />
     <Compile Include="Models\lista_cat_usuarios_excel.cs" />
@@ -580,6 +581,7 @@
     <Compile Include="Models\Programacion.cs" />
     <Compile Include="Models\Requerimiento.cs" />
     <Compile Include="Models\Resguardos_lista_Em.cs" />
+    <Compile Include="Models\Resguardos_lista_Em_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Impresoras.cs" />
