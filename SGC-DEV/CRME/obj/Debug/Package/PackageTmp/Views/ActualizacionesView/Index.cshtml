@@ -1,0 +1,173 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Actualizaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Actualizaciones</h5>
+            </div>
+        </div>
+        <div id="TablaEmpresas">
+            @Html.Action("_TablaActu", "ActualizacionesView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+        });
+
+        //--- EDITAR PERSONA ---
+        $("#TablaEmpresas").off('click', '.editarEmpresa');
+        $("#TablaEmpresas").on('click', '.editarEmpresa', function (e) {
+            e.preventDefault();
+            var Id_Condicion = $(this).attr("id-item");
+            window.location = "/ActualizacionesView/CrearAudit" + "?idp=" + Id_Condicion;
+        });
+
+
+
+        $("#TablaEmpresas").off('click', '.eliminarEmpresa');
+        $("#TablaEmpresas").on('click', '.eliminarEmpresa', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Em_Cve_Empresa = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteUsuario", "SubfamiliaView")',
+                        data: { Em_Cve_Empresa },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaSubfamilia", "SubfamiliaView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+
+                date();
+                validatePass();
+                ConfigPictures();
+                limpiar();
+            });
+
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+
+        }
+
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
+        ComboSucursal();
+function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+    $(document).on("change", "#Departamento", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+        var dep = $(this).val();
+        $("#TablaEmpresas").load('@Url.Action("_TablaAudit", "ActualizacionesView")', { dep }, function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                @*$.ajax({
+                    url: '@Url.Action("GetSucursalesByEmpresa", "HerramientasView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });*@
+            });
+        }
+
+    </script>
+}

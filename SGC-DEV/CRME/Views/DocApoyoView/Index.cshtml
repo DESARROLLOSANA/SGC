@@ -1,0 +1,149 @@
+﻿@using CustomHelpers
+@using Microsoft.SqlServer.Types;
+
+@{
+    ViewBag.Title = "Documentos de Apoyo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Documento de apoyo</h5>
+            </div>
+        </div>
+        <div id="TablaDocApoyo">
+            @Html.Action("_TablaDocApo", "DocApoyoView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*MODAL CON DIVERSOS USOS*@
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo_CA.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+        });
+
+    //ELIMINAR
+        $("#TablaDocApo").off('click', '.eliminarEmpresa');
+        $("#TablaDocApo").on('click', '.eliminarEmpresa', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Em_Cve_Empresa = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteUsuario", "DocApoyoView")',
+                        data: { Em_Cve_Empresa },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaDocApo").load('@Url.Action("_TablaDocApo", "DocApoyoView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+
+                date();
+                validatePass();
+                ConfigPictures();
+                limpiar();
+        });
+
+    //EDITAR
+        $("#TablaDocApo").off('click', '.editarEmpresa');
+        $("#TablaDocApo").on('click', '.editarEmpresa', function (e) {
+            e.preventDefault();
+            var Id_Condicion = $(this).attr("id-item");
+            window.location = "/DocApoyoView/Agregarda" + "?idp=" + Id_Condicion;
+        });
+
+        @*REGLAS FORMULARIO*@
+        //function CargarReglasGeneralFormuario() {
+        //    var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+        //    $.validator.unobtrusive.parse(formulario);
+
+        //    jQuery.extend(jQuery.validator.messages, {
+        //        minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+        //        maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+        //    });
+
+        //}
+
+        @*SEPARACION*@
+
+        @*====================== PAGINACIONES ===========================*@
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
+
+
+
+    </script>
+}
+

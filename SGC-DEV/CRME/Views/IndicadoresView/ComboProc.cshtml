@@ -1,8 +1,0 @@
-﻿@model CRME.Models.Procesos
-
-@*<div class="col s12 m12 l12">*@
-<b class="">Seleccione los procesos:</b>
-
-@Html.DropDownListFor(model => model.id, new SelectList(ViewBag.id, "Value", "Text"), " ", htmlAttributes: new { @class = "select classic" })
-
-@*</div>*@

@@ -1,0 +1,3181 @@
+﻿@model CRME.Models.cat_indicadores
+
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+
+@if (Model.frec_med == 1)
+{
+    if (Model.mes == 1)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 2)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 3)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 4)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 5)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 6)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 7)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 8)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 9)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 10)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 11)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 12)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (Model.frec_med == 2)
+{
+    if (Model.mes == 1)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 2)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 3)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 4)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 5)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 6)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 7)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 8)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 9)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 10)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 11)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 12)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (Model.frec_med == 3)
+{
+    if (Model.mes == 1)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <!--PRIMER TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                    <!--SEGUNDO TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                    <!--TERCER TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <!--ULTIMO TRIMESTRE-->
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 2)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <!--PRIMER TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                    <!--SEGUNDO TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                    <!--TERCER TRIMESTRE-->
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.HiddenFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <!--ULTIMO TRIMESTRE-->
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 3)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 4)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 5)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 6)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 7)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 8)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 9)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 10)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 11)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 12)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (Model.frec_med == 4)
+{
+    if (Model.mes == 1)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 2)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 3)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 4)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 5)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 6)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 7)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 8)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 9)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 10)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 11)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 12)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (Model.frec_med == 5)
+{
+    if (Model.mes == 1)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Enero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ene, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 2)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Febrero:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.feb, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 3)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Marzo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.mar, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 4)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Abril:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.abr, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 5)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Mayo:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.may, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 6)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Junio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jun, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 7)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Julio:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.jul, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 8)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Agosto:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.ago, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 9)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Septiembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.sep, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 10)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Octubre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.oct, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 11)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Noviembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.nov, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.mes == 12)
+    {
+        <div class="row center-align">
+            <div class="col s12 m4 l4">
+                @Html.HiddenFor(model => model.indicadores_ID)
+                <div class="row margin-0">
+                    <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+                        <b>Diciembre:</b>
+                    </div>
+                    <div class="input-field col s12 m12 l12 margin-0">
+                        @Html.EditorFor(model => model.dec, new { htmlAttributes = new { @class = "number", min = 0, max = 100 } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

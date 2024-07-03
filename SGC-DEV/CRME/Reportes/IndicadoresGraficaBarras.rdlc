@@ -114,7 +114,7 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup1">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!nbCategoria2.Value</GroupExpression>
+                      <GroupExpression>=Fields!numDatos.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
@@ -169,7 +169,6 @@
                       <ChartDataLabel>
                         <Style />
                         <UseValueAsLabel>true</UseValueAsLabel>
-                        <Visible>true</Visible>
                       </ChartDataLabel>
                       <Style />
                       <ChartMarker>
@@ -414,7 +413,7 @@
         <Height>4.81129in</Height>
         <Style />
       </Body>
-      <Width>8.76513in</Width>
+      <Width>9.04638in</Width>
       <Page>
         <PageHeader>
           <Height>2.39465cm</Height>

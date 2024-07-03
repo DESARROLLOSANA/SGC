@@ -7697,8 +7697,8 @@ input[type=range] {
 
     .carousel .carousel-item {
         display: none;
-        width: 200px;
-        height: 200px;
+        width: 800px;
+        height: 380px;
         position: absolute;
         top: 0;
         left: 0

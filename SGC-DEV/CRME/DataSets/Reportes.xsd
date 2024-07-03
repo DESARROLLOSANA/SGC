@@ -113,6 +113,9 @@ FROM     Alumnos INNER JOIN
               <xs:element name="Valor14" msprop:Generator_ColumnVarNameInTable="columnValor14" msprop:Generator_ColumnPropNameInRow="Valor14" msprop:Generator_ColumnPropNameInTable="Valor14Column" msprop:Generator_UserColumnName="Valor14" type="xs:string" minOccurs="0" />
               <xs:element name="Valor15" msprop:Generator_ColumnVarNameInTable="columnValor15" msprop:Generator_ColumnPropNameInRow="Valor15" msprop:Generator_ColumnPropNameInTable="Valor15Column" msprop:Generator_UserColumnName="Valor15" type="xs:string" minOccurs="0" />
               <xs:element name="Valor16" msprop:Generator_ColumnVarNameInTable="columnValor16" msprop:Generator_ColumnPropNameInRow="Valor16" msprop:Generator_ColumnPropNameInTable="Valor16Column" msprop:Generator_UserColumnName="Valor16" type="xs:string" minOccurs="0" />
+	      <xs:element name="Valor17" msprop:Generator_ColumnVarNameInTable="columnValor17" msprop:Generator_ColumnPropNameInRow="Valor17" msprop:Generator_ColumnPropNameInTable="Valor17Column" msprop:Generator_UserColumnName="Valor17" type="xs:string" minOccurs="0" />
+	      <xs:element name="Valor18" msprop:Generator_ColumnVarNameInTable="columnValor18" msprop:Generator_ColumnPropNameInRow="Valor18" msprop:Generator_ColumnPropNameInTable="Valor18Column" msprop:Generator_UserColumnName="Valor18" type="xs:string" minOccurs="0" />
+	      <xs:element name="Valor19" msprop:Generator_ColumnVarNameInTable="columnValor19" msprop:Generator_ColumnPropNameInRow="Valor19" msprop:Generator_ColumnPropNameInTable="Valor19Column" msprop:Generator_UserColumnName="Valor19" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

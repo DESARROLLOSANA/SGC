@@ -1,26 +1,14 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@if (ViewBag.tipo == 1)
-{
-    var tipo = ViewBag.tipo;
+
+    @*var tipo = ViewBag.tipo;*@
     <div class="row" id="FmrIndicadores">
         @Html.Partial("_FormularioIndicadores", "ReporteView")
     </div>
-
-}
-else if(ViewBag.tipo == 2)
-{
-    var tipo = ViewBag.tipo;
-    <div class="row" id="FmrIndicadores">
-       @Html.Partial("_FormularioReporte", "ReporteView")
-    </div>
-    
-}
 
 <!-- Modal Structure Agregar Book-->
 <div id="ModalFrmGuardarBook" class="modal" style="width:600px; background-color:#fff; border:1px solid #ff6a00; max-height:80% !important; margin-top:20px;">
@@ -50,7 +38,7 @@ else if(ViewBag.tipo == 2)
 
 <!-- Modal Structure -->
 <div id="ModalAlert" class="modal modal-fixed-footer" style="width:350px; height:225px;">
-    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:130px" /></div>
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo_CA.png" style="width:130px" /></div>
     <div class="modal-content md-content">
         <h5 class="md-title">Título</h5>
         <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message" style="font-size:15px !important;">Mensaje</span></span></span>

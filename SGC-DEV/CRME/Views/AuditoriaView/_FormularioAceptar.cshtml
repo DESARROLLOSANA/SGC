@@ -1,0 +1,20 @@
+﻿@model CRME.Models.Auditoria_Interna
+
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+<div class="row center-align">
+    <div class="col s12 m4 l4">
+        <div class="input-field col s12 m12 l12 margin-0 margin-top-5">
+            <b>Desea modificar el estado de la Auditoria:</b>
+        </div>
+        <div class="col s12 m12 l12 input-field form-simple center-align">
+            @Html.DropDownList("Departamento", new SelectList(new List<SelectListItem>
+             {
+              new SelectListItem { Text = "Autorizado", Value = "1"},
+              new SelectListItem { Text = "No Autorizado", Value = "2"},
+             }, "Value", "Text"), "-- Seleccione una opcion --", htmlAttributes: new { @class = "select classic" })
+        </div>
+    </div>
+</div>

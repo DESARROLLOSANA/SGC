@@ -48,11 +48,11 @@ namespace CRME.Models
 
     public class LoginViewModel
     {
-        [EmailAddress]
-        [Required(ErrorMessage = "El campo correo es requerido.")]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "El correo electrónico es incorrecto")]
-        [StringLength(200)]
-        [Display(Name = "Correo electrónico")]
+        //[EmailAddress]
+       // [Required(ErrorMessage = "El campo correo es requerido.")]
+        //[RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "El correo electrónico es incorrecto")]
+        //[StringLength(200)]
+        //[Display(Name = "Correo electrónico")]
         public string Usuario { get; set; }
 
         [Required(ErrorMessage = "El campo contraseña es requerido.")]

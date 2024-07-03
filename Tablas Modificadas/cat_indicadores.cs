@@ -11,10 +11,8 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int indicadores_ID { get; set; }
-
-        public int empresa_ID { get; set; }
 
         public int proceso { get; set; }
 
@@ -30,7 +28,6 @@
         public int frec_med { get; set; }
 
         public int resp_mej { get; set; } 
-
         public int ene { get; set; }
         public int feb { get; set; }
         public int mar { get; set; }
@@ -46,6 +43,13 @@
 
         public int por_cum { get; set; }
 
-        
+        public int year { get; set; }
+
+        public int mes { get; set; }
+
+        public static explicit operator int(cat_indicadores v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

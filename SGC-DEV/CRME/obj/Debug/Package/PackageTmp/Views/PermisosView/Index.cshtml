@@ -1,0 +1,115 @@
+﻿@using CustomHelpers
+@using Microsoft.SqlServer.Types;
+
+@{
+    ViewBag.Title = "Permisos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Indicadores</h5>
+            </div>
+        </div>
+        <div id="TablaIndicadores">
+            @Html.Action("_TablaPermisos", "PermisosView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+        });
+
+        @*//ELIMINAR
+        $("#TablaPermisos").off('click', '.eliminarEmpresa');
+        $("#TablaPermisos").on('click', '.eliminarEmpresa', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Em_Cve_Empresa = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteUsuario", "PermisosView")',
+                        data: { Em_Cve_Empresa },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaDocApo").load('@Url.Action("_TablaDocApo", "DocApoyoView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+        });*@
+
+    //EDITAR
+        $("#TablaPermisos").off('click', '.editarEmpresa');
+        $("#TablaPermisos").on('click', '.editarEmpresa', function (e) {
+            e.preventDefault();
+            var Id_Condicion = $(this).attr("id-item");
+            window.location = "/PermisosView/Agregarper" + "?tg=" + Id_Condicion;
+        });
+
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
+    </script>
+}

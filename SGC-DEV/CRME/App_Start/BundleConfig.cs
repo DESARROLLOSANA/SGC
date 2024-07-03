@@ -46,8 +46,8 @@ namespace CRME
             "~/Scripts/Aplicacion/Mask/site.mask.js")
             );
 
-            //bundles.Add(new ScriptBundle("~/bundles/Bootstrap").Include(
-            //            "~/Scripts/Aplicacion/Bootstrap/js/bootstrap.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Bootstrap").Include(
+                       "~/Scripts/Aplicacion/Bootstrap/js/bootstrap.min.js"));
             //-------------------------------------------------------------------
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
@@ -56,15 +56,14 @@ namespace CRME
             //            "~/Scripts/modernizr-*"));
 
             //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-            //          "~/Scripts/",
-            //          "~/Scripts/respond.js"));
+            //    "~/Scripts/","~/Scripts/respond.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/Materialize").Include(
                       "~/Content/Aplicacion/Materialize/css/materialize.min.css"));
 
-            //bundles.Add(new StyleBundle("~/Content/Bootstrap").Include(
-            //          "~/Content/Aplicacion/Bootstrap/css/bootstrap.min.css"));
+            bundles.Add(new StyleBundle("~/Content/Bootstrap").Include(
+                "~/Content/Aplicacion/Bootstrap/css/bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/Iconos")
                 .Include("~/Content/Aplicacion/Materialize/Iconos/css/materialdesignicons.min.css", new CssFixRewriteUrlTransform())

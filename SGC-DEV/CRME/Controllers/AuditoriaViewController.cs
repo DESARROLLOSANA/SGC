@@ -37,6 +37,11 @@ namespace CRME.Controllers
         {
             //ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             //ViewBag.ide = id;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return View();
 
         }
@@ -60,6 +65,11 @@ namespace CRME.Controllers
         { // find
             //ViewBag.ide = ide; ;
             //ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == ide).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             ViewBag.id = idp;
             return PartialView();
         }
@@ -274,5 +284,63 @@ namespace CRME.Controllers
 
             return Json(new { success = success, mensaje, Filet });
         }
+
+
+        public ActionResult ActualizarEstado(Auditoria_Interna caind)
+        {
+
+            var serializerCat = new JavaScriptSerializer();
+            bool success = false;
+            string mensajefound = "";
+            try
+            {
+                var id = db.Auditoria_Interna.FirstOrDefault(x => x.id == caind.id);
+
+                Auditoria_Interna catibn = db.Auditoria_Interna.Find(caind.id);
+
+                if (catibn.id == caind.id)
+                {
+                    catibn.version = caind.version;
+                    db.Entry(catibn).State = EntityState.Modified;
+                }
+
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+               .SelectMany(x => x.ValidationErrors)
+               .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                //throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                mensajefound = exceptionMessage + "fatal error";
+            }
+
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult _FormularioAceptar(int? indicadores_ID)
+        {
+            Auditoria_Interna idIndic = new Auditoria_Interna();
+
+            if (indicadores_ID != null)
+            {
+                ViewBag.edit = 1;
+                idIndic = db.Auditoria_Interna.Find(indicadores_ID);
+            }
+            return PartialView("_FormularioAceptar", idIndic);
+        }
+
     }
 }

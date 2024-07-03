@@ -1,0 +1,180 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Permisos>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+<div class="row margin-10">
+    <div class="col l6 m6 s11 titlecircle">
+        <b>Lista de permisos</b>
+    </div>
+    <div class="col l6 m6 s1 separator">
+    </div>
+</div>
+
+@if (Auth.Usuario.perfil_ID == 6)
+{
+    <div class="row">
+        <div class="col s12 m4 l4 input-field">
+            <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("Agregarper","PermisosView")"><i class="mdi mdi-plus"></i> Agregar Nuevo</a>
+        </div>
+    </div>
+}
+
+<div id="TablaPermisos">
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Usuario</td>
+                        <td class="center">Empresa</td>
+                        <td class="center">Modulos</td>
+                        <td class="center">Crear</td>
+                        <td class="center">Leer</td>
+                        <td class="center">Editar</td>
+                        <td class="center">Borrar</td>
+                        <td class="center">Opciones</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="8" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+
+                <tr class="table-body">
+                    @*INICIO DE USUARIO*@
+                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.cat_sistemas.Find(item.User_ID).username)</td>
+                    @*FIN DE USUARIO*@
+
+                    @*INICIO DE EMPRESA*@
+                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.Empresa.Find(item.empresa_ID).Em_Descripcion)</td>
+                    @*FIN DE EMPRESA*@
+
+                    @*INICIO DE MODULOS*@
+                    @if (item.modulo1_ID == 1 && item.modulo2_ID == 1)
+                    {
+                     <td class="center" style="text-transform: uppercase;"> Ambos </td>
+                    }
+                    else if (item.modulo1_ID == 1 && item.modulo2_ID == 0)
+                    {
+                     <td class="center" style="text-transform: uppercase;"> SGC </td>
+                    }
+                    else if (item.modulo1_ID == 0 && item.modulo2_ID == 1)
+                    {
+                     <td class="center" style="text-transform: uppercase;"> Control Interno </td>
+                    }
+                    else
+                    {
+                     <td class="center" style="text-transform: uppercase;"> Ninguno </td>
+                    }
+                    @*FINAL DE MODULOS*@
+
+                    @*INICIO DE ESPECIFICACION DE PERMISOS*@
+
+                    @*CREAR*@
+                    @if (item.cre == 1)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                    }
+                    else if (item.cre == 2)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                    }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*LEER*@
+                    @if (item.rea == 1)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                    }
+                    else if (item.rea == 2)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                    }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*ACTUALIZAR*@
+                    @if (item.upd == 1)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                    }
+                    else if (item.upd == 2)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                    }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+
+                    @*BORRAR*@
+                    @if (item.del == 1)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> Si </td>
+                    }
+                    else if (item.del == 2)
+                    {
+                        <td class="center" style="text-transform: uppercase;"> NO </td>
+                    }
+                    else
+                    {
+                        <td class="center" style="text-transform: uppercase;"> N/A </td>
+                    }
+                    @*FIN DE ESPECIFICACION DE PERMISOS*@
+
+                <td class="center">
+                    <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_per" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                   
+                </td>
+
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaLineas", new { page })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "TablaIndicadores",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>

@@ -34,6 +34,11 @@ namespace CRME.Controllers
         // GET: ProcesosView
         public ActionResult Index() 
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return View();
         }
 
@@ -50,6 +55,11 @@ namespace CRME.Controllers
 
         public ActionResult CrearActu(int? idp) // id desde el menu
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return PartialView();
         }
 
