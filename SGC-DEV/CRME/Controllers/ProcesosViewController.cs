@@ -63,15 +63,10 @@ namespace CRME.Controllers
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult CrearProceso(int? ide ,int? idp) // id desde el menu
+        public ActionResult CrearProceso(int? ide, int? idp) // id desde el menu
         { // find
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "AccesoView");
-            }
-            ViewBag.HiddenMenu = 1;
             ViewBag.ide = ide;
-            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == 1).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == ide).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.id = idp;
             return PartialView();
         }
