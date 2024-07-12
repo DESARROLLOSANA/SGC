@@ -28,7 +28,7 @@ else
     @Html.HiddenFor(model => model.id)
 
     <!-- ----------------Datos personales---------------- -->
-    if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+    if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
     { 
     <div class="row">
         <div class="col s12 m12 l12 input-field">
@@ -159,7 +159,7 @@ else
         <div class="col l12 m12 s12">
             <div class="row">
                 <div class="col push-l6 l6 push-m4 m8 s12 right-align">
-                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "AccionCorectView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "PanelView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
                     <button type="submit" class="btn blue darken-4 waves-effect guardarProceso" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
                 </div>
             </div>

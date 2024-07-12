@@ -33,7 +33,7 @@
             <table class="striped highlight light-blue">
                 <thead class="table-header-blue">
                     <tr class="table-header-tr-blue">
-                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
                             <td colspan="22" class="center-align">INDICADORES @DateTime.Now.Year    </td>
                         }
@@ -49,9 +49,9 @@
                         <td class="center hide-on-small-only">Indicador</td>
                         <td class="center hide-on-small-only">Calculo</td>
                         <td class="center hide-on-small-only">Res Esperado</td>
-                        <td class="center hide-on-small-only">Resp medicion</td>
+                        <td class="center hide-on-small-only">Responsable medicion</td>
                         <td class="center hide-on-small-only">Frec medicion</td>
-                        <td class="center hide-on-small-only">Resp mejora</td>
+                        <td class="center hide-on-small-only">Responsable mejora</td>
                         <td class="center hide-on-small-only">Ene</td>
                         <td class="center hide-on-small-only">Feb</td>
                         <td class="center hide-on-small-only">Mar</td>
@@ -66,7 +66,7 @@
                         <td class="center hide-on-small-only">Dic</td>
 
                         @*<td class="center hide-on-small-only">Avance</td>*@
-                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
                             <td class="center hide-on-small-only">Grafica</td>
                             foreach (var its in Model)
@@ -121,13 +121,13 @@
                         <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.res_esp) %</td>
                         @*Resultado Esperado*@
 
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).responsable)</td>
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Puestos.Find(item.resp_mej).Pu_Descripcion)</td>
                         @*Nombre del responsable de Medicion*@
 
                         <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.cat_periodos.Find(item.frec_med).periodo_des)</td>
                         @*Frecuencia de la Medicion*@
 
-                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Puestos.Find(item.resp_mej).Pu_Descripcion)</td>
+                        <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Procesos.Find(item.proceso).responsable)</td>
                         @*Responsable de Mejora*@
 
 
@@ -150,7 +150,7 @@
                         @*FIN PORCENTAJES MENSUAL Y ANUAL*@
                         @*FIN DE DELIVERACION POR PERIODOS*@
 
-                        if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
                             <td class="center hide-on-small-only" style="">
                                 <a href="@Url.Action("GenerarReporte", "IndicadoresView", new {idIndicador=item.indicadores_ID})" class="GenerarReporte" data-position="bottom" data-delay="50" title="Grafica" style="cursor:pointer;"><i class="mdi mdi-chart-bar mdi-24px black-text"></i></a>
@@ -158,7 +158,7 @@
                         }
 
 
-                        if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
                             if (item.por_cum == 100)
                             {

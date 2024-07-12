@@ -18,7 +18,7 @@
         @*como se pasara la parte de empresa por menu*@
         <input type="hidden" value="@ViewBag.ide" />
         @{ var idempre = ViewBag.ide; }
-        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
         {
             <div class="col s12 m6 l6 input-field">
                 <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("CrearCtrlint","CtrlInternoView", new { ide = idempre})"><i class="mdi mdi-plus"></i> Alta de control interno</a>
@@ -38,7 +38,7 @@
                         <td class="center hide-on-small-only">Control de cambios</td>
                         <td class="center hide-on-small-only">Indicadores</td>
                         <td class="center hide-on-small-only">responsable</td>
-                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
                             <td class="center">Opciones</td>
                         }
@@ -64,11 +64,21 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaEmision)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.UltimaActu)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>
-                    <td class="center-align">
-                        <a href="@item.Indicadores.Replace("~","")#toolbar=0" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px red-text"></i></a>&nbsp;&nbsp;
-                    </td>
+                    @if (item.Indicadores == null || item.Indicadores == "")
+                    {
+                        <td class="center-align">
+                            <i class="mdi mdi-file-document mdi-24px red-text"></i>&nbsp;&nbsp;
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="center-align">
+                            <a href="@item.Indicadores.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                        </td>
+                    }
+
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.responsable)</td>
-                    @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                    @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                     {
                         <td class="center">
                             <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;

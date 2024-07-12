@@ -236,40 +236,16 @@ namespace CRME.Controllers
         //}
         public ActionResult _TablaImg(long? Em_Cve_Empresa)
         {
-            //const int pageSize = 10;
-            //int pageNumber = (page ?? 1);
-
-            //var lista = db.ArchivosOrganigrama.OrderByDescending(x => x.Id_Archivo); //.Where(x => x.Em_Cve_Empresa == true).ToList();
-            //                                                                         //var lista = db.Ce_cos.Where(x => x.Estatus == true).ToList();
 
             ArchivosOrganigrama sucursal = new ArchivosOrganigrama();
             ViewBag.Valor = Em_Cve_Empresa;
 
-            ////return PartialView(lista.ToPagedList(pageNumber, pageSize));
             if (Em_Cve_Empresa != null)
             {
-                //    //ViewBag.edit = 1;
-                //    //db.ArchivosOrganigrama.Find(Sc_Cve_Sucursal);
                     sucursal = db.ArchivosOrganigrama.Find(Em_Cve_Empresa);
                     if (sucursal.Em_Cve_Empresa != null)
                     {
-                    //        ViewBag.Em_Cve_Empresa1 = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", sucursal.Em_Cve_Empresa);
-
-                    //if (Em_Cve_Empresa == 1) {
-                    //    ViewBag.Nombre = "SANA";
-                    //}
-                    //if (Em_Cve_Empresa == 2)
-                    //{
-                    //    ViewBag.Nombre = "ECOLSUR";
-                    //}
-                    //if (Em_Cve_Empresa == 3)
-                    //{
-                    //    ViewBag.Nombre = "SAU";
-                    //}
-
                     ViewBag.Nombre= db.Empresa.Find(Em_Cve_Empresa).Em_Descripcion;
-
-                    //ViewBag.Nombre = Em_Cve_Empresa; //sucursal.Ruta;
                     ViewBag.Img = sucursal.Ruta;
                     }
             //    else
@@ -279,7 +255,6 @@ namespace CRME.Controllers
             }
             else
             {
-                //    ViewBag.Em_Cve_Empresa1 = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
                 ViewBag.Nombre = "";
                 ViewBag.Img = ""; //"/Upload/Empresa/organigramas_CICLO.png";
 

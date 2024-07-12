@@ -18,6 +18,22 @@
             @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
         </div>
         <div id="TablaEmpresas">
+            @if (id == 1)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/sana_fix.png" />
+            }
+            else if (id == 2)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/ecolsur_fix.png" />
+            }
+            else if (id == 3)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/sau_fix.png" />
+            }
+            else if (id == 4)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/cicloamb_fix.png" />
+            }
             @Html.Action("_TablaProcesos", "CtrlInternoView", new { ide = ViewBag.ide })
         </div>
         <div class="row">
@@ -113,7 +129,35 @@
                 validatePass();
                 ConfigPictures();
                 limpiar();
-            });
+        });
+
+        ComboSucursales();
+                function ComboSucursales() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Departamento", function () {
+                        // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                        var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                        url: '@Url.Action("GetSucursalByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Departamento: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#IDS").empty();
+                        $("#IDS").append('<option value=""> -- Tipo Documento -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#IDS").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                                });
+                            }
+                        });
+                    });
+                }
 
         function CargarReglasGeneralFormuario() {
             var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");

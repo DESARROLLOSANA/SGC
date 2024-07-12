@@ -37,6 +37,7 @@ namespace CRME.Controllers
         {
             ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == id).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             ViewBag.ide = id;
+            ViewBag.HiddenMenu = 1;
             return View();
 
         }
@@ -82,7 +83,7 @@ namespace CRME.Controllers
             return PartialView(edificiossolicitud);
         }
 
-        public ActionResult GuardarProceso(Control_Interno proceso, string ruta)
+        public ActionResult GuardarProceso(Control_Interno proceso, string ruta, string ruta2)
         {
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
@@ -110,12 +111,13 @@ namespace CRME.Controllers
                         Edificio.version = proceso.version;
                         Edificio.FechaEmision = proceso.FechaEmision;
                         Edificio.UltimaActu = proceso.UltimaActu;
-                        Edificio.ControlCambios = proceso.ControlCambios;
+                        Edificio.ControlCambios = ruta2;
                         Edificio.Indicadores = ruta;
                         Edificio.responsable = proceso.responsable;
                         Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
                         Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
                         idemp = proceso.Em_Cve_Empresa;
+
 
                         db.Control_Interno.Add(Edificio);
 
@@ -168,8 +170,28 @@ namespace CRME.Controllers
                     Edificio.version = proceso.version;
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
-                    Edificio.ControlCambios = proceso.ControlCambios;
-                    Edificio.Indicadores = ruta;
+
+
+                    if (Edificio.ControlCambios == proceso.ControlCambios)
+                    {
+                        Edificio.ControlCambios = proceso.ControlCambios;
+                    }
+                    else
+                    {
+                        Edificio.ControlCambios = ruta2;
+                    }
+
+
+                    if (Edificio.Indicadores == proceso.Indicadores)
+                    {
+                        Edificio.Indicadores = proceso.Indicadores;
+                    }
+                    else
+                    {
+                        Edificio.Indicadores = ruta;
+                    }
+
+
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
                     Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
@@ -275,6 +297,68 @@ namespace CRME.Controllers
             });
 
             return Json(new { success = success, mensaje, Filet });
+        }
+
+        public async Task<ActionResult> Cargarfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string FileT2 = "";
+            JsonResult Resp = await Uploadfile2();
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            ResponseObjectVM2 Respuestas = ser.Deserialize<ResponseObjectVM2>(ser.Serialize(Resp.Data));
+            success = Respuestas.success;
+            mensaje = Respuestas.mensaje;
+            FileT2 = Respuestas.Filet2;
+            ViewBag.rutatarjeta = Respuestas.Filet2;
+            return Json(new { success = success, mensaje, FileT2 });
+        }
+        public async Task<JsonResult> Uploadfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string msj = "";
+            string Filet2 = "";
+            //var year = DateTime.Now;
+            //string conver = Convert.ToString(year);
+            string name = Path.GetRandomFileName();
+
+            await Task.Run(() =>
+            {
+
+                string savedFileNameDownload = "";
+                string nombreArchivo2 = "Archivo2" + name;
+                FileStream stream = null;
+
+                try
+                {
+                    foreach (string file in Request.Files)
+                    {
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf")))
+                        {
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf"));
+                        }
+
+                        HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                        string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo2 + Path.GetExtension(Path.GetFileName(hpf.FileName)));
+                        Filet2 = "~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf";
+                        hpf.SaveAs(savedFileName);
+                        success = true;
+                    }
+
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    success = false;
+                    mensaje = "Ocurrió un problema al subir el archivo";
+                    Console.WriteLine(ex);
+                    if (stream != null)
+                        stream.Close();
+                    stream.Dispose();
+                }
+            });
+
+            return Json(new { success = success, mensaje, Filet2 });
         }
     }
 }

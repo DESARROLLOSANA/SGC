@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Procesos";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = ViewBag.ide;
 
 }
 
@@ -16,9 +17,28 @@
         </div>
         <div class="col s12 m6 l6 input-field form-simple center-align">
             @Html.DropDownList("Departamento", new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
+            
         </div>
         <div id="TablaEmpresas">
-            @Html.Action("_TablaProcesos", "ProcesosView", new { ide = ViewBag.ide })
+            <input type="hidden" id="ide" value="@id" />
+            @if (id == 1)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/sana_fix.png" />
+            }
+            else if (id == 2)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/ecolsur_fix.png" />
+            }
+            else if (id == 3)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/sau_fix.png" />
+            }
+            else if (id == 4)
+            {
+                <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/cicloamb_fix.png" />
+            }
+
+            @Html.Action("_TablaProcesos", "ProcesosView", new { ide = id })
         </div>
         <div class="row">
             <div class="col l12 m12 s12">
@@ -54,23 +74,23 @@
             $(".cancelar-eventos").off('click');
             $(".cancelar-eventos").on('click', function (e) {
                 $('#ModalAlert').off("click", ".md-accept");
-            });
-        });
+                    });
+                });
 
         //--- EDITAR PERSONA ---
         $("#TablaEmpresas").off('click', '.editarEmpresa');
         $("#TablaEmpresas").on('click', '.editarEmpresa', function (e) {
-            e.preventDefault();
-            var Id_Condicion = $(this).attr("id-item");
-            window.location = "/ProcesosView/CrearProceso" + "?idp=" + Id_Condicion;
-        });
+                    e.preventDefault();
+                    var Id_Condicion = $(this).attr("id-item");
+                    window.location = "/ProcesosView/CrearProceso" + "?idp=" + Id_Condicion;
+                });
 
         $("#TablaEmpresas").off('click', '.eliminarEmpresa');
         $("#TablaEmpresas").on('click', '.eliminarEmpresa', function (e) {
-                //alert(" ");
-                e.preventDefault();
-                var Em_Cve_Empresa = $(this).attr("id-item");
-                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                    //alert(" ");
+                    e.preventDefault();
+                    var Em_Cve_Empresa = $(this).attr("id-item");
+                    ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
                 $("#ModalAlert").modal({
                     dismissible: false,
                 });
@@ -79,55 +99,55 @@
                 $('#ModalAlert').on("click", ".md-accept", function () {
 
                     $.ajax({
-                        url: '@Url.Action("DeleteUsuario", "SubfamiliaView")',
+                        url: '@Url.Action("DeleteUsuario", "ProcesosView")',
                         data: { Em_Cve_Empresa },
                         type: "POST",
                         success: function (result) {
-                            if (result.success) {
+                                if (result.success) {
                                 $(".md-accept").addClass("md-btn-success green");
-                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
-                                $("#ModalAlert").modal('open');
+                                    ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                    $("#ModalAlert").modal('open');
                                 $('#ModalAlert').off("click", ".md-accept");
                                 $('#ModalAlert').on("click", ".md-accept", function () {
                                     $("#ModalAlert").modal('close');
-                                })
-                                $("#TablaEmpresas").load('@Url.Action("_TablaSubfamilia", "SubfamiliaView")', function (response, status, xhr) {
-                                    if (status == "success") {
-                                    }
-                                });
-                            }
-                            else {
+                                    })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "ProcesosView")', function (response, status, xhr) {
+                                        if (status == "success") {
+                                        }
+                                    });
+                                }
+                                else {
                                 $(".md-accept").addClass("md-btn-success");
-                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
-                                $("#ModalAlert").modal('open');
+                                    ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                    $("#ModalAlert").modal('open');
                                 $('#ModalAlert').off("click", ".md-accept");
                                 $('#ModalAlert').on("click", ".md-accept", function () {
                                     $("#ModalAlert").modal('close');
-                                })
+                                    })
                             }
-                        }
-                    });
-                })
+                            }
+                        });
+                    })
 
                 date();
-                validatePass();
-                ConfigPictures();
-                limpiar();
-            });
+                    validatePass();
+                    ConfigPictures();
+                    limpiar();
+                });
 
 
-        ComboSucursales();
-        function ComboSucursales() {
+                ComboSucursales();
+                function ComboSucursales() {
             // Utilizar la delegación de eventos con .on() para vincular el evento change
             // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
             // presente actualmente o agregado dinámicamente.
             $(document).on("change", "#Departamento", function () {
-                // Se obtiene el valor seleccionado en el dropdown "Empresa"
-                var selectedEmpresaId = $(this).val();
+                        // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                        var selectedEmpresaId = $(this).val();
 
                 // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
                 $.ajax({
-                    url: '@Url.Action("GetSucursalByEmpresa", "UsuarioView")',
+                        url: '@Url.Action("GetSucursalByEmpresa", "UsuarioView")',
                     type: 'GET',
                     data: { Departamento: selectedEmpresaId },
                     dataType: 'json',
@@ -138,49 +158,50 @@
                         // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
                         $.each(data, function (index, item) {
                             $("#IDS").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                                });
+                            }
                         });
-                    }
-                });
-            });
-        }
+                    });
+                }
 
-        function CargarReglasGeneralFormuario() {
-            var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+                function CargarReglasGeneralFormuario() {
+                    var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(formulario);
 
-            jQuery.extend(jQuery.validator.messages, {
-                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                    jQuery.extend(jQuery.validator.messages, {
+                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
                 maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
-            });
+                    });
 
 
-        }
+                }
 
 
-        function FltOnBeginPer(obj) {
+                function FltOnBeginPer(obj) {
             $("#TablaEmpresas #contenttblPersonas").addClass("loading-background");
-            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
-        }
+                    var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+                }
 
-        function FltOnCompletePer(obj) {
+                function FltOnCompletePer(obj) {
             $("#TablaEmpresas #contenttblPersonas").removeClass("loading-background");
-            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
-        }
+                    var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+                }
 
-        ComboSucursal();
-function ComboSucursal() {
+                ComboSucursal();
+                function ComboSucursal() {
             // Utilizar la delegación de eventos con .on() para vincular el evento change
             // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
             // presente actualmente o agregado dinámicamente.
     $(document).on("change", "#Departamento", function () {
-                // Se obtiene el valor seleccionado en el dropdown "Empresa"
-        var dep = $(this).val();
-        $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "ProcesosView")', { dep }, function (response, status, xhr) {
-                                    if (status == "success") {
-                                    }
-                                });
+                        // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                        var dep = $(this).val();
+                        var ide = $("id").val();
+        $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "ProcesosView")', { dep, ide }, function (response, status, xhr) {
+                            if (status == "success") {
+                            }
+                        });
 
-                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                        // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
                 @*$.ajax({
                     url: '@Url.Action("GetSucursalesByEmpresa", "HerramientasView")',
                     type: 'GET',

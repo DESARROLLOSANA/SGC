@@ -987,5 +987,21 @@ input[type=range] + .thumb {
     width: 650px;
     height: 380px;
     position: absolute;
+}
+
+#miimagen {
+    max-width: 20%;
+    width: 120px;
+    height: 60px;
+    position: absolute;
+    left: 1200px;
+}
+
+#miimagen2 {
+    max-width: 80%;
+    display: none;
+    width: 650px;
+    height: 380px;
+    position: absolute;
     top: 20px;
 }

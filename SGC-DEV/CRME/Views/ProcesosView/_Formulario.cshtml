@@ -53,7 +53,7 @@ else
                 }
                 @Html.ValidationMessageFor(model => model.idTD, "", new { @class = "text-danger" })
             </div>
-        </div>              
+        </div>
     </div>
 
     <div class="row">
@@ -82,14 +82,26 @@ else
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
-        @*<div class="col s12 m2 l2 input-field">
-            <b class="">Control de cambios:</b>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Departamento:</b>
             <div class="input-field margin-top-0">
-                @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el control de cambios", maxlength = 100, style = " !important;" })
-                @Html.ValidationMessageFor(model => model.ControlCambios, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Dp_cve_Departamento, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
-        </div>*@
+        </div>
+
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Empresa:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.Em_Cve_Empresa, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -103,12 +115,26 @@ else
         </div>
     </div>
 
+
+
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Control Cambios:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+    </div>
+
     @*CONTROL DE CAMBIOS*@
     <div class="row">
         <div class="col s12">
             <div class="row">
                 <div class="col s12 m12 l12">
-                    <b class="">Control de Cambios:</b>
+                    <b class="">Documentos:</b>
                     <div class="row margin-0">
                         <div class="col s12 m12 l7 file-field input-field">
                             <div class="btn light-blue darken-4">
@@ -140,6 +166,18 @@ else
         </div>
     </div>
 
+
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Indicador:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.Indicadores, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+    </div>
 
     @*INDICADOR*@
     <div class="row">
@@ -177,23 +215,13 @@ else
             <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
         </div>
     </div>
-    <!-- ---------------Botones---------------- -->
-    <!--<div class="row">
-        <div class="col l12 m12 s12">
-            <div class="row">
-                <div class="col l12  m12 s12 left-align">
-                    <a class="btn green darken-4 waves-effect" style="cursor:pointer;" id="agregaevi"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</a>-->
-    @*<button type="submit" class="btn green darken-4 waves-effect agregaevi" style="margin-left: 10px"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</button>*@
-    <!--</div>
-            </div>
-        </div>
-    </div>-->
+
     <!-- ---------------Botones---------------- -->
     <div class="row">
         <div class="col l12 m12 s12">
             <div class="row">
                 <div class="col push-l6 l6 push-m4 m8 s12 right-align">
-                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "ProcesosView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "PanelView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
                     <button type="submit" class="btn blue darken-4 waves-effect guardarProceso" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
                 </div>
             </div>

@@ -28,7 +28,7 @@
                 <thead class="table-header-blue">
                     <tr class="table-header-tr-blue">
                         <td class="center">Documento</td>
-                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1) 
+                        @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2) 
                         { 
                          <td class="center">Opciones</td>
                         }
@@ -52,7 +52,7 @@
                                 <td class="center"><a href="@item.Ruta_doc.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor: pointer; text-transform: uppercase; color: black;" id-vend="">@Html.DisplayFor(modelItem => item.Nombre_doc)</a>&nbsp;&nbsp;</td>
                                 @*BOTON PARA EDITAR*@
 
-                            @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+                            @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                             {
                             <td class="center">
                                 <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_doc" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;

@@ -53,7 +53,14 @@
 
                 <tr class="table-body">
                     @*INICIO DE USUARIO*@
-                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => db.cat_sistemas.Find(item.User_ID).username)</td>
+
+                    @{ // Obtener el objeto cat_sistemas relacionado con el User_ID específico
+                                            var sistema = db.cat_sistemas.Find(item.User_ID);
+
+                                            // Verificar si el sistema no es nulo antes de concatenar las propiedades
+                                            var nombreCompleto = sistema != null ? $"{sistema.nombre} {sistema.apellido_paterno} {sistema.apellido_materno}" : ""; }
+
+                    <td class="center" style="text-transform: uppercase;"> @Html.DisplayFor(modelItem => nombreCompleto)</td>
                     @*FIN DE USUARIO*@
 
                     @*INICIO DE EMPRESA*@
@@ -63,19 +70,19 @@
                     @*INICIO DE MODULOS*@
                     @if (item.modulo1_ID == 1 && item.modulo2_ID == 1)
                     {
-                     <td class="center" style="text-transform: uppercase;"> Ambos </td>
+                        <td class="center" style="text-transform: uppercase;"> Ambos </td>
                     }
-                    else if (item.modulo1_ID == 1 && item.modulo2_ID == 0)
+                    else if (item.modulo1_ID == 1 && item.modulo2_ID == 2)
                     {
-                     <td class="center" style="text-transform: uppercase;"> SGC </td>
+                        <td class="center" style="text-transform: uppercase;"> SGC </td>
                     }
-                    else if (item.modulo1_ID == 0 && item.modulo2_ID == 1)
+                    else if (item.modulo1_ID == 2 && item.modulo2_ID == 1)
                     {
-                     <td class="center" style="text-transform: uppercase;"> Control Interno </td>
+                        <td class="center" style="text-transform: uppercase;"> Control Interno </td>
                     }
                     else
                     {
-                     <td class="center" style="text-transform: uppercase;"> Ninguno </td>
+                        <td class="center" style="text-transform: uppercase;"> Ninguno </td>
                     }
                     @*FINAL DE MODULOS*@
 
@@ -138,10 +145,10 @@
                     }
                     @*FIN DE ESPECIFICACION DE PERMISOS*@
 
-                <td class="center">
-                    <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_per" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-                   
-                </td>
+                    <td class="center">
+                        <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_per"><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+
+                    </td>
 
 
                 </tr>

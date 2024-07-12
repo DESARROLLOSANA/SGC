@@ -34,5 +34,30 @@ namespace CRME
                 return usuario;
             }
         }
+
+        public static Permisos Permiso
+        {
+            get
+            {
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    return null;
+                }
+                var permiso = HttpContext.Current.Items[UserKey] as Permisos;
+
+                if (permiso == null)
+                {
+                    SIRE_Context db = new SIRE_Context();
+                    permiso = db.Permisos.FirstOrDefault(x => Auth.Usuario.correo == HttpContext.Current.User.Identity.Name);
+
+                    if(permiso == null)
+                    {
+                        return null;
+                    }
+                    HttpContext.Current.Items[UserKey] = permiso;
+                }
+                return permiso;
+            }
+        }
     }
 }

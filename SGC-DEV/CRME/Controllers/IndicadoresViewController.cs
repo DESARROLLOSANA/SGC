@@ -338,7 +338,8 @@ namespace CRME.Controllers
             }
             else
             {
-                ViewBag.Procesos = new SelectList(db.Procesos.Where(x => x.idTD == 1).ToList(), "id", "descripcion");
+                var procesosFiltrados = db.Procesos.Where(p => p.idTD == 1 || p.idTD == 2).ToList();
+                ViewBag.Procesos = new SelectList(procesosFiltrados, "id", "descripcion");
                 ViewBag.Puestos = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion");
                 ViewBag.Periodos = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des");
             }

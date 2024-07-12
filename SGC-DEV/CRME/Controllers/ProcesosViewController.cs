@@ -80,12 +80,13 @@ namespace CRME.Controllers
                 ViewBag.edit = 1;
                 edificiossolicitud = db.Procesos.Find(id);
                 ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion", edificiossolicitud.idTD);
+                ViewBag.Departamento = new SelectList(db.Departamentos.Where(x => x.Em_Cve_Sucursal == edificiossolicitud.Em_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", edificiossolicitud.Em_Cve_Empresa);
             }
             else
             {
                 ViewBag.tipodoc = new SelectList(db.TipoDocumento.ToList(), "id", "descripcion");
             }
-
+            //ViewBag.ide = 
             return PartialView(edificiossolicitud);
         }
 
@@ -167,8 +168,28 @@ namespace CRME.Controllers
                     Edificio.version = proceso.version;
                     Edificio.FechaEmision = proceso.FechaEmision;
                     Edificio.UltimaActu = proceso.UltimaActu;
-                    Edificio.ControlCambios = ruta2;
-                    Edificio.Indicadores = ruta;
+                    
+
+                    if (Edificio.ControlCambios == proceso.ControlCambios)
+                    {
+                        Edificio.ControlCambios = proceso.ControlCambios;
+                    }
+                    else
+                    {
+                        Edificio.ControlCambios = ruta2;
+                    }
+
+
+                    if (Edificio.Indicadores == proceso.Indicadores)
+                    {
+                      Edificio.Indicadores = proceso.Indicadores;
+                    }
+                   else
+                    {
+                        Edificio.Indicadores = ruta;
+                    }
+
+                    
                     Edificio.responsable = proceso.responsable;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
                     Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
@@ -214,8 +235,29 @@ namespace CRME.Controllers
             return Json(new { success = success, mensajefound, idemp }, JsonRequestBehavior.AllowGet);
         }
 
-        //CARGAR INDICADORES
-        
+        //Borrar Poceso
+
+        public ActionResult DeleteUsuario(long? Em_Cve_Empresa)
+        {
+            bool success = false; ;
+            string mensajefound = "";
+
+            try
+            {
+                Procesos condi = db.Procesos.Find(Em_Cve_Empresa);
+                db.Entry(condi).State = EntityState.Deleted;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                mensajefound = "Ocurrio un error al dar baja la empresa";
+            }
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
+        }
+
         public async Task<ActionResult> Cargarfile()
         {
             bool success = false;

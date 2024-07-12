@@ -98,7 +98,16 @@ namespace CRME.Controllers
             }
             else
             {
-                ViewBag.Perfiles = new SelectList(db.cat_sistemas.ToList(), "sistemas_ID", "username");
+                var perfiles = db.cat_sistemas
+                .ToList()
+                .Select(s => new
+                 {
+                    sistemas_ID = s.sistemas_ID,
+                    // Concatenas las propiedades que deseas mostrar en el SelectList
+                    username = s.nombre + " " + s.apellido_paterno + " " + s.apellido_materno
+                     })
+                .ToList();
+                ViewBag.Perfiles = new SelectList(perfiles, "sistemas_ID", "username");
                 ViewBag.Empresas = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
                 ViewBag.Cat_Perm = new SelectList(db.cat_perms.ToList(), "Id", "descripcion");
                 ViewBag.Permiso = new SelectList(db.Permisos.ToList(), "Id_per", "User_ID");

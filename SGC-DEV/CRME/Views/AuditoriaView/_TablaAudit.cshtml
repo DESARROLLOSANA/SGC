@@ -16,7 +16,7 @@
     <div class="row">
             
         @*como se pasara la parte de empresa por menu*@
-        @if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
+        @if(Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
         {
         <input type="hidden" value="@ViewBag.ide" />
         {
@@ -91,7 +91,7 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Resultado)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaSigAudi)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.planAccionNC)</td>
-                    @if (Auth.Usuario.perfil_ID != 6 || Auth.Usuario.perfil_ID != 1)
+                    @if (Auth.Usuario.perfil_ID != 6 || Auth.Usuario.perfil_ID != 1 || Auth.Usuario.perfil_ID != 2)
                     {
 
                     }

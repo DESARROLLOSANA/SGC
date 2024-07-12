@@ -134,39 +134,72 @@
 
         })
 
-        @*$("#FrmRequerimiento").off('click', '.saveRequ');
-        $("#FrmRequerimiento").on('click', '.saveRequ', function (e) {
+        @*CONTROL DE CAMBIOS*@
+        $("#FrmProceso").off("click", "#CargarArchivo2");
+        $("#FrmProceso").on("click", "#CargarArchivo2", function (e) {
             e.preventDefault();
-            if ($("#FrmRequerimiento").valid()) {
-                EliminarComaMontosFormulario($("#FrmRequerimiento"));
-                var frmValues = $("#FrmRequerimiento").serialize();
-                var ruta = $("#ruta").val();
-                //var idAlumno = $(this).attr("id-alumno");
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("SaveRequerimientoCal", "AutorizacionView")',
-                    cache: false,
-                    data: frmValues + "&ruta=" + ruta + "&Id_Calendario=" + Id_Calendario,
-                    success: function (result) {
-                        if (result.success) {
-                            $('#mensaje-error-model1').text("");
-                            $('#modal3').modal('close');
-                            ConfigModal($('#ModalAlert1'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
-                            $("#ModalAlert1").modal({
+            var formdata = new FormData();
+            var fileInput2 = document.getElementById('fileInputArchivo2');
+            var archivo2 = $('#fileInputArchivo2').val();
+            var extension2 = archivo2.substring(archivo2.lastIndexOf(".")).toLowerCase();
+            if (fileInput2.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension2 != ".pdf") {
+                $('#ruta2').val("");
+                $("#nbArchivo2").val("");
+                ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput2.files.length; i++) {
+                    formdata.append(fileInput2.files[i].name, fileInput2.files[i]);
+                }
+
+                $(".loading-subir2").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("Cargarfile2", "CtrlInternoView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo2").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ruta2").val(obj.FileT2);
+                            $("#ModalAlert").modal({
                                 dismissible: false,
                             });
-                            $("#ModalAlert1").modal('open');
-                            ConfiguracionFecha();
-                        } else {
-                            $('#mensaje-error-model1').text(result.mensajefound);
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
                         }
                     }
-
-                });
+                    $(".loading-subir").css('display', 'none')
+                }
             }
 
+            return false;
 
-        });*@
+        })
 
          guardarpersona();
         function guardarpersona() {
@@ -180,11 +213,12 @@
                 if ($("#FrmProceso").valid()) {
                     var frmValues = $("#FrmProceso").serialize();
                     var ruta = $("#ruta").val();
+                    var ruta2 = $("#ruta2").val();
                     var depto = $("#Departamento").val();
                     var empre = $("#Em_Cve_Empresa").val();
                     $.ajax({
-                        url: '@Url.Action("GuardarProceso", "CtrlInternoView")',
-                        data: frmValues + "&ruta=" + ruta + "&Dp_cve_Departamento=" + depto + "&Em_Cve_Empresa=" + empre,
+                        url: '@Url.Action("GuardarProceso", "ProcesosView")',
+                        data: frmValues + "&ruta=" + ruta + "&ruta2=" + ruta2 + "&Dp_cve_Departamento=" + depto + "&Em_Cve_Empresa=" + empre,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
                             $(".guardarProceso").attr("disabled", false);
@@ -195,7 +229,7 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                window.location = "/CtrlInternoView/index?id=" + result.idemp;
+                                window.location = "/ProcesosView/index?id=" + result.idemp;
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante

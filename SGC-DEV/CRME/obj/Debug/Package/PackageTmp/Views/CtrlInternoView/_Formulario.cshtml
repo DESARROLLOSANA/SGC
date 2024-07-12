@@ -22,6 +22,7 @@ else
 }
 
 @using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmProceso" }))
+
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -38,9 +39,10 @@ else
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col s12 m12 l12 input-field">
-            <b class="">Tipo docuento:</b>
+            <b class="">Tipo documento:</b>
             <div class="input-field margin-top-0">
                 @if (Model.idTD == 0)
                 {
@@ -52,8 +54,9 @@ else
                 }
                 @Html.ValidationMessageFor(model => model.idTD, "", new { @class = "text-danger" })
             </div>
-        </div>              
+        </div>
     </div>
+
     <div class="row">
         <div class="col s12 m3 l3 input-field">
             <b class="">Versión:</b>
@@ -73,25 +76,36 @@ else
         </div>
 
         <div class="col s12 m3 l3 input-field">
-            <b class="">Ultima actualización:</b>
+            <b class="">Última actualización:</b>
             <div class="input-field margin-top-0">
                 @Html.TextBoxFor(model => model.UltimaActu, new { @class = "Validate form-simple", placeholder = "Ingrese la ultima actualización", maxlength = 100, style = " !important;" })
                 @Html.ValidationMessageFor(model => model.UltimaActu, "", new { @class = "text-danger" })
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
-        <div class="col s12 m2 l2 input-field">
-            <b class="">Control de cambios:</b>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Departamento:</b>
             <div class="input-field margin-top-0">
-                @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el control de cambios", maxlength = 100, style = " !important;" })
-                @Html.ValidationMessageFor(model => model.ControlCambios, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Dp_cve_Departamento, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Empresa:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.Em_Cve_Empresa, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
     </div>
 
     <div class="row">
-             
         <div class="col s12 m12 l12 input-field">
             <b class="">Responsable:</b>
             <div class="input-field margin-top-0">
@@ -101,10 +115,77 @@ else
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Control Cambios:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+    </div>
+
+    @*CONTROL DE CAMBIOS*@
     <div class="row">
         <div class="col s12">
             <div class="row">
                 <div class="col s12 m12 l12">
+                    <b class="">Documentos:</b>
+                    <div class="row margin-0">
+                        <div class="col s12 m12 l7 file-field input-field">
+                            <div class="btn light-blue darken-4">
+                                <i class="mdi mdi-folder-open"></i> EXAMINAR
+                                <input type="file" id="fileInputArchivo2" accept=".pdf">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input id="nbArchivo2" class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field margin-top-0">
+                            <input id="ruta2" class="file-path validate" type="hidden">
+
+                        </div>
+                        <div class="col s12 m12 l3 input-field">
+                            <button type="button" class="btn light-blue darken-4 btn-block" id="CargarArchivo2"><i class="mdi mdi-cloud-upload load-icon"></i> CARGAR</button>
+                        </div>
+                        <div class="col s12 m12 l2 input-field">
+                            <div class="loading loading-subir2">
+                                <div class="row center">
+                                    @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col s12 m12 l12 input-field hiddendiv">
+            <b class="">Control Interno:</b>
+            <div class="input-field margin-top-0">
+                @Html.TextBoxFor(model => model.Indicadores, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+    </div>
+
+    @*INDICADOR*@
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <b class="">Control Interno:</b>
                     <div class="row margin-0">
                         <div class="col s12 m12 l7 file-field input-field">
                             <div class="btn light-blue darken-4">
@@ -125,7 +206,7 @@ else
                         <div class="col s12 m12 l2 input-field">
                             <div class="loading loading-subir">
                                 <div class="row center">
-                                 @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
+                                    @*   @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })*@
                                 </div>
                             </div>
                         </div>
@@ -135,23 +216,13 @@ else
             <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
         </div>
     </div>
-    <!-- ---------------Botones---------------- -->
-    <!--<div class="row">
-        <div class="col l12 m12 s12">
-            <div class="row">
-                <div class="col l12  m12 s12 left-align">
-                    <a class="btn green darken-4 waves-effect" style="cursor:pointer;" id="agregaevi"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</a>-->
-    @*<button type="submit" class="btn green darken-4 waves-effect agregaevi" style="margin-left: 10px"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</button>*@
-    <!--</div>
-            </div>
-        </div>
-    </div>-->
+
     <!-- ---------------Botones---------------- -->
     <div class="row">
         <div class="col l12 m12 s12">
             <div class="row">
                 <div class="col push-l6 l6 push-m4 m8 s12 right-align">
-                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "CtrlInternoView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "ProcesosView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
                     <button type="submit" class="btn blue darken-4 waves-effect guardarProceso" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
                 </div>
             </div>
@@ -159,4 +230,3 @@ else
     </div>
 
 }
-
