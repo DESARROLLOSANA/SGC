@@ -30,7 +30,7 @@ else
     <!-- ----------------Datos personales---------------- -->
     <div class="row">
         <div class="col s12 m12 l12 input-field">
-            <b class="">Nombre del proceso:</b>
+            <b class="">Nombre del documento:</b>
             <div class="input-field margin-top-0">
                 @Html.TextBoxFor(model => model.descripcion, new { @class = "Validate form-simple", placeholder = "Ingrese el nombre del proceso", maxlength = 100, style = " !important;" })
                 @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
@@ -84,27 +84,7 @@ else
         </div>
     </div>
 
-    <div class="row">
-        <div class="col s12 m12 l12 input-field hiddendiv">
-            <b class="">Departamento:</b>
-            <div class="input-field margin-top-0">
-                @Html.TextBoxFor(model => model.Dp_cve_Departamento, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
-                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
-                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
-            </div>
-        </div>
-
-        <div class="col s12 m12 l12 input-field hiddendiv">
-            <b class="">Empresa:</b>
-            <div class="input-field margin-top-0">
-                @Html.TextBoxFor(model => model.Em_Cve_Empresa, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
-                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
-                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
+       <div class="row">
         <div class="col s12 m12 l12 input-field">
             <b class="">Responsable:</b>
             <div class="input-field margin-top-0">
@@ -115,10 +95,6 @@ else
         </div>
     </div>
 
-
-
-
-    <div class="row">
         <div class="col s12 m12 l12 input-field hiddendiv">
             <b class="">Control Cambios:</b>
             <div class="input-field margin-top-0">
@@ -127,7 +103,6 @@ else
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
-    </div>
 
     @*CONTROL DE CAMBIOS*@
     <div class="row">
@@ -168,7 +143,6 @@ else
 
 
 
-    <div class="row">
         <div class="col s12 m12 l12 input-field hiddendiv">
             <b class="">Indicador:</b>
             <div class="input-field margin-top-0">
@@ -177,7 +151,6 @@ else
                 <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
             </div>
         </div>
-    </div>
 
     @*INDICADOR*@
     <div class="row">

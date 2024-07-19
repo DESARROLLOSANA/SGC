@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Control interno";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    int id = ViewBag.ide;
 }
 
 <a name="ancla" id="ancla"></a>
@@ -18,6 +18,7 @@
             @Html.DropDownList( "Departamento",new SelectList(ViewBag.Departamento, "Value", "Text"), "-- Seleccione una departamento --", htmlAttributes: new { @class = "select classic" })
         </div>
         <div id="TablaEmpresas">
+            <input type="hidden" id="ide" value="@id" />
             @if (id == 1)
             {
                 <img id="miimagen" class="responsive-img" src="~/Upload/Sistema/sana_fix.png" />
@@ -83,10 +84,10 @@
 
         $("#TablaEmpresas").off('click', '.eliminarEmpresa');
         $("#TablaEmpresas").on('click', '.eliminarEmpresa', function (e) {
-                //alert(" ");
-                e.preventDefault();
-                var Em_Cve_Empresa = $(this).attr("id-item");
-                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                    //alert(" ");
+                    e.preventDefault();
+                    var Em_Cve_Empresa = $(this).attr("id-item");
+                    ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
                 $("#ModalAlert").modal({
                     dismissible: false,
                 });
@@ -95,41 +96,41 @@
                 $('#ModalAlert').on("click", ".md-accept", function () {
 
                     $.ajax({
-                        url: '@Url.Action("DeleteUsuario", "SubfamiliaView")',
+                        url: '@Url.Action("DeleteUsuario", "CtrlInternoView")',
                         data: { Em_Cve_Empresa },
                         type: "POST",
                         success: function (result) {
-                            if (result.success) {
+                                if (result.success) {
                                 $(".md-accept").addClass("md-btn-success green");
-                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
-                                $("#ModalAlert").modal('open');
+                                    ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                    $("#ModalAlert").modal('open');
                                 $('#ModalAlert').off("click", ".md-accept");
                                 $('#ModalAlert').on("click", ".md-accept", function () {
                                     $("#ModalAlert").modal('close');
-                                })
-                                $("#TablaEmpresas").load('@Url.Action("_TablaSubfamilia", "SubfamiliaView")', function (response, status, xhr) {
-                                    if (status == "success") {
-                                    }
-                                });
-                            }
-                            else {
+                                    })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaProcesos", "CtrlInternoView")', function (response, status, xhr) {
+                                        if (status == "success") {
+                                        }
+                                    });
+                                }
+                                else {
                                 $(".md-accept").addClass("md-btn-success");
-                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
-                                $("#ModalAlert").modal('open');
+                                    ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                    $("#ModalAlert").modal('open');
                                 $('#ModalAlert').off("click", ".md-accept");
                                 $('#ModalAlert').on("click", ".md-accept", function () {
                                     $("#ModalAlert").modal('close');
-                                })
+                                    })
                             }
-                        }
-                    });
-                })
+                            }
+                        });
+                    })
 
                 date();
-                validatePass();
-                ConfigPictures();
-                limpiar();
-        });
+                    validatePass();
+                    ConfigPictures();
+                    limpiar();
+                });
 
         ComboSucursales();
                 function ComboSucursales() {

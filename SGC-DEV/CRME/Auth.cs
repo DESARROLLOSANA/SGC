@@ -60,4 +60,51 @@ namespace CRME
             }
         }
     }
+
+
+
+    public class UsuarioInfo
+    {
+        public cat_sistemas Usuario { get; set; }
+        public Permisos Permiso { get; set; }
+    }
+
+    public class Auth2
+    {
+        private const string UserKey = "CRME.Auth:Userkey";
+
+        public static UsuarioInfo UsuarioActual
+        {
+            get
+            {
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    return null;
+                }
+
+                var usuarioInfo = HttpContext.Current.Items[UserKey] as UsuarioInfo;
+
+                if (usuarioInfo == null)
+                {
+                    SIRE_Context db = new SIRE_Context();
+                    var usuario = db.cat_sistemas.FirstOrDefault(x => x.correo == HttpContext.Current.User.Identity.Name);
+
+                    if(usuario == null)
+                    {
+                        return null;
+                    }
+
+                    var permiso = db.Permisos.FirstOrDefault(x => Auth.Usuario.correo == HttpContext.Current.User.Identity.Name);
+
+                    usuarioInfo = new UsuarioInfo
+                    {
+                        Usuario = usuario,
+                        Permiso = permiso
+                    };
+                    HttpContext.Current.Items[UserKey] = usuarioInfo;
+                }
+                return usuarioInfo;
+            }
+        }
+    }
 }

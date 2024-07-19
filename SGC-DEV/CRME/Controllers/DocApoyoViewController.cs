@@ -57,13 +57,14 @@ namespace CRME.Controllers
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Agregarda(long? tg)
+        public ActionResult Agregarda(long? idp)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "AccesoView");
             }
             ViewBag.HiddenMenu = 1;
+            ViewBag.id = idp;
 
             return View();
         }
@@ -212,7 +213,14 @@ namespace CRME.Controllers
                 {
                     Doc_apoyo Edificio = db.Doc_apoyo.Find(Doca.Id_doc);
                     Edificio.Nombre_doc = Doca.Nombre_doc;
-                    Edificio.Ruta_doc = ruta;
+                    if (ruta == null || ruta == "")
+                    {
+                        Edificio.Ruta_doc = Doca.Ruta_doc;
+                    }
+                    else
+                    {
+                        Edificio.Ruta_doc = ruta;
+                    }
                     db.Entry(Edificio).State = EntityState.Modified;
 
                     if (db.SaveChanges() > 0)

@@ -95,16 +95,9 @@ namespace CRME.Controllers
             {
                 var found = db.Control_Interno.FirstOrDefault(x => x.descripcion == proceso.descripcion);
 
-                if (found != null)
-                {
-                    mensajefound = "¡Ya existe el control interno " + found.descripcion + "!";
-                }
-                else
-                {
                     try
                     {
                         Control_Interno Edificio = new Control_Interno();
-
                         //Usuarios
                         Edificio.descripcion = proceso.descripcion;
                         Edificio.idTD = proceso.idTD;
@@ -117,8 +110,6 @@ namespace CRME.Controllers
                         Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
                         Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
                         idemp = proceso.Em_Cve_Empresa;
-
-
                         db.Control_Interno.Add(Edificio);
 
                         if (db.SaveChanges() > 0)
@@ -158,13 +149,16 @@ namespace CRME.Controllers
                         mensajefound = exceptionMessage + "fatal error";
 
                     }
-                }                
+                
             }
             else
             {
                 try
                 {
                     Control_Interno Edificio = db.Control_Interno.Find(proceso.id);
+                    var emcvempresa = Edificio.Em_Cve_Empresa;
+                    var dpcvedepartamento = Edificio.Dp_cve_Departamento;
+
                     Edificio.descripcion = proceso.descripcion;
                     Edificio.idTD = proceso.idTD;
                     Edificio.version = proceso.version;
@@ -172,7 +166,7 @@ namespace CRME.Controllers
                     Edificio.UltimaActu = proceso.UltimaActu;
 
 
-                    if (Edificio.ControlCambios == proceso.ControlCambios)
+                    if (ruta2 == null || ruta2 == "")
                     {
                         Edificio.ControlCambios = proceso.ControlCambios;
                     }
@@ -182,7 +176,7 @@ namespace CRME.Controllers
                     }
 
 
-                    if (Edificio.Indicadores == proceso.Indicadores)
+                    if (ruta == null || ruta == "")
                     {
                         Edificio.Indicadores = proceso.Indicadores;
                     }
@@ -193,9 +187,9 @@ namespace CRME.Controllers
 
 
                     Edificio.responsable = proceso.responsable;
-                    Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;
-                    Edificio.Dp_cve_Departamento = proceso.Dp_cve_Departamento;
-                    idemp = proceso.Em_Cve_Empresa;
+                    Edificio.Em_Cve_Empresa = emcvempresa;
+                    Edificio.Dp_cve_Departamento = dpcvedepartamento;
+                    idemp = emcvempresa;
                     db.Entry(Edificio).State = EntityState.Modified;
 
                     if (db.SaveChanges() > 0)
@@ -237,6 +231,7 @@ namespace CRME.Controllers
             return Json(new { success = success, mensajefound, idemp }, JsonRequestBehavior.AllowGet);
         }
 
+        //CARGAR FORMATOS
         public async Task<ActionResult> Cargarfile()
         {
             bool success = false;
@@ -251,53 +246,158 @@ namespace CRME.Controllers
             ViewBag.rutatarjeta = Respuestas.Filet;
             return Json(new { success = success, mensaje, FileT });
         }
+
+        //public async Task<JsonResult> Uploadfile()
+        //{
+        //    bool success = false;
+        //    string mensaje = "";
+        //    string msj = "";
+        //    string Filet = "";
+        //    //var year = DateTime.Now;
+        //    //string conver = Convert.ToString(year);
+        //    string name = Path.GetRandomFileName();
+
+        //    await Task.Run(() =>
+        //    {
+
+        //        string savedFileNameDownload = "";
+        //        string nombreArchivo = "Archivo" + name;
+        //        FileStream stream = null;
+
+        //        try
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf")))
+        //                {
+        //                    System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf"));
+        //                }
+
+        //                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+        //                string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo + Path.GetExtension(Path.GetFileName(hpf.FileName)));
+        //                Filet = "~/Upload/Sistema/files/" + nombreArchivo + ".pdf";
+        //                hpf.SaveAs(savedFileName);
+        //                success = true;
+        //            }
+
+        //        }
+        //        catch (DbEntityValidationException ex)
+        //        {
+        //            success = false;
+        //            mensaje = "Ocurrió un problema al subir el archivo";
+        //            Console.WriteLine(ex);
+        //            if (stream != null)
+        //                stream.Close();
+        //            stream.Dispose();
+        //        }
+        //    });
+
+        //    return Json(new { success = success, mensaje, Filet });
+        //}
+
+
+        //PARA QUE EL DOCUMENTO SE SUBA CON SU RAMDON.
+        //public async Task<JsonResult> Uploadfile()
+        //{
+        //    bool success = false;
+        //    string mensaje = "";
+        //    string Filet = "";
+
+        //    await Task.Run(() =>
+        //    {
+        //        try
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+
+        //                // Verificar si el archivo tiene una extensión permitida
+        //                string extension = Path.GetExtension(hpf.FileName).ToLower();
+        //                if (extension == ".pdf" || extension == ".docx" || extension == ".xlsx" || extension == ".ods")
+        //                {
+        //                    // Generar un nombre único para el archivo
+        //                    string uniqueFileName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + extension;
+
+        //                    // Ruta donde se va a guardar el archivo
+        //                    string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), uniqueFileName);
+
+        //                    // Guardar el archivo en el servidor
+        //                    hpf.SaveAs(savedFileName);
+
+        //                    // Guardar la ruta relativa para la respuesta JSON
+        //                    Filet = "~/Upload/Sistema/files/" + uniqueFileName;
+
+        //                    success = true;
+        //                }
+        //                else
+        //                {
+        //                    mensaje = "La extensión del archivo no es válida. Se permiten archivos PDF, DOCX y XLSX.";
+        //                    success = false;
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            success = false;
+        //            mensaje = "Ocurrió un problema al subir el archivo";
+        //            Console.WriteLine(ex);
+        //        }
+        //    });
+
+        //    return Json(new { success = success, mensaje, Filet });
+        //}
+
+
+        //PARA QUE EL DOCUMENTO SE SUBA CON SU NOMBRE ASIGNADO
         public async Task<JsonResult> Uploadfile()
         {
             bool success = false;
             string mensaje = "";
-            string msj = "";
             string Filet = "";
-            //var year = DateTime.Now;
-            //string conver = Convert.ToString(year);
-            string name = Path.GetRandomFileName();
 
             await Task.Run(() =>
             {
-
-                string savedFileNameDownload = "";
-                string nombreArchivo = "Archivo" + name;
-                FileStream stream = null;
-
                 try
                 {
                     foreach (string file in Request.Files)
                     {
-                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf")))
-                        {
-                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf"));
-                        }
-
                         HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
-                        string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo + Path.GetExtension(Path.GetFileName(hpf.FileName)));
-                        Filet = "~/Upload/Sistema/files/" + nombreArchivo + ".pdf";
-                        hpf.SaveAs(savedFileName);
-                        success = true;
-                    }
 
+                        // Verificar si el archivo tiene una extensión permitida
+                        string extension = Path.GetExtension(hpf.FileName).ToLower();
+                        if (extension == ".pdf" || extension == ".docx" || extension == ".xlsx" || extension == ".ods")
+                        {
+                            // Ruta donde se va a guardar el archivo
+                            string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), hpf.FileName);
+
+                            // Guardar el archivo en el servidor
+                            hpf.SaveAs(savedFileName);
+
+                            // Guardar la ruta relativa para la respuesta JSON
+                            Filet = "~/Upload/Sistema/files/" + hpf.FileName;
+
+                            success = true;
+                        }
+                        else
+                        {
+                            mensaje = "La extensión del archivo no es válida. Se permiten archivos PDF, DOCX, XLSX y ODS.";
+                            success = false;
+                        }
+                    }
                 }
-                catch (DbEntityValidationException ex)
+                catch (Exception ex)
                 {
                     success = false;
                     mensaje = "Ocurrió un problema al subir el archivo";
                     Console.WriteLine(ex);
-                    if (stream != null)
-                        stream.Close();
-                    stream.Dispose();
                 }
             });
 
             return Json(new { success = success, mensaje, Filet });
         }
+
+
+        //CARGAR DOCUMENTO DE CONTROL INTERNO
 
         public async Task<ActionResult> Cargarfile2()
         {
@@ -359,6 +459,27 @@ namespace CRME.Controllers
             });
 
             return Json(new { success = success, mensaje, Filet2 });
+        }
+
+        public ActionResult DeleteUsuario(long? Em_Cve_Empresa)
+        {
+            bool success = false; ;
+            string mensajefound = "";
+
+            try
+            {
+                Control_Interno condi = db.Control_Interno.Find(Em_Cve_Empresa);
+                db.Entry(condi).State = EntityState.Deleted;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                mensajefound = "Ocurrio un error al dar baja la empresa";
+            }
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -59,7 +59,7 @@
                     @if (Auth.Usuario.perfil_ID != 6 && Auth.Usuario.perfil_ID != 1 && Auth.Usuario.perfil_ID != 2)
                         {
                             <li>
-                                @if (Auth.Usuario.Em_Cve_Empresa == 4)
+                                @if (Auth2.UsuarioActual.Usuario.sistemas_ID == Auth.Usuario.sistemas_ID && Auth2.UsuarioActual.Permiso.empresa_ID == 4)
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">CICLO AMBIENTAL<i class="mdi mdi-chevron-down"></i></a>
                                     <div class="collapsible-body">
@@ -71,7 +71,7 @@
                                         </ul>
                                     </div>
                                 }
-                                else if (Auth.Usuario.Em_Cve_Empresa == 1)
+                                else if (Auth2.UsuarioActual.Usuario.sistemas_ID == Auth.Usuario.sistemas_ID && Auth2.UsuarioActual.Permiso.empresa_ID == 1)
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SANA<i class="mdi mdi-chevron-down"></i></a>
                                     <div class="collapsible-body">
@@ -81,7 +81,7 @@
                                         </ul>
                                     </div>
                                 }
-                                else if (Auth.Usuario.Em_Cve_Empresa == 2)
+                                else if (Auth2.UsuarioActual.Usuario.sistemas_ID == Auth.Usuario.sistemas_ID && Auth2.UsuarioActual.Permiso.empresa_ID == 2)
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">ECOLSUR<i class="mdi mdi-chevron-down"></i></a>
                                     <div class="collapsible-body">
@@ -91,7 +91,7 @@
                                         </ul>
                                     </div>
                                 }
-                                else if (Auth.Usuario.Em_Cve_Empresa == 3)
+                                else if (Auth2.UsuarioActual.Usuario.sistemas_ID == Auth.Usuario.sistemas_ID && Auth2.UsuarioActual.Permiso.empresa_ID == 3)
                                 {
                                     <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">SAU<i class="mdi mdi-chevron-down"></i></a>
                                     <div class="collapsible-body">

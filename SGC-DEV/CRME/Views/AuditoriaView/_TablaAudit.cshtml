@@ -41,16 +41,8 @@
                         <td class="center hide-on-small-only">Resultado</td>
                         <td class="center hide-on-small-only">Fecha próxima de auditoría</td>
                         <td class="center hide-on-small-only">Plan de acción de NC</td>
+                        <td class="center">Opciones</td>
 
-                         @if (Auth.Usuario.perfil_ID != 6 || Auth.Usuario.perfil_ID != 1)
-                         {
-                             
-                         }
-                          else 
-                         { 
-                            <td class="center">Opciones</td>
-                         }
-                        
                         
                         
                     </tr>
@@ -87,21 +79,29 @@
                            <i class="mdi mdi-file-document mdi-24px red-text"></i>
                            </td>
                         }
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Informe)</td>
+
+                        @if (item.Informe != null)
+                        {
+                            <td class="center-align">
+                            <a href="@item.Informe.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px green-text"></i></a>&nbsp; &nbsp;
+                            </td>                      
+                        }
+                        else 
+                        {
+                           <td class="center-align">
+                           <i class="mdi mdi-file-document mdi-24px red-text"></i>
+                           </td>
+                        }
+
+
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Resultado)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaSigAudi)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.planAccionNC)</td>
-                    @if (Auth.Usuario.perfil_ID != 6 || Auth.Usuario.perfil_ID != 1 || Auth.Usuario.perfil_ID != 2)
-                    {
-
-                    }
-                     else
-                    {
                      <td class="center">
                       <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
                       @*<a href="#ancla" class="agregadatos" data-position="bottom" data-delay="50" title="Agregar Datos" data-tooltip="Agregar datos" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-check-all mdi-24px black-text"></i></a>&nbsp; &nbsp;*@
                     </td>
-                    }
+
                     
                 </tr>
                         }

@@ -56,13 +56,6 @@ namespace CRME.Controllers
             string mensajefound = "";
             var found = db.cat_indicadores.FirstOrDefault(x => x.proceso == catind.proceso);
 
-            if (found != null)
-            {
-                mensajefound = "¡Ya existe un indicador que coincide con el ingresado!";
-
-            }
-            else
-            {
                 if (catind.indicadores_ID == 0)
                 {
                     try
@@ -125,35 +118,32 @@ namespace CRME.Controllers
                     {
                         cat_indicadores Condi = db.cat_indicadores.Find(catind.indicadores_ID);
 
-                        int a = (int)Condi.ene;
-                        int b = (int)Condi.feb;
-                        int c = (int)Condi.mar;
-                        int d = (int)Condi.abr;
-                        int e = (int)Condi.may;
-                        int f = (int)Condi.jun;
-                        int g = (int)Condi.jul;
-                        int h = (int)Condi.ago;
-                        int i = (int)Condi.sep;
-                        int j = (int)Condi.oct;
-                        int k = (int)Condi.nov;
-                        int l = (int)Condi.dec;
-                        float m = Condi.res_esp;
-                        int sum = a + b + c + d + e + f + g + h + i + j + k + l;
-                        float pretotal = sum * m;
-                        float total = pretotal / m;
-
-                        Condi.ene = catind.ene;
-                        Condi.feb = catind.feb;
-                        Condi.mar = catind.mar;
-                        Condi.abr = catind.abr;
-                        Condi.may = catind.may;
-                        Condi.jun = catind.jun;
-                        Condi.jul = catind.jul;
-                        Condi.ago = catind.ago;
-                        Condi.sep = catind.sep;
-                        Condi.oct = catind.oct;
-                        Condi.nov = catind.nov;
-                        Condi.dec = catind.dec;
+                        //var year = DateTime.Now.Year;
+                        //var month = DateTime.Now.Month;
+                        //var dia = DateTime.Now.Day;
+                        Condi.proceso = catind.proceso;
+                        Condi.indicador = catind.indicador;
+                        Condi.form_cal = catind.form_cal;
+                        Condi.res_esp = catind.res_esp;
+                        Condi.resp_med = catind.resp_med;
+                        Condi.frec_med = catind.frec_med;
+                        Condi.resp_mej = catind.resp_mej;
+                        //Condi.ene = 0;
+                        //Condi.feb = 0;
+                        //Condi.mar = 0;
+                        //Condi.abr = 0;
+                        //Condi.may = 0;
+                        //Condi.jun = 0;
+                        //Condi.jul = 0;
+                        //Condi.ago = 0;
+                        //Condi.sep = 0;
+                        //Condi.oct = 0;
+                        //Condi.nov = 0;
+                        //Condi.dec = 0;
+                        //Condi.por_cum = 0;
+                        //Condi.mes = month;
+                        //Condi.year = year;
+                        //Condi.dia = dia;
                         db.Entry(Condi).State = EntityState.Modified;
 
                         if (db.SaveChanges() > 0)
@@ -179,7 +169,7 @@ namespace CRME.Controllers
                     }
                 }
 
-            }
+
 
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
 
@@ -289,14 +279,14 @@ namespace CRME.Controllers
         }
 
         //Llamar al Visualizador.
-        public ActionResult VisualizarInd(long? tg)
+        public ActionResult VisualizarInd(long? idp)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "AccesoView");
             }
             ViewBag.HiddenMenu = 1;
-
+            ViewBag.id = idp;
             return View();
         }
 
@@ -314,27 +304,27 @@ namespace CRME.Controllers
         }
 
         //Metodo para la vista del formulario.
-        public ActionResult _FormularioIndicadores(long? indicadores_ID)
+        public ActionResult _FormularioIndicadores(long? id)
         {
             Procesos condicion = new Procesos();
             Puestos condil = new Puestos();
             cat_periodos cond = new cat_periodos();
             cat_indicadores Indicadores = new cat_indicadores();
 
-            if (indicadores_ID != null)
+            if (id != null)
             {
                 ViewBag.edit = 1;
 
-                condicion = db.Procesos.Find(indicadores_ID);
+                condicion = db.Procesos.Find(id);
                 ViewBag.Procesos = new SelectList(db.Procesos.ToList(), "id", "descripcion", condicion.Indicadores);
 
-                condil = db.Puestos.Find(indicadores_ID);
+                condil = db.Puestos.Find(id);
                 ViewBag.Puestos = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion", condil.Estatus);
 
-                cond = db.cat_periodos.Find(indicadores_ID);
+                cond = db.cat_periodos.Find(id);
                 ViewBag.Periodos = new SelectList(db.cat_periodos.ToList(), "periodo_ID", "periodo_des", cond.periodo_des);
 
-                Indicadores = db.cat_indicadores.Find(indicadores_ID);
+                Indicadores = db.cat_indicadores.Find(id);
             }
             else
             {
@@ -544,6 +534,27 @@ namespace CRME.Controllers
             fileName = "Indicadores.xlsx";
 
             return File(renderedBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+        }
+
+        public ActionResult DeleteUsuario(long? Em_Cve_Empresa)
+        {
+            bool success = false; ;
+            string mensajefound = "";
+
+            try
+            {
+                cat_indicadores condi = db.cat_indicadores.Find(Em_Cve_Empresa);
+                db.Entry(condi).State = EntityState.Deleted;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                mensajefound = "Ocurrio un error al dar baja la empresa";
+            }
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
 
     }

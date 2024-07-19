@@ -73,33 +73,33 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaCompromiso)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Avance)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.EstadosAC.Find(item.Estatus).descripcion)</td>
-                    
-                    @if ( item.Evidencia == null)
+
+                    @if (item.Evidencia == null)
                     {
-                     <td class="center-align">
-                      <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="Evidencia" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file mdi-24px black-text"></i></a>&nbsp;&nbsp;
-                     </td>
+                        <td class="center-align">
+                            <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="Evidencia" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file mdi-24px black-text"></i></a>&nbsp;&nbsp;
+                        </td>
                     }
                     else
                     {
-                     <td class="center-align">
-                        <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="Evidencia" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file mdi-24px green-text"></i></a>&nbsp;&nbsp;
-                     </td>
+                        <td class="center-align">
+                            <a href="@item.Evidencia.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="Evidencia" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                        </td>
                     }
-                    
-                    
+
+
                     @if (item.Estatus != 2)
                     {
-                     <td class="center">
-                      <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-                    @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1)
-                     {
-                      <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
-                     }
-                     </td>
+                        <td class="center">
+                            <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                            @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
+                            {
+                                <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+                            }
+                        </td>
                     }
-                    
-                    
+
+
                 </tr>
                         }
                     }

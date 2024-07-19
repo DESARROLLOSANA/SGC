@@ -176,7 +176,15 @@ namespace CRME.Controllers
                     Edificio.Proceso = accion.Proceso;
                     Edificio.DesviacionDet = accion.DesviacionDet;
                     Edificio.ResponsableAC = accion.ResponsableAC;
-                    Edificio.Evidencia = ruta;
+
+                    if (ruta == null || ruta == "")
+                    {
+                        Edificio.Evidencia = accion.Evidencia;
+                    }
+                    else
+                    {
+                        Edificio.Evidencia = ruta;
+                    }
                     Edificio.AccionCorrectiva = accion.AccionCorrectiva;
                     Edificio.FechaCompromiso = accion.FechaCompromiso;
                     Edificio.Estatus = accion.Estatus;
@@ -238,53 +246,122 @@ namespace CRME.Controllers
             ViewBag.rutatarjeta = Respuestas.Filet;
             return Json(new { success = success, mensaje, FileT });
         }
+        //public async Task<JsonResult> Uploadfile()
+        //{
+        //    bool success = false;
+        //    string mensaje = "";
+        //    string msj = "";
+        //    string Filet = "";
+        //    //var year = DateTime.Now;
+        //    //string conver = Convert.ToString(year);
+        //    string name = Path.GetRandomFileName();
+
+        //    await Task.Run(() =>
+        //    {
+
+        //        string savedFileNameDownload = "";
+        //        string nombreArchivo = "Archivo" + name;
+        //        FileStream stream = null;
+
+        //        try
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf")))
+        //                {
+        //                    System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf"));
+        //                }
+
+        //                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+        //                string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo + Path.GetExtension(Path.GetFileName(hpf.FileName)));
+        //                Filet = "~/Upload/Sistema/files/" + nombreArchivo + ".pdf";
+        //                hpf.SaveAs(savedFileName);
+        //                success = true;
+        //                mensaje = "¡Archivo subido con éxito!";
+        //            }
+
+        //        }
+        //        catch (DbEntityValidationException ex)
+        //        {
+        //            success = false;
+        //            mensaje = "Ocurrió un problema al subir el archivo";
+        //            Console.WriteLine(ex);
+        //            if (stream != null)
+        //                stream.Close();
+        //            stream.Dispose();
+        //        }
+        //    });
+
+        //    return Json(new { success = success, mensaje, Filet });
+        //}
+
         public async Task<JsonResult> Uploadfile()
         {
             bool success = false;
             string mensaje = "";
-            string msj = "";
             string Filet = "";
-            //var year = DateTime.Now;
-            //string conver = Convert.ToString(year);
-            string name = Path.GetRandomFileName();
 
             await Task.Run(() =>
             {
-
-                string savedFileNameDownload = "";
-                string nombreArchivo = "Archivo" + name;
-                FileStream stream = null;
-
                 try
                 {
                     foreach (string file in Request.Files)
                     {
-                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf")))
-                        {
-                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo + ".pdf"));
-                        }
-
                         HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
-                        string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo + Path.GetExtension(Path.GetFileName(hpf.FileName)));
-                        Filet = "~/Upload/Sistema/files/" + nombreArchivo + ".pdf";
-                        hpf.SaveAs(savedFileName);
-                        success = true;
-                        mensaje = "¡Archivo subido con éxito!";
-                    }
 
+                        // Verificar si el archivo tiene una extensión permitida
+                        string extension = Path.GetExtension(hpf.FileName).ToLower();
+                        if (extension == ".pdf" || extension == ".docx" || extension == ".xlsx" || extension == ".ods" || extension == ".jpeg" || extension == ".png" || extension == ".jpg")
+                        {
+                            // Ruta donde se va a guardar el archivo
+                            string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), hpf.FileName);
+
+                            // Guardar el archivo en el servidor
+                            hpf.SaveAs(savedFileName);
+
+                            // Guardar la ruta relativa para la respuesta JSON
+                            Filet = "~/Upload/Sistema/files/" + hpf.FileName;
+
+                            success = true;
+                        }
+                        else
+                        {
+                            mensaje = "La extensión del archivo no es válida. Se permiten archivos PDF, DOCX, XLSX, ODS, JPEG, PNG y PNG.";
+                            success = false;
+                        }
+                    }
                 }
-                catch (DbEntityValidationException ex)
+                catch (Exception ex)
                 {
                     success = false;
                     mensaje = "Ocurrió un problema al subir el archivo";
                     Console.WriteLine(ex);
-                    if (stream != null)
-                        stream.Close();
-                    stream.Dispose();
                 }
             });
 
             return Json(new { success = success, mensaje, Filet });
+        }
+
+
+        public ActionResult DeleteUsuario(long? Em_Cve_Empresa)
+        {
+            bool success = false; ;
+            string mensajefound = "";
+
+            try
+            {
+                Acciones_correctivas condi = db.Acciones_correctivas.Find(Em_Cve_Empresa);
+                db.Entry(condi).State = EntityState.Deleted;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                mensajefound = "Ocurrio un error al dar baja la accion correctiva";
+            }
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
     }
 }

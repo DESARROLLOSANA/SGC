@@ -11,7 +11,7 @@
 <div class="row form-general margin-top-10">
     <div class="col l12 m12 s12">
         <div id="TablaEmpresas">
-            @Html.Action("_Formulario", "AccionCorectView")
+            @Html.Action("_Formulario", "AccionCorectView", new { id = ViewBag.id })
         </div>
         <div class="row">
             <div class="col l12 m12 s12">
@@ -57,6 +57,7 @@
             var fileInput = document.getElementById('fileInputArchivo');
             var archivo = $('#fileInputArchivo').val();
             var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            var allowedExtensions = ['.pdf', '.jpeg', '.jpg', '.xls', '.xlsx', '.docx'];
             if (fileInput.value.trim() == "") {
                 ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
                 $("#ModalAlert").modal({
@@ -64,7 +65,7 @@
                 });
                 $("#ModalAlert").modal('open');
             }
-            else if (extension != ".pdf" || extension != ".jpeg" || extension != ".jpg" || extension != ".xls" || extension != ".xlsx" || extension != ".docx") {
+            else if (allowedExtensions.indexOf(extension.toLowerCase()) === -1) {
                 $('#ruta').val("");
                 $("#nbArchivo").val("");
                 ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante

@@ -63,7 +63,21 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.version)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaEmision)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.UltimaActu)</td>
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>
+
+                    @if (item.ControlCambios == null || item.ControlCambios == "")
+                    {
+                        <td class="center-align">
+                            <i class="mdi mdi-file-document mdi-24px red-text"></i>&nbsp;&nbsp;
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="center-align">
+                            <a href="@item.ControlCambios.Replace("~","")" class="documento" data-position="bottom" data-delay="50" title="documento" data-tooltip="documento" style="cursor:pointer;" id-vend=""><i class="mdi mdi-file-document mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                        </td>
+                    }
+
+
                     @if (item.Indicadores == null || item.Indicadores == "")
                     {
                         <td class="center-align">

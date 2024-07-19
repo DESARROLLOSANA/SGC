@@ -217,7 +217,7 @@
                     var depto = $("#Departamento").val();
                     var empre = $("#Em_Cve_Empresa").val();
                     $.ajax({
-                        url: '@Url.Action("GuardarProceso", "ProcesosView")',
+                        url: '@Url.Action("GuardarProceso", "CtrlInternoView")',
                         data: frmValues + "&ruta=" + ruta + "&ruta2=" + ruta2 + "&Dp_cve_Departamento=" + depto + "&Em_Cve_Empresa=" + empre,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
@@ -229,7 +229,7 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                window.location = "/ProcesosView/index?id=" + result.idemp;
+                                window.location = "/CtrlInternoView/index?id=" + result.idemp;
                             }
                             else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante

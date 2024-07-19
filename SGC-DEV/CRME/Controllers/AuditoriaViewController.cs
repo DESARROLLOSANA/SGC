@@ -92,7 +92,7 @@ namespace CRME.Controllers
             return PartialView(edificiossolicitud);
         }
 
-        public ActionResult GuardarProceso(Auditoria_Interna proceso, string ruta)
+        public ActionResult GuardarProceso(Auditoria_Interna proceso, string ruta, string ruta2)
         {
             Auditoria auditoria = new Auditoria();
             var serializerCat = new JavaScriptSerializer();
@@ -120,7 +120,7 @@ namespace CRME.Controllers
                         Edificio.version = proceso.version;
                         Edificio.FechaAuditoria = proceso.FechaAuditoria;
                         Edificio.planAuditoria = ruta;
-                        Edificio.Informe = proceso.Informe;
+                        Edificio.Informe = ruta2;
                         Edificio.Resultado = proceso.Resultado;
                         Edificio.FechaSigAudi = proceso.FechaSigAudi;
                         Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;                       
@@ -178,7 +178,28 @@ namespace CRME.Controllers
                     Edificio.FechaAuditoria = proceso.FechaAuditoria;
                     Edificio.Informe = proceso.Informe;
                     Edificio.Resultado = proceso.Resultado;
-                    Edificio.planAuditoria = ruta;
+
+                    if (ruta2 == null || ruta2 == "")
+                    {
+                        Edificio.Informe = proceso.Informe;
+                    }
+                    else
+                    {
+                        Edificio.Informe = ruta2;
+                    }
+
+
+                    if (ruta == null || ruta == "")
+                    {
+                        Edificio.planAuditoria = proceso.planAuditoria;
+                    }
+                    else
+                    {
+                        Edificio.planAuditoria = ruta;
+                    }
+
+
+
                     Edificio.FechaSigAudi = proceso.FechaSigAudi;
                     Edificio.Em_Cve_Empresa = proceso.Em_Cve_Empresa;                    
                     idemp = proceso.Em_Cve_Empresa;
@@ -283,6 +304,69 @@ namespace CRME.Controllers
             });
 
             return Json(new { success = success, mensaje, Filet });
+        }
+
+        //CARGAR INFORME DE AUDITORIA
+        public async Task<ActionResult> Cargarfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string FileT2 = "";
+            JsonResult Resp = await Uploadfile2();
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            ResponseObjectVM2 Respuestas = ser.Deserialize<ResponseObjectVM2>(ser.Serialize(Resp.Data));
+            success = Respuestas.success;
+            mensaje = Respuestas.mensaje;
+            FileT2 = Respuestas.Filet2;
+            ViewBag.rutatarjeta = Respuestas.Filet2;
+            return Json(new { success = success, mensaje, FileT2 });
+        }
+        public async Task<JsonResult> Uploadfile2()
+        {
+            bool success = false;
+            string mensaje = "";
+            string msj = "";
+            string Filet2 = "";
+            //var year = DateTime.Now;
+            //string conver = Convert.ToString(year);
+            string name = Path.GetRandomFileName();
+
+            await Task.Run(() =>
+            {
+
+                string savedFileNameDownload = "";
+                string nombreArchivo2 = "Archivo2" + name;
+                FileStream stream = null;
+
+                try
+                {
+                    foreach (string file in Request.Files)
+                    {
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf")))
+                        {
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf"));
+                        }
+
+                        HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                        string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), nombreArchivo2 + Path.GetExtension(Path.GetFileName(hpf.FileName)));
+                        Filet2 = "~/Upload/Sistema/files/" + nombreArchivo2 + ".pdf";
+                        hpf.SaveAs(savedFileName);
+                        success = true;
+                    }
+
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    success = false;
+                    mensaje = "Ocurrió un problema al subir el archivo";
+                    Console.WriteLine(ex);
+                    if (stream != null)
+                        stream.Close();
+                    stream.Dispose();
+                }
+            });
+
+            return Json(new { success = success, mensaje, Filet2 });
         }
 
 

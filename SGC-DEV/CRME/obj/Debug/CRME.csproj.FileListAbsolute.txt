@@ -2256,3 +2256,4 @@ C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.Co
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.CopyComplete
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.dll
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.pdb
+C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache
