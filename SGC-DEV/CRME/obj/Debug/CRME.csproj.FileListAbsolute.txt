@@ -2252,8 +2252,8 @@ C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\bin\es\System.Web.WebPag
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.CoreCompileInputs.cache
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.CopyComplete
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.dll
 C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.pdb
-C:\Users\Soporte-Sana\Documents\GitHub\SGC\SGC-DEV\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache

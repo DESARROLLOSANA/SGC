@@ -42,10 +42,11 @@
                         <td class="center hide-on-small-only">Estatus</td>
                         <td class="center hide-on-small-only">Evidencia</td>
                         @foreach (var item in Model)
-                        { 
-                         if (item.Estatus !=2 ) 
-                            { 
+                        {
+                            if (item.Estatus !=2 )
+                            {
                              <td class="center">Opciones</td>
+                                break;
                             }
                         }
                         

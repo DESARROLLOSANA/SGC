@@ -29,6 +29,7 @@
             </div>
         }
     </div>
+
     <div class="row">
         <div class="col l12 m12 s12">
             <table class="striped highlight light-blue">
@@ -68,7 +69,6 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.version)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaEmision)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.UltimaActu)</td>
-                    @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>*@
 
                     @if (item.ControlCambios == "" || item.ControlCambios == null)
                     {

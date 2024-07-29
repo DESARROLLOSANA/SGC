@@ -101,7 +101,7 @@ else
 
     @*CONTROL DE CAMBIOS*@
     <div class="col s12 m12 l12 input-field hiddendiv">
-        <b class="">Control Cambios:</b>
+        <b class="">Documento:</b>
         <div class="input-field margin-top-0">
             @Html.TextBoxFor(model => model.ControlCambios, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
             @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
@@ -151,7 +151,7 @@ else
     @*INDICADOR*@
 
     <div class="col s12 m12 l12 input-field hiddendiv">
-        <b class="">Indicador:</b>
+        <b class="">Formato:</b>
         <div class="input-field margin-top-0">
             @Html.TextBoxFor(model => model.Indicadores, new { @class = "Validate form-simple", placeholder = "Ingrese el responsable", maxlength = 100, style = " !important;" })
             @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
@@ -163,12 +163,12 @@ else
         <div class="col s12">
             <div class="row">
                 <div class="col s12 m12 l12">
-                    <b class="">Control Interno:</b>
+                    <b class="">Formato:</b>
                     <div class="row margin-0">
                         <div class="col s12 m12 l7 file-field input-field">
                             <div class="btn light-blue darken-4">
                                 <i class="mdi mdi-folder-open"></i> EXAMINAR
-                                <input type="file" id="fileInputArchivo" accept=".pdf">
+                                <input type="file" id="fileInputArchivo" accept=".pdf,.docx,.xlsx,.ods,.odt">
                             </div>
                             <div class="file-path-wrapper">
                                 <input id="nbArchivo" class="file-path validate" type="text">

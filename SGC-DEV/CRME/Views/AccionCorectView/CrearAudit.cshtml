@@ -57,7 +57,7 @@
             var fileInput = document.getElementById('fileInputArchivo');
             var archivo = $('#fileInputArchivo').val();
             var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
-            var allowedExtensions = ['.pdf', '.jpeg', '.jpg', '.xls', '.xlsx', '.docx', '.ods', '.png'];
+            var allowedExtensions = ['.pdf', '.jpeg', '.jpg', '.xls', '.xlsx', '.docx', '.ods', '.png', '.odt'];
             if (fileInput.value.trim() == "") {
                 ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
                 $("#ModalAlert").modal({

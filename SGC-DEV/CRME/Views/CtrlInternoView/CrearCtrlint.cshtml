@@ -82,7 +82,7 @@
                 });
                 $("#ModalAlert").modal('open');
             }
-            else if (extension != ".pdf" && extension != ".docx" && extension != ".xlsx" && extension != ".ods") {
+            else if (extension != ".pdf" && extension != ".docx" && extension != ".xlsx" && extension != ".ods" && extension != ".odt") {
                 $('#ruta').val("");
                 $("#nbArchivo").val("");
                 ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante

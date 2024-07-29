@@ -29,6 +29,7 @@
             </div>
         }
     </div>
+
     <div class="row">
         <div class="col l12 m12 s12">
             <table class="striped highlight light-blue">
@@ -40,7 +41,7 @@
                         <td class="center hide-on-small-only">Fecha de emisión</td>
                         <td class="center hide-on-small-only">Última actualización</td>
                         <td class="center hide-on-small-only">Documentos</td>
-                        <td class="center hide-on-small-only">Indicadores</td>
+                        <td class="center hide-on-small-only">Formato</td>
                         <td class="center hide-on-small-only">responsable</td>
                         @if (Auth.Usuario.perfil_ID == 6 || Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
                         {
@@ -68,7 +69,6 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.version)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.FechaEmision)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.UltimaActu)</td>
-                    @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ControlCambios)</td>*@
 
                     @if (item.ControlCambios == "" || item.ControlCambios == null)
                     {

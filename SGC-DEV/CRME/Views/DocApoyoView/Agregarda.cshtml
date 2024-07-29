@@ -51,6 +51,7 @@
             var fileInput = document.getElementById('fileInputArchivo');
             var archivo = $('#fileInputArchivo').val();
             var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            var allowedExtensions = ['.pdf', '.xls', '.xlsx', '.docx', '.ods', '.odt'];
             if (fileInput.value.trim() == "") {
                 ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
                 $("#ModalAlert").modal({
@@ -58,7 +59,7 @@
                 });
                 $("#ModalAlert").modal('open');
             }
-            else if (extension != ".pdf") {
+            else if (extension != ".pdf" && extension != ".docx" && extension != ".xlsx" && extension != ".ods" && extension != ".odt") {
                 $('#ruta').val("");
                 $("#nbArchivo").val("");
                 ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante

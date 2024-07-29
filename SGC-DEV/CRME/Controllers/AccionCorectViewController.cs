@@ -311,7 +311,7 @@ namespace CRME.Controllers
 
                         // Verificar si el archivo tiene una extensión permitida
                         string extension = Path.GetExtension(hpf.FileName).ToLower();
-                        if (extension == ".pdf" || extension == ".docx" || extension == ".xlsx" || extension == ".ods" || extension == ".jpeg" || extension == ".png" || extension == ".jpg")
+                        if (extension == ".pdf" || extension == ".docx" || extension == ".xlsx" || extension == ".ods" || extension == ".jpeg" || extension == ".png" || extension == ".jpg" || extension == ".odt")
                         {
                             // Ruta donde se va a guardar el archivo
                             string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/files/"), hpf.FileName);
